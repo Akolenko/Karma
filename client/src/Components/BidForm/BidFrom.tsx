@@ -1,4 +1,7 @@
+import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+const URL = "http://localhost:3000";
 
 interface Form {
   title: string,
@@ -10,7 +13,9 @@ export default function BidForm() {
   const {register, handleSubmit} = useForm<Form>()
   let successPostBid = null
   const submit: SubmitHandler<Form> = function (data) {
-    console.log(data.title, data.description, data.address)
+    axios.post(URL + '/api/bids', data)
+      .then(response => console.log(response.data))
+      .catch(error => console.log(error.message, "нет backend'a"))
   }
 
   return (
