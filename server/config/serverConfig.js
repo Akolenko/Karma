@@ -3,7 +3,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const FileStore = require('session-file-store')(session);
 const morgan = require('morgan');
-
+const cors = require('cors');
 const sessionConfig = {
   store: new FileStore(),    // настройка файлового хранилища
   name: 'user_sid',        // имя куки для хранения id сессии
@@ -19,9 +19,12 @@ const sessionConfig = {
 const serverConfig = (app) => {
   app.use(morgan("dev"));
   app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.use(express.urlencoded({extended: true}));
   app.use(cookieParser());
   app.use(session(sessionConfig));
+  app.use(cors({
+    credentials: 'true'
+  }))
 }
 
 module.exports = serverConfig;
