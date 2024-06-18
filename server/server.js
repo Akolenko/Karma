@@ -15,4 +15,3 @@ app.use('/api', bidApiRouter)
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
 })
- //npx sequelize model:create --name User --attributes fio:string,date_of_birth:dateonly,email:string,password:string,phone:string
