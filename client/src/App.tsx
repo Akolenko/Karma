@@ -1,12 +1,16 @@
 import './App.css'
 import BidForm from "./Components/BidForm/BidFrom.tsx";
 import MainPage from "./Components/MainPage/MainPage.tsx";
+import { Route, Routes } from "react-router";
 
 function App() {
   return (
     <>
-      <MainPage/>
-       {/*<BidForm/>*/}
+      <Routes>
+        <Route path={'/'} element={<MainPage/>}/>
+        <Route path={'/bid-form'} element={<BidForm/>}/>
+      </Routes>
+
     </>
   )
 }

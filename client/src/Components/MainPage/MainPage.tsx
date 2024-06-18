@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function MainPage() {
   return (
     <>
@@ -7,10 +9,15 @@ export default function MainPage() {
           <img src={''} alt={'Здесь будет какая-нибудь картинка красивая'}/>
         </div>
         <div className={'flex mt-5'}>
-          <button className={'w-80 mr-14 border-lime-600 hover:border-lime-500 bg-white text-lime-600'}>
-            Нужна помощь
-          </button>
-          <button className={'w-80 border-lime-600 hover:border-lime-500 bg-white text-lime-600'}>
+          <Link to={'/bid-form'}>
+            <button
+              className={'w-80 mr-14 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600 '}>
+              Нужна помощь
+            </button>
+          </Link>
+
+          <button
+            className={'w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600'}>
             Хочу помочь
           </button>
         </div>
