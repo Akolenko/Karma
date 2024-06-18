@@ -1,5 +1,4 @@
 const express = require('express');
-const FileStore = require('session-file-store')(session);
 const morgan = require('morgan');
 const cors = require('cors');
 
