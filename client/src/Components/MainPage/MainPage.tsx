@@ -15,14 +15,14 @@ export default function MainPage() {
               Нужна помощь
             </button>
           </Link>
-
-          <button
-            className={'w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600'}>
-            Хочу помочь
-          </button>
+          <Link to={'/bid-list'}>
+            <button
+              className={'w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600'}>
+              Хочу помочь
+            </button>
+          </Link>
         </div>
       </div>
-
     </>
   )
 }

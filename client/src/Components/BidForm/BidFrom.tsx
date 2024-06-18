@@ -24,7 +24,7 @@ export default function BidForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(submit)} className={'flex flex-col bg-gray-200 p-6 w-80 rounded-xl gap-2'}>
+      <form onSubmit={handleSubmit(submit)} className={'flex flex-col bg-gray-200 p-6 w-96 rounded-xl gap-2'}>
         <label>Название заявки</label>
         <input placeholder={'Введите название'}
                type={'text'} {...register('title', {required: true})} className={'p-2 rounded-xl'}/>
