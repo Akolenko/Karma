@@ -1,5 +1,5 @@
 import './App.css'
-import BidForm from "../Components/BidForm/BidFrom.tsx";
+import BidForm from "../Components/BidForm/BidForm.tsx";
 import MainPage from "../Components/MainPage/MainPage.tsx";
 import { Route, Routes } from "react-router";
 import BidList from "../Components/BidList/BidList.tsx";
