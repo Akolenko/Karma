@@ -12,8 +12,8 @@ export default function Bid({bid}: { bid: Bid }) {
         <div className={'flex justify-between items-baseline'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
           <button className={'size-26 text-sm transition duration-300 mt-3 rounded-md' +
-            ' shadow-sm border-lime-600 hover:bg-lime-500 hover:text-white' +
-            ' hover:border-lime-500 bg-white text-lime-600 h-8'}>Откликнуться</button>
+            ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+            ' hover:border-lime-500 bg-white text-lime-600'}>Откликнуться</button>
         </div>
 
       </div>

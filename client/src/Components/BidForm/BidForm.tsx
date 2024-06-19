@@ -78,8 +78,8 @@ export default function BidForm(): JSX.Element {
         {errors.address && <p className="text-red-600 text-sm">{errors.address.message}</p>}
 
         <button className={'transition duration-300 mt-3 rounded-md' +
-          ' shadow-sm border-lime-600 hover:bg-lime-500 hover:text-white' +
-          ' hover:border-lime-500 bg-white text-lime-600'}>{isSubmitting ? 'Отправка...' : 'Создать заявку'}
+          ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+          ' hover:border-lime-600 bg-white text-lime-600'}>{isSubmitting ? 'Отправка...' : 'Создать заявку'}
         </button>
       </form>
 
