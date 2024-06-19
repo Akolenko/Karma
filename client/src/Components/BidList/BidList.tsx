@@ -14,13 +14,15 @@ export default function BidList() {
 
   return (
     <>
-      <div className={'flex gap-x-96'}>
+      <div className={'flex gap-x-96 mb-8'}>
         <h1>Заявки</h1>
         <Link to={'/bid-form'}>
-          <button>+ Cоздать заявку</button>
+          <button className={'transition duration-300 mt-3 rounded-md' +
+            ' shadow-sm border-lime-600 hover:bg-lime-500 hover:text-white' +
+            ' hover:border-lime-500 bg-white text-lime-600'} >+ Cоздать заявку</button>
         </Link>
       </div>
-      <div className={'flex flex-col gap-5'}>
+      <div className={'flex flex-col gap-2'}>
         {bids && bids.map((bid) => (<Bid key={bid.id} bid={bid} />))}
       </div>
     </>

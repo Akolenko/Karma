@@ -37,7 +37,8 @@ export default function BidForm(): JSX.Element {
     <>
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Создание Вашей
         заявки</h2>
-      <form onSubmit={handleSubmit(submit)} className={'drop-shadow-md flex flex-col bg-gray-100 p-6 w-96 rounded-xl gap-2 m-8 '}>
+      <form onSubmit={handleSubmit(submit)}
+            className={'drop-shadow-md flex flex-col bg-white p-6 w-96 rounded-xl gap-2 m-8 '}>
 
         <label className="text-sm font-medium tracking-wide leading-8 text-gray-900" htmlFor={'title'}>Название
           заявки</label>
@@ -48,7 +49,7 @@ export default function BidForm(): JSX.Element {
             message: 'Не менее 5 символов!'
           }
         })}
-               className={'p-2 rounded-xl shadow-sm outline-none'}/>
+               className={'p-2 rounded-xl shadow-sm outline-gray-100 border border-gray-200'}/>
         {errors.title && <p className="text-red-600 text-sm">{errors.title.message}</p>}
 
         <label htmlFor={'description'} className={'text-sm font-medium tracking-wide leading-8 text-gray-900 mt-2'}>Опишите
@@ -61,7 +62,7 @@ export default function BidForm(): JSX.Element {
                       message: 'Не менее 10 символов!'
                     }
                   })}
-                  className={'p-2 rounded-xl shadow-sm outline-none italic'}/>
+                  className={'outline-gray-100 border-gray-200 p-2 rounded-xl shadow-sm outline-none italic'}/>
         {errors.description && <p className="text-red-600 text-sm">{errors.description.message}</p>}
 
         <label htmlFor={'address'}
@@ -73,7 +74,7 @@ export default function BidForm(): JSX.Element {
             message: 'Не менее 10 символов!'
           }
         })}
-               className={'p-2 rounded-xl shadow-sm outline-none'}/>
+               className={'outline-gray-100 border-gray-200 p-2 rounded-xl shadow-sm outline-none'}/>
         {errors.address && <p className="text-red-600 text-sm">{errors.address.message}</p>}
 
         <button className={'transition duration-300 mt-3 rounded-md' +
