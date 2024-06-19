@@ -2,7 +2,7 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { JSX, useState } from "react";
 
-const URL = "http://localhost:3000";
+const URL = "http://localhost:3000/api";
 
 interface Form {
   title: string,
