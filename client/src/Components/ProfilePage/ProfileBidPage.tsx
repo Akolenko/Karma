@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ProfilePage from "./ProfilePage";
+// import ProfilePage from "./ProfilePage";
 import Bid from "../Bid/Bid"
 
 
@@ -25,7 +25,7 @@ function ProfileBidPage(): JSX.Element {
   
     return (
         <>
-        <ProfilePage/>
+        {/*<ProfilePage/>*/}
 
       <div className={"flex flex-col"}>
       {bids && bids.map((bid) => (<Bid key={bid.id} bid={bid} />))}
