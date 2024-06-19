@@ -19,7 +19,7 @@ app.use('/', bidsRouter)
 app.use('/profile', profileRouter)
 app.use("/profile/bid", profileBidsRouter)
 //API
-app.use('/', bidApiRouter)
+app.use(bidApiRouter)
 
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
