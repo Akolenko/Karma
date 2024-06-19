@@ -5,7 +5,7 @@ import Bid from "../Bid/Bid"
 
 
 export type BidProfileType = {
-    id?: number,
+    id: number,
     title:string,
     description:string,
     address:string,
@@ -17,10 +17,10 @@ function ProfileBidPage(): JSX.Element {
     const [bids, setBids] = useState<BidProfileType[]>([]);
   
     useEffect(() => {
-      const bids = axios("http://localhost:3000/profile/bid")
+      axios("http://localhost:3000/profile/bid")
         .then((res) => setBids(res.data));
     }, []);
-    // console.log(user);
+    console.log(bids);
     
   
     return (
