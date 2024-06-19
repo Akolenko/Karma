@@ -23,7 +23,7 @@ export default function BidList() {
         </Link>
       </div>
       <div className={'flex flex-col gap-2'}>
-        {bids && bids.map((bid) => (<Bid key={bid.id} bid={bid} />))}
+        {bids && bids.length && bids.map((bid) => (<Bid key={bid.id} bid={bid} />))}
       </div>
     </>
   )
