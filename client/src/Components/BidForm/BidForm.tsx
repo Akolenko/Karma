@@ -19,7 +19,7 @@ export default function BidForm(): JSX.Element {
 
   const submit: SubmitHandler<Form> = function (data) {
 
-    axios.post(URL + '/api/bids', data)
+    axios.post(URL + '/bids', data)
       .then(response => {
         console.log(response.data)
         reset()
