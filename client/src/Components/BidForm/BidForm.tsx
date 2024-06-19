@@ -2,7 +2,6 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { JSX, useState } from "react";
 
-const URL = "http://localhost:3000/api";
 
 interface Form {
   title: string,
@@ -19,7 +18,7 @@ export default function BidForm(): JSX.Element {
 
   const submit: SubmitHandler<Form> = function (data) {
 
-    axios.post(URL + '/bids', data)
+    axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, data)
       .then(response => {
         console.log(response.data)
         reset()
