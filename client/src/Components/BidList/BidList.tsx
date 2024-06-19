@@ -17,9 +17,9 @@ export default function BidList() {
       <div className={'flex gap-x-96 mb-8'}>
         <h1>Заявки</h1>
         <Link to={'/bid-form'}>
-          <button className={'transition duration-300 mt-3 rounded-md' +
-            ' shadow-sm border-lime-600 hover:bg-lime-500 hover:text-white' +
-            ' hover:border-lime-500 bg-white text-lime-600'} >+ Cоздать заявку</button>
+          <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
+            ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+            ' hover:border-lime-600 bg-white text-lime-600'} >+ Cоздать заявку</button>
         </Link>
       </div>
       <div className={'flex flex-col gap-2'}>
