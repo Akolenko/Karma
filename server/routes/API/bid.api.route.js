@@ -10,7 +10,7 @@ router.post('/bids', async (req, res) => {
       description,
       address,
       status: 'create',
-      author_id: 1
+      author_id: 1 //TODO Хард-код, изменить при рабочей авторизации
     });
     if (newBid) {
       res.status(201).json({title, description, address});
