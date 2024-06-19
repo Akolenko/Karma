@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -23,7 +24,7 @@ const initialState: BidsState = {
 }
 export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
   try {
-    const bids = await axios('http://localhost:3000/bids')
+    const bids = await axios(`${process.env.VITE_REACT_APP_API_URL}/bids`)
     return bids.data
   } catch (error) {
     return rejectWithValue
