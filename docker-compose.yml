@@ -24,7 +24,6 @@ services:
       - NODE_ENV=production
     networks:
       - app-network
-    tti: true
 
   postgres:
     image: postgres:15
