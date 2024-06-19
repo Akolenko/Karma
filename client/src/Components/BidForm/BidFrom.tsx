@@ -19,12 +19,14 @@ export default function BidForm() {
       .then(() => {
         alert('Заявка на помощь успешно отправлена!')
       })
+      .then(()=> window.location.assign('/bid-list')) // пока перенаправляю заказчиков на страницу всех заявок
       .catch(error => console.log(error.message, "нет backend'a"))
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit(submit)} className={'flex flex-col bg-gray-200 p-6 w-96 rounded-xl gap-2'}>
+      <h3 className={'items-center'}>Создание Вашей заявки</h3>
+      <form onSubmit={handleSubmit(submit)} className={'flex flex-col bg-gray-200 p-6 w-96 rounded-xl gap-2 m-8'}>
         <label>Название заявки</label>
         <input placeholder={'Введите название'}
                type={'text'} {...register('title', {required: true})} className={'p-2 rounded-xl'}/>
@@ -34,7 +36,7 @@ export default function BidForm() {
         <label className={'mt-2'}>Адрес</label>
         <input placeholder={'Введите адрес по которому необходимо оказать помощь'}
                type={'text'} {...register('address', {required: true})} className={'p-2 rounded-xl'}/>
-        <button className={'mt-3 bg-blue-300'}>Создать заявку
+        <button className={'mt-3 bg-blue-300 rounded-md'}>Создать заявку
         </button>
       </form>
     </>

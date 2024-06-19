@@ -10,7 +10,7 @@ export default function BidList() {
 
   useEffect(() => {
     dispatch(getBids())
-  }, [])
+  }, [dispatch]) // eslint сказал добавь в зависимости dispatch !
 
   return (
     <>
