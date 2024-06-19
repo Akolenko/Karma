@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import  bidsSlice  from "../../features/bidsSlice.ts";
+import  bidsSlice  from "../../features/bidsSlice";
 
 export const rootReducer = combineReducers({
 bids: bidsSlice
