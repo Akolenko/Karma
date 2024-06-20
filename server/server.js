@@ -8,6 +8,7 @@ const profileRouter = require("./routes/views/profile.bio.router")
 const profileBidsRouter = require("./routes/views/profile.bid.router")
 //API
 const bidApiRouter = require('./routes/API/bid.api.route');
+const router = require('./routes/views/bids.router');
 
 const app = express();
 const PORT = process.env.PORT | 3000;
@@ -20,6 +21,7 @@ app.use('/profile', profileRouter)
 app.use("/profile/bid", profileBidsRouter)
 //API
 app.use('/api', bidApiRouter)
+app.use('/api', router)
 
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
