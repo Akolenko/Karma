@@ -18,6 +18,9 @@ serverConfig(app);
 app.use('/', bidsRouter)
 app.use('/profile', profileRouter)
 app.use("/profile/bid", profileBidsRouter)
+app.use('/api/', bidsRouter)
+app.use('/api/profile', profileRouter)
+app.use("/api/profile/bid", profileBidsRouter)
 //API
 app.use(bidApiRouter)
 
