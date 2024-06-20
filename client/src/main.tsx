@@ -1,7 +1,10 @@
-import React, { createContext } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App/App.tsx'
+import React, { createContext } from 'react'
+import App from './app/App.tsx'
 import './index.css'
+import { BrowserRouter } from "react-router-dom";
+import {Provider} from "react-redux";
+import {store} from "../redux/store/store.ts";
 import AuthStore from './auth.store/auth.store.ts'
 
 interface AuthState {
@@ -15,11 +18,11 @@ export const AuthContext = createContext<AuthState>({
 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <AuthContext.Provider value={{
-        authStore
-    }}>
-        <App />
-    </AuthContext.Provider>
-    
-
+  <AuthContext.Provider value={{ authStore }}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </Provider>
+  </AuthContext.Provider>
 )
