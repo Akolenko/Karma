@@ -2,7 +2,6 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { JSX, useState } from "react";
 
-
 interface Form {
   title: string,
   description: string,

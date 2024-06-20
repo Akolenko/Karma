@@ -1,16 +1,15 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
-import Bid from "../Bid/Bid"
 import { NavLink } from "react-router-dom";
 
 export type BidProfileType = {
-    id: number,
-    title:string,
-    description:string,
-    address:string,
-    status:string,
-    author_id:number
+  id: number,
+  title: string,
+  description: string,
+  address: string,
+  status: string,
+  author_id: number
 }
 
 function ProfileBidPage(): JSX.Element {
