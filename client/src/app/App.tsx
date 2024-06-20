@@ -16,7 +16,7 @@ function App() {
         <Route path={'/bid-list'} element={<BidList/>}/>
         {/*<Route path={"/profile"} element={<ProfilePage/>}/>*/}
         {/*<Route path={"/profile/bio"} element={<ProfileBioPage/>}/>*/}
-        <Route path={"/profile/bid"} element={<ProfileBidPage/>}/>
+        <Route path={"/profile/bids"} element={<ProfileBidPage/>}/>
       </Routes>
 
     </>
