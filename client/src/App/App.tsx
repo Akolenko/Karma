@@ -2,11 +2,11 @@
 import { useContext, useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
-import LoginForm from './components/LoginForm'
-import { AuthContext } from './main'
+import LoginForm from '../components/LoginForm'
+import { AuthContext } from '../main'
 import { observer } from 'mobx-react-lite'
-import { Bid } from './models/response/Bid.interface'
-import BidsServise from './services/BidsService'
+import { Bid } from '../models/response/Bid.interface'
+import BidsServise from '../services/BidsService'
 
 function App() {
 
