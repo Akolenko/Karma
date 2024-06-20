@@ -5,11 +5,11 @@ import { Route, Routes } from "react-router";
 import ProfileBidPage from '../components/ProfilePage/ProfileBidPage.tsx';
 import BidList from "../components/BidList/BidList.tsx";
 import LoginForm from "../components/LoginForm.tsx";
-import ProfilePage from '../сomponents/ProfilePage/ProfilePage.tsx';
-import ProfileBioPage from '../сomponents/ProfilePage/ProfileBioPage.tsx';
-import ProfileActiveBidPage from '../сomponents/ProfilePage/ProfileActiveBidPage.tsx';
-import ProfileClosedBidPage from '../сomponents/ProfilePage/ProfileClosedBidPage.tsx';
-import ProfileProgressBidPage from '../сomponents/ProfilePage/ProfileProgressBidPage.tsx';
+import ProfilePage from "../components/ProfilePage/ProfilePage.tsx";
+import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
+import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
+import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
+import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
 
 function App() {
   return (
