@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {Bid} = require('../../db/models/index');
-const UUID = require("uuid-int");
-let id = 0
-const generator = UUID(id);
-
-const uuid = generator.uuid()
 
 router.post('/bids', async (req, res) => {
   const {title, description, address} = req.body;
