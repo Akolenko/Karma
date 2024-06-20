@@ -7,13 +7,12 @@ router.get("/", async (req,res)=>{
   
     try {
         const bidsDB = await Bid.findAll({where:{author_id: userID}});
-        console.log(bidsDB);
 
         if(bidsDB){
             const bids = JSON.parse(JSON.stringify(bidsDB));
             res.json(bids)
         }else{
-            res.status(500).json({ message: 'err_finding_bids'})
+            res.status(403).json({ message: 'err_finding_bids'})
         }
         
     } catch (error) {

@@ -14,7 +14,7 @@ export default function BidList() {
 
   return (
     <>
-      <div className={'flex gap-x-96 mb-8'}>
+      <div className={'flex justify-between mb-8 w-[1200px]'}>
         <h1>Заявки</h1>
         <Link to={'/bid-form'}>
           <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
