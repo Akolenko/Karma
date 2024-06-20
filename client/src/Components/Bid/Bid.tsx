@@ -1,9 +1,9 @@
 import type { Bid } from "../../../features/bidsSlice.ts";
 import { responseUserBid } from "../../../features/userResponseSlice.ts";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../hooks/redux.ts";
 
 export default function Bid({bid}: { bid: Bid }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const userId = 1;
 
   const handleRespond = () => {

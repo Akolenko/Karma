@@ -25,38 +25,33 @@ export type Response = {
   bidId: number
 }
 
-export const responseUserBid = createAsyncThunk('bids/changeBidStatus', async ({
-                                                                                 userId,
-                                                                                 bidId
-                                                                               }: Response, {rejectWithValue}) => {
-  try {
-    await axios.put(`http://localhost:3000/api/bids/${bidId}`, {status: 'in progress'});
-    await axios.post('http://localhost:3000/api/responses', {user_id: userId, bid_id: bidId});
-    return {bidId}
-  } catch (e) {
-    return rejectWithValue;
-  }
+export const responseUserBid = createAsyncThunk('bids/changeBidStatus', async ({userId, bidId}: Response) => {
+
+  await axios.put(`http://localhost:3000/api/bids/${bidId}`, {status: 'in progress'});
+  await axios.post('http://localhost:3000/api/responses', {user_id: userId, bid_id: bidId});
+  window.location.assign('/profile/responses')
+  return {bidId}
 })
 
 const responseSlice = createSlice({
   name: "bids",
   initialState,
   reducers: {
-    setBids(state, action:PayloadAction<Bid[]>) {
-      state.bids = action.payload
-    }
+    // setBids(state, action: PayloadAction<Bid[]>) {
+    //   state.bids = action.payload
+    // }
   },
   extraReducers: (builder) => {
     builder.addCase(responseUserBid.fulfilled, (state, action:PayloadAction<{bidId: number}>) => {
       const {bidId} = action.payload;
-      console.log(state)
       const bid = state.bids.find(bid => bid.id === bidId)
       if (bid) {
         bid.status = 'in progress'
-      } return
+      }
+      return
     })
   }
 })
 
-export const {setBids} = responseSlice.actions;
+// export const {setBids} = responseSlice.actions; //TODO: можно добавить в компонент если нужно удаление заявки после отклика со страницы всех заявок
 export default responseSlice.reducer;
