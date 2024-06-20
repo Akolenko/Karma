@@ -3,7 +3,7 @@ const router = express.Router()
 const { Bid } = require('../../db/models');
 
 router.get("/", async (req,res)=>{
-    const userID = 1
+    const userID = 1//TODO исправить при рабочей авторизации
   
     try {
         const bidsDB = await Bid.findAll({where:{author_id: userID}});
