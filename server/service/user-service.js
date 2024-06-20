@@ -6,6 +6,7 @@ const mailService = require('../service/mail-service')
 const tokenService = require('../service/token-service')
 const UserDto = require('../dtos/user-dto')
 const ApiError = require('../exceptions/api-error')
+const { where } = require('sequelize')
 
 class UserService {
     async registration(email, password) {
@@ -17,9 +18,9 @@ class UserService {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует.`)
         }
         const hashPassword = await bcrypt.hash(password, 3)
-        // const activationLink = uuid.v4()
-        const user = await User.create({email, password: hashPassword})
-        // await mailService.sendActivationMail(email, `http://localhost:3000/api/activate/${activationLink}`)
+        const activationLink = uuid.v4()
+        const user = await User.create({email, password: hashPassword, activationLink})
+        await mailService.sendActivationMail(email, `http://localhost:3000/api/activate/${activationLink}`)
         const userDto = new UserDto (user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
@@ -80,6 +81,15 @@ class UserService {
     async getAllBids() {
         const bids = await Bid.findAll()
         return bids
+    }
+
+    async activate(activationLink) {
+        const user = await User.findOne({where: {activationLink: activationLink}})
+        console.log('мой консоль-лог: ', user);
+        if (!user) {
+            throw new Error('Некорректная ссылка активации.')
+        }
+        await User.update({ isActivated: true }, { where: { activationLink: activationLink }})
     }
 }
 
