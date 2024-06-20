@@ -1,39 +1,36 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-// import ProfilePage from "./ProfilePage";
+import { useEffect } from "react";
 import Bid from "../Bid/Bid"
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
+import { getUserBids } from "../../../features/bidsUserSlice.ts";
 
 
 export type BidProfileType = {
-    id: number,
-    title:string,
-    description:string,
-    address:string,
-    status:string,
-    author_id:number
+  id: number,
+  title: string,
+  description: string,
+  address: string,
+  status: string,
+  author_id: number
 }
 
 function ProfileBidPage(): JSX.Element {
-    const [bids, setBids] = useState<BidProfileType[]>([]);
-  
-    useEffect(() => {
-      axios("http://localhost:3000/profile/bid")
-        .then((res) => setBids(res.data));
-    }, []);
-    console.log(bids);
-    
-  
-    return (
-        <>
-        {/*<ProfilePage/>*/}
+  const dispatch = useAppDispatch();
+  const userBids = useAppSelector(state => state.userBids.list)
 
-      <div className={"flex flex-col"}>
-      {bids && bids.map((bid) => (<Bid key={bid.id} bid={bid} />))}
+  useEffect(() => {
+    dispatch(getUserBids())
+  }, [dispatch])
+
+  return (
+    <>
+      {/*<ProfilePage/>*/}
+      <div className={"flex flex-col gap-2 w-[1200px]"}>
+        {userBids && userBids.length && userBids.map((bid) => (<Bid key={bid.id} bid={bid}/>))}
       </div>
-      
-        </>
-    );
-  }
-  
-  export default ProfileBidPage;
+
+    </>
+  );
+}
+
+export default ProfileBidPage;
   
