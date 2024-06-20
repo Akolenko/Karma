@@ -15,7 +15,7 @@ function ProfilePage(): JSX.Element {
   const [user, setUser] = useState<BioProfileType[]>([]);
 
   useEffect(() => {
-    const user = axios("http://localhost:3000/profile").then((res) =>
+    const user = axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`).then((res) =>
       setUser(res.data)
     );
   }, []);

@@ -16,7 +16,7 @@ function ProfileProgressBidPage(): JSX.Element {
     const [bids, setBids] = useState<BidProfileType[]>([]);
   
     useEffect(() => {
-      axios("http://localhost:3000/profile/bid")
+      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
         .then((res) => setBids(res.data));
     }, []);
     // console.log(bids);
