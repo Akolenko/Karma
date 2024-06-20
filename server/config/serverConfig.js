@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const errorMiddleware = require('../middleware/error-middleware');
+const cookieParser = require('cookie-parser');
 
 const corsOptions = {
   origin: 'http://localhost:5173',
