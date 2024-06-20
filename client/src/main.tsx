@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import App from './App/App.tsx'
 import './index.css'
 import AuthStore from './auth.store/auth.store.ts'
 

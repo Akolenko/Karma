@@ -85,7 +85,6 @@ class UserService {
 
     async activate(activationLink) {
         const user = await User.findOne({where: {activationLink: activationLink}})
-        console.log('мой консоль-лог: ', user);
         if (!user) {
             throw new Error('Некорректная ссылка активации.')
         }
