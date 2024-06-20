@@ -16,9 +16,9 @@ const PORT = process.env.PORT | 3000;
 serverConfig(app);
 
 //GET
-app.use('/', bidsRouter)
-app.use('/profile', profileRouter)
-app.use("/profile/bids", profileBidsRouter)
+app.use('/api', bidsRouter)
+app.use('/api/profile', profileRouter)
+app.use("/api/profile/bids", profileBidsRouter)
 //API
 app.use('/api',bidApiRouter, responseApiRouter, changeStatusBIdRouter)
 

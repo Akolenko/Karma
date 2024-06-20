@@ -24,7 +24,7 @@ const initialState: BidsState = {
 }
 export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
   try {
-    const bids = await axios('http://localhost:3000/bids')
+    const bids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`)
     return bids.data
   } catch (error) {
     return rejectWithValue
