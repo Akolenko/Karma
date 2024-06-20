@@ -1,20 +1,28 @@
 import ReactDOM from 'react-dom/client'
-import App from './app/App.tsx'
+import { createContext } from 'react'
 import './index.css'
-import {
-  BrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "../redux/store/store.ts";
+import AuthStore from './auth.store/auth.store.ts'
+import App from "./app/App.tsx";
+
+interface AuthState {
+    authStore: AuthStore
+}
+
+const authStore = new AuthStore()
+
+export const AuthContext = createContext<AuthState>({
+    authStore
+})
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
-  </Provider>
-
-
-  // </React.StrictMode>
+  <AuthContext.Provider value={{ authStore }}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </Provider>
+  </AuthContext.Provider>
 )
