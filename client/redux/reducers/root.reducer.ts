@@ -5,5 +5,4 @@ import  userBidsSlice  from "../../features/bidsUserSlice.ts";
 export const rootReducer = combineReducers({
   bids: bidsSlice,
   userBids: userBidsSlice,
-
 })
