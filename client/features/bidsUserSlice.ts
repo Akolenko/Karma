@@ -1,4 +1,3 @@
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -22,35 +21,35 @@ const initialState: BidsState = {
   loading: false,
   error: null,
 }
-export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
+export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {rejectWithValue}) => {
   try {
-    const bids = await axios('http://localhost:3000/bids')
-    return bids.data
+    const userBids = await axios('http://localhost:3000/profile/bids')
+    return userBids.data
   } catch (error) {
     return rejectWithValue
   }
 })
 
-export const bidsSlice = createSlice({
-    name: 'bids',
+export const userBidsSlice = createSlice({
+    name: 'userBids',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
       builder
-        .addCase(getBids.pending, (state) => {
+        .addCase(getUserBids.pending, (state) => {
           state.loading = true
           state.error = null
         })
-        .addCase(getBids.fulfilled, (state, action) => {
+        .addCase(getUserBids.fulfilled, (state, action) => {
           state.loading = false
           state.error = null
           state.list = action.payload
         })
-        .addCase(getBids.rejected, (state, action) => {
+        .addCase(getUserBids.rejected, (state, action) => {
           state.error = action.payload as string
         })
     }
   }
 )
 
-export default bidsSlice.reducer
+export default userBidsSlice.reducer
