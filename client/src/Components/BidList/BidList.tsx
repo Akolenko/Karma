@@ -26,7 +26,7 @@ export default function BidList() {
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} />))
           :
-          <div>Нет заявок</div>
+          <div>Пользователи еще не создали ни одну заявку!</div>
         }
       </div>
     </>
