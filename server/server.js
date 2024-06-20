@@ -7,9 +7,10 @@ const router = require('./router/index')
 
 
 const app = express();
-const PORT = process.env.PORT | 3000;
+const PORT = process.env.PORT || 3000;
 
 serverConfig(app);
+
 
 app.use('/api', router)
 

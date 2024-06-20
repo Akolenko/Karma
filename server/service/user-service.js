@@ -18,12 +18,12 @@ class UserService {
         }
         const hashPassword = await bcrypt.hash(password, 3)
         // const activationLink = uuid.v4()
-        const user = await User.create({email, password: hashPassword, activationLink})
+        const user = await User.create({email, password: hashPassword})
         // await mailService.sendActivationMail(email, `http://localhost:3000/api/activate/${activationLink}`)
         const userDto = new UserDto (user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
-
+        console.log('user-servise', userDto);
         return {
             ...tokens,
             user: userDto
@@ -51,24 +51,6 @@ class UserService {
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
         return { ...tokens, user: userDto }
     }
-
-    // validateAcessToken(token) {
-    //     try {
-    //         const userData = jwt.verify(token, 'JWT-SECRET-KEY')
-    //         return userData
-    //     } catch (error) {
-    //         return null
-    //     }
-    // }
-
-    // validateRefreshToken(token) {
-    //     try {
-    //         const userData = jwt.verify(token, 'JWT-SECRET-refr-KEY')
-    //         return userData
-    //     } catch (error) {
-    //         return null
-    //     }
-    // }
 
 
     async logout (refreshToken) {
