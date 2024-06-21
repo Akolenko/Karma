@@ -3,7 +3,7 @@ import axios from "axios"
 import { AuthResponse } from "../models/response/AuthResponse"
 
 
-export const API_URL = 'http://localhost:3000/api/'
+export const API_URL = `${import.meta.env.VITE_REACT_APP_API_URL}`
 
 const $api = axios.create({
     withCredentials: true,
@@ -22,7 +22,7 @@ $api.interceptors.response.use((config) => {
     if (err.response.status === 401 && err.config && !err.config._isRetry) {
         originalRequest._isRetry = true
         try {
-            const response = await axios.get<AuthResponse>('http://localhost:3000/api/refresh', {
+            const response = await axios.get<AuthResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/refresh`, {
             withCredentials: true
         })
         localStorage.setItem('token', response.data.accessToken)

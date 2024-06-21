@@ -10,10 +10,12 @@ import ProfileBioPage from "../Components/ProfilePage/ProfileBioPage.tsx";
 import ProfileActiveBidPage from "../Components/ProfilePage/ProfileActiveBidPage.tsx";
 import ProfileProgressBidPage from "../Components/ProfilePage/ProfileProgressBidPage.tsx";
 import ProfileClosedBidPage from "../Components/ProfilePage/ProfileClosedBidPage.tsx";
+import Navbar from '../Components/Navbar/Navbar.tsx';
 
 function App() {
   return (
     <>
+      <Navbar/>
       <Routes>
         <Route path={'/login'} element={<LoginForm/>}/>
         {/*<Route path={'/register'} element={<RegisterForm/>}/>Форма регистрации*/}
