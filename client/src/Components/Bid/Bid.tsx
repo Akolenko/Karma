@@ -2,8 +2,15 @@ import type { Bid } from "../../../features/bidsSlice.ts";
 import { responseUserBid } from "../../../features/userResponseSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import ButtonResponse from "../ButtonResponse/ButtonResponse.tsx";
+import { useState } from "react";
 
 export default function Bid({bid}: { bid: Bid }) {
+  const [count, setCount] = useState(0);
+  const [clicked, setClicked] = useState(false);
+  const handlerLike = () => {
+    setCount(count + 1);
+    setClicked(true)
+  }
   const dispatch = useAppDispatch();
   const userId = 1; // TODO: хард-код, заменить при рабочей авторизации, должен храниться в глобальном стейте приложения.
 
@@ -21,11 +28,14 @@ export default function Bid({bid}: { bid: Bid }) {
         </div>
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
+          {clicked ?
+            <button>🙏 {count}</button>
+            :
+            <button onClick={handlerLike}>🙏 {count}</button>}
           {bid.status === 'create' ? <ButtonResponse handleRespond={handleRespond}/> :
             <button className={'focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md' +
               ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
               ' hover:border-lime-600 bg-white text-lime-600'}>Закрыть заявку</button>}
-
         </div>
       </div>
     </>
