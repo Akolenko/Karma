@@ -19,7 +19,7 @@ function App() {
         {/*<Route path={'/register'} element={<RegisterForm/>}/>Форма регистрации*/}
         <Route index element={<MainPage/>}/>
         <Route path={'/bid-form'} element={<BidForm/>}/>
-        <Route path={'/bid-list'} element={<BidList/>}/>
+        <Route path={'/bids-list'} element={<BidList/>}/>
         <Route path={"/profile"} element={<ProfilePage/>}/>
         <Route path={"/profile/bio"} element={<ProfileBioPage/>}/>
         <Route path={"/profile/bid"} element={<ProfileBidPage/>}/>

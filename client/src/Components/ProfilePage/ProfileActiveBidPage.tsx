@@ -20,6 +20,9 @@ function ProfileActiveBidPage(): JSX.Element {
       .then((res) => setBids(res.data));
   }, []);
 
+ //TODO: так как это страница отвечает за отображение заявок созданных пользователем,
+  // TODO: то в дальнейшем надо выполнять проверку user_id и author_id для скрытия кнопки откликнуться на "закрыть заявку"
+
 
   return (
     <>
