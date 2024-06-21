@@ -14,19 +14,19 @@ export default function BidList() {
 
   return (
     <>
-      <div className={'flex gap-x-96 mb-8'}>
+      <div className={'flex justify-between mb-8 w-[1200px]'}>
         <h1>Заявки</h1>
         <Link to={'/bid-form'}>
-          <button className={'transition duration-300 mt-3 rounded-md' +
-            ' shadow-sm border-lime-600 hover:bg-lime-500 hover:text-white' +
-            ' hover:border-lime-500 bg-white text-lime-600'} >+ Cоздать заявку</button>
+          <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
+            ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+            ' hover:border-lime-600 bg-white text-lime-600'} >+ Cоздать заявку</button>
         </Link>
       </div>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} />))
           :
-          <div>Нет заявок</div>
+          <div>Пользователи еще не создали ни одну заявку!</div>
         }
       </div>
     </>
