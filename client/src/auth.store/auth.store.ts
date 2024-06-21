@@ -33,32 +33,31 @@ export default class AuthStore {
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {
-            console.log(error.response?.data?.message);
-            
+            console.log('Что-то пошло не так.');
         }
     }
 
-    async registration(email: string, password: string) {
+    async registration(name: string, dateOfBirth: string, email: string, password: string, phone: string) {
         try {
-            const response = await AuthService.registration(email, password)
+            const response = await AuthService.registration(name, dateOfBirth, email, password, phone)
             console.log(response);
             localStorage.setItem('token', response.data.accessToken)
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {
-            console.log(error.response?.data?.message);
+            console.log('Что-то пошло не так.');
             
         }
     }
 
     async logout() {
         try {
-            const response = await AuthService.logout()
+            await AuthService.logout()
             localStorage.removeItem('token')
             this.setAuth(false)
             this.setUser({} as IUser)
         } catch (error) {
-            console.log(error.response?.data?.message);
+            console.log('Что-то пошло не так.');
         }
     }
 
@@ -74,7 +73,7 @@ export default class AuthStore {
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {
-            console.log(error.response?.data?.message);
+            console.log('Что-то пошло не так.');
         } finally {
             this.setLoading(false)
         }
