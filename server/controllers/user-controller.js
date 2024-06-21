@@ -9,8 +9,9 @@ class UserController {
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest('Validation error', errors.array()))
             }
-            const { email, password } = req.body
-            const userData = await userService.registration(email, password)
+            // console.log('мой консольлог:', req.body);
+            const { name, dateOfBirth, email, password, phone } = req.body
+            const userData = await userService.registration(name, dateOfBirth, email, password, phone)
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
             // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
             // res.setHeader('Access-Control-Allow-Credentials', true);

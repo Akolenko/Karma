@@ -10,13 +10,14 @@ import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
 import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
 import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
 import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
+import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
 
 function App() {
   return (
     <>
       <Routes>
         <Route path={'/login'} element={<LoginForm/>}/>
-        {/*<Route path={'/register'} element={<RegisterForm/>}/>Форма регистрации*/}
+        <Route path={'/register'} element={<RegisterForm/>}/>
         <Route index element={<MainPage/>}/>
         <Route path={'/bid-form'} element={<BidForm/>}/>
         <Route path={'/bid-list'} element={<BidList/>}/>
