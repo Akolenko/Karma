@@ -7,8 +7,8 @@ export default function Bid({bid}: { bid: Bid }) {
   const dispatch = useAppDispatch();
   const userId = 1; // TODO: хард-код, заменить при рабочей авторизации, должен храниться в глобальном стейте приложения.
 
-  const handleRespond = ()  => {
-    dispatch(responseUserBid({ userId, bidId: bid.id }));
+  const handleRespond = () => {
+    dispatch(responseUserBid({userId, bidId: bid.id}));
   };
 
   return (
@@ -21,7 +21,11 @@ export default function Bid({bid}: { bid: Bid }) {
         </div>
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
-          <ButtonResponse handleRespond={handleRespond} />
+          {bid.status === 'create' ? <ButtonResponse handleRespond={handleRespond}/> :
+            <button className={'focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md' +
+              ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+              ' hover:border-lime-600 bg-white text-lime-600'}>Закрыть заявку</button>}
+
         </div>
       </div>
     </>

@@ -27,8 +27,8 @@ export type Response = {
 
 export const responseUserBid = createAsyncThunk('bids/changeBidStatus', async ({userId, bidId}: Response) => {
 
-  await axios.put(`http://localhost:3000/api/bids/${bidId}`, {status: 'in progress'});
-  await axios.post('http://localhost:3000/api/responses', {user_id: userId, bid_id: bidId});
+  await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'in progress'});
+  await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {user_id: userId, bid_id: bidId});
   window.location.assign('/profile/responses')
   return {bidId}
 })
