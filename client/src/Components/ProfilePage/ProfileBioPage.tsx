@@ -12,13 +12,12 @@ export type BioProfileType = {
 }
 
 function ProfileBioPage(): JSX.Element {
-    const [user, setUser] = useState<BioProfileType | {}> ({});
+    const [user, setUser] = useState<BioProfileType | null> (null);
 
     useEffect(() => {
         axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`)
         .then((res) => setUser(res.data));
     }, []);
-    // console.log('1', user);
 
 
     return (
@@ -27,9 +26,15 @@ function ProfileBioPage(): JSX.Element {
 
       <div className={"flex flex-col"}>
         <img className={'object-cover h-60 w-96 my-20'} src="https://adindex.ru/files2/news/2019_07/273997_inkognito.jpg?ts=" alt="pic"/>
-        <div className={'font-extrabold text-xl col-start-1 col-end-3 flex-1'}>{user.fio}</div>
-        <div className={'font-extrabold'}>{user.email}</div>
-        <div className={'font-extrabold'}>{user.phone}</div>
+        {
+          user && 
+          <>
+            <div className={'font-extrabold text-xl col-start-1 col-end-3 flex-1'}>{user.fio}</div>
+            <div className={'font-extrabold'}>{user.email}</div>
+            <div className={'font-extrabold'}>{user.phone}</div>
+          </>
+        }
+
       </div>
 
         </>
