@@ -12,6 +12,7 @@ router.post('/bids', async (req, res) => {
       status: 'create',
       author_id: 1
     });
+    console.log('dffd');
     if (newBid) {
       res.status(201).json({title, description, address});
     } else {
