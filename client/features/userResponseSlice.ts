@@ -46,7 +46,7 @@ const responseSlice = createSlice({
       const {bidId} = action.payload;
       const bid = state.bids.find(bid => bid.id === bidId)
       if (bid) {
-        bid.status = 'in progress'
+        bid.status = 'response'
       }
       return
     })
