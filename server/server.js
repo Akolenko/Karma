@@ -22,7 +22,7 @@ serverConfig(app);
 //GET
 app.use('/api', bidsRouter)
 app.use('/api/profile', profileRouter)
-app.use("/api/profile/bids", profileBidsRouter)
+app.use("/api/profile/bid", profileBidsRouter)
 //API
 app.use('/api',bidApiRouter, responseApiRouter, changeStatusBIdRouter)
 
