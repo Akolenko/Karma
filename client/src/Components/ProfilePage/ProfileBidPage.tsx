@@ -19,7 +19,7 @@ function ProfileBidPage(): JSX.Element {
       axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
         .then((res) => setBids(res.data));
     }, []);
-    // console.log(bids);
+    console.log(bids);
     
   
     return (
