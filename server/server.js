@@ -1,8 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const serverConfig = require('./config/serverConfig');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const router = require('./router/index')
 
 
@@ -22,7 +20,7 @@ serverConfig(app);
 //GET
 app.use('/api', bidsRouter)
 app.use('/api/profile', profileRouter)
-app.use("/api/profile/bids", profileBidsRouter)
+app.use("/api/profile/bid", profileBidsRouter)
 //API
 app.use('/api',bidApiRouter, responseApiRouter, changeStatusBIdRouter)
 
