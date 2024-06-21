@@ -27,7 +27,7 @@ export default function BidForm(): JSX.Element {
   }
   const handlePopupClose = () => {
     setSubmitSuccess(false);
-    window.location.assign('/bid-list');
+    window.location.assign('/bids-list');
     // пока перенаправляю заказчиков на страницу всех заявок
   };
 
