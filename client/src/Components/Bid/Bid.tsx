@@ -1,4 +1,4 @@
-import type { Bid } from "../../../features/bidsSlice.ts";
+import { BidType } from "../../../features/bidsSlice.ts";
 import { responseUserBid } from "../../../features/userResponseSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import ButtonResponse from "../ButtonResponse/ButtonResponse.tsx";
@@ -7,23 +7,23 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store.ts";
 import { likeBid } from "../../../features/likeBidsSlice.ts";
 
-export default function Bid({bid, userId}: { bid: Bid, userId: string|null }) {
+export default function Bid({bid, userId}: { bid: BidType, userId: string | null }) {
   const [count, setCount] = useState(0);
   const [clicked, setClicked] = useState(false);
+  const dispatch = useAppDispatch();
+
+
   const handlerLike = () => {
     setCount(count + 1);
     setClicked(true)
-    dispatch(likeBid({ bidId: bid.id, userId }))
+    dispatch(likeBid({bidId: bid.id, userId}))
   }
-  const dispatch = useAppDispatch();
-  // const likes = useSelector((state: RootState) =>
-  //   // state.bids.likes.filter(like => like.bidId === bid.id).length
-  // )
 
-  // const handleLike = () => {
-  //   // dispatch(likeBid({ bidId: bid.id, userId }));
-  // };
-
+  const likes = useSelector((state: RootState) =>
+    state.likes.likes.filter(like => like.bids_id === bid.id).length
+  )
+  console.log(likes
+  )
 
   const handleRespond = () => {
     dispatch(responseUserBid({userId: userId, bidId: bid.id}));
@@ -40,9 +40,9 @@ export default function Bid({bid, userId}: { bid: Bid, userId: string|null }) {
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
           {clicked ?
-            <button>🙏 {count}</button>
+            <button>🙏 {likes}</button>
             :
-            <button onClick={handlerLike}>🙏 {count}</button>}
+            <button onClick={handlerLike}>🙏 {likes}</button>}
           {bid.status === 'create' ? <ButtonResponse handleRespond={handleRespond}/> :
             <button className={'focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md' +
               ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
