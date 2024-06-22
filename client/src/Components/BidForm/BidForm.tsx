@@ -13,11 +13,12 @@ export default function BidForm(): JSX.Element {
   const {register, handleSubmit, formState: {isSubmitting, errors}, reset} = useForm<Form>()
 
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
+  const userId = localStorage.getItem('userId'); // TODO: хард-код, заменить при рабочей авторизации, должен храниться в глобальном стейте приложения.
+  console.log(userId)
 
   const submit: SubmitHandler<Form> = function (data) {
 
-    axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, data)
+    axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, data, {params: {userId}})
       .then(response => {
         console.log(response.data)
         reset()

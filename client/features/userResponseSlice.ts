@@ -21,7 +21,7 @@ const initialState: BidsState = {
 }
 
 export type Response = {
-  userId: number,
+  userId: string|null,
   bidId: number
 }
 

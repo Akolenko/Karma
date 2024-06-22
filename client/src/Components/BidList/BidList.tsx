@@ -10,7 +10,9 @@ export default function BidList() {
 
   useEffect(() => {
     dispatch(getBids())
-  }, [dispatch]) // eslint сказал добавь в зависимости dispatch !
+  }, [dispatch])
+
+  const userId : string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
 
   return (
     <>
@@ -24,7 +26,7 @@ export default function BidList() {
       </div>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
-          bids.map((bid) => (<Bid key={bid.id} bid={bid} />))
+          bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))
           :
           <div>Пользователи еще не создали ни одну заявку!</div>
         }

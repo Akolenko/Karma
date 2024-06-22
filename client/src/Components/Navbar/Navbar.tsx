@@ -17,7 +17,7 @@ const Navbar = (): JSX.Element => {
 
           <div>
             <NavLink
-              to='/bid-list'>
+              to='/bids-list'>
               Список заявок
             </NavLink>
           </div>
