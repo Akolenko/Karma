@@ -1,20 +1,20 @@
 import './App.css'
-import BidForm from "../Components/BidForm/BidForm.tsx";
-import MainPage from "../Components/MainPage/MainPage.tsx";
+import BidForm from "../components/BidForm/BidForm.tsx";
+import MainPage from "../components/MainPage/MainPage.tsx";
 import { Route, Routes } from "react-router";
-import ProfileBidPage from '../Components/ProfilePage/ProfileBidPage.tsx';
-import BidList from "../Components/BidList/BidList.tsx";
-import LoginForm from "../Components/LoginForm.tsx";
-import ProfilePage from "../Components/ProfilePage/ProfilePage.tsx";
-import ProfileBioPage from "../Components/ProfilePage/ProfileBioPage.tsx";
-import ProfileActiveBidPage from "../Components/ProfilePage/ProfileActiveBidPage.tsx";
-import ProfileProgressBidPage from "../Components/ProfilePage/ProfileProgressBidPage.tsx";
-import ProfileClosedBidPage from "../Components/ProfilePage/ProfileClosedBidPage.tsx";
-import Navbar from '../Components/Navbar/Navbar.tsx';
+import ProfileBidPage from '../components/ProfilePage/ProfileBidPage.tsx';
+import BidList from "../components/BidList/BidList.tsx";
+import LoginForm from "../components/LoginForm.tsx";
+import ProfilePage from "../components/ProfilePage/ProfilePage.tsx";
+import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
+import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
+import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
+import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
+import Navbar from '../components/Navbar/Navbar.tsx';
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar/>
       <Routes>
         <Route path={'/login'} element={<LoginForm/>}/>
@@ -31,7 +31,7 @@ function App() {
         <Route path={"/profile/bid/closed"} element={<ProfileClosedBidPage/>}/>
       </Routes>
 
-    </>
+    </div>
   )
 }
 

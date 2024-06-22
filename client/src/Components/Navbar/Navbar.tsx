@@ -2,43 +2,65 @@ import { NavLink } from "react-router-dom"
 
 
 const Navbar = (): JSX.Element => {
+  const activeLink = 'text-[#249C30]'
+  const normalLink = 'text-[#515066] hover:text-[#51B85B] transition ease-in-out duration-100'
   
   return (
-    <nav>
-      <div>
+    <header className='sticky inset-x-0 top-0 bg-white rounded-full mt-5 ml-2 mr-2 mb5 w-screen'>
+      <div className='mx-auto flex items-center justify-between p-4" aria-label="Global'>
         <div>
 
-          <div>
+          <NavLink
+            className='flex lg:flex-1 -m-1.5 p-1.5'
+            to='/'>
+            <img className='h-8 w-auto' src="/public/svg/Vector.svg" alt="logo"/>
+          </NavLink>
+
+        </div>
+        <div className='items-center'>
+
+          <button type='button'>
             <NavLink
+              className={({ isActive }) =>
+                isActive ? activeLink : normalLink}
               to='/'>
               Главная
             </NavLink>
-          </div>
+          </button>
 
-          <div>
+          <button type='button'>
             <NavLink
+              className={({ isActive }) =>
+                isActive ? activeLink : normalLink}
               to='/bid-list'>
               Список заявок
             </NavLink>
-          </div>
+          </button>
 
-          <div>
+          <button type='button'>
             <NavLink
+              className={({ isActive }) =>
+                isActive ? activeLink : normalLink}
               to='/profile'>
               Моя страница
             </NavLink>
-          </div>
+          </button>
 
-          <div>
+        </div>
+        <div>
+
+          <button type='button'>
             <NavLink
+              className={({ isActive }) =>
+                isActive ? activeLink : normalLink}
               to='/login'>
               Войти
             </NavLink>
-          </div>
+          </button>
 
         </div>
       </div>
-    </nav>
+    </header>
   )
 }
 
