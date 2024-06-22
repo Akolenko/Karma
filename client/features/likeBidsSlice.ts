@@ -14,12 +14,12 @@ interface Like {
 
 interface BidsState {
   bids: Bid[];
-  likes: Like[];
+  likes: Like[] | [];
 }
 
 interface LikeBidPayload {
   bidId: number;
-  userId: number;
+  userId: string| null;
 }
 
 const initialState: BidsState = {
@@ -36,8 +36,9 @@ export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithVal
     return rejectWithValue
   }
 })
-export const getLikes = createAsyncThunk('bids/getLikes', async () => {
-  // const likes = await axios.get(`${import.meta.env.VITE_REACT_APP_API_URL}/likes`);
+export const getLikes = createAsyncThunk('bids/getLikes', async (_) => {
+  const likes = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/likes`);
+
   return likes.data;
 });
 
@@ -57,7 +58,7 @@ export const likeBid = createAsyncThunk(
 );
 
 const likeBidsSlice = createSlice({
-  name: 'bids',
+  name: 'likes',
   initialState,
   reducers: {
     setBids(state, action: PayloadAction<Bid[]>) {

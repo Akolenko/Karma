@@ -14,7 +14,7 @@ export default function BidList() {
     dispatch(getLikes())
   }, [dispatch])
 
-  const userId : string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
+  const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
 
   return (
     <>
@@ -23,7 +23,8 @@ export default function BidList() {
         <Link to={'/bid-form'}>
           <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
             ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
-            ' hover:border-lime-600 bg-white text-lime-600'} >+ Cоздать заявку</button>
+            ' hover:border-lime-600 bg-white text-lime-600'}>+ Cоздать заявку
+          </button>
         </Link>
       </div>
       <div className={'flex flex-col gap-2'}>

@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export interface Bid {
+export interface BidType {
   id: number,
   title: string,
   description: string,
@@ -12,8 +12,7 @@ export interface Bid {
 }
 
 export interface BidsState {
-  likes: any;
-  list: Bid[] | [],
+  list: BidType[] | [],
   loading: boolean,
   error: null | string
 }

@@ -8,6 +8,7 @@ const router = require('./router/index')
 const bidsRouter = require('./routes/views/bids.router')
 const profileRouter = require("./routes/views/profile.bio.router")
 const profileBidsRouter = require("./routes/views/profile.bid.router")
+const likeRouter = require('./routes/views/likes.router')
 //API
 const bidApiRouter = require('./routes/API/bid.api.route');
 const responseApiRouter = require('./routes/API/response.api.route')
@@ -20,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 serverConfig(app);
 
 //GET
-app.use('/api', bidsRouter)
+app.use('/api', bidsRouter, likeRouter)
 app.use('/api/profile', profileRouter)
 app.use("/api/profile/bid", profileBidsRouter)
 //API
