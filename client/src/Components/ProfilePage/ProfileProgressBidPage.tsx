@@ -14,12 +14,13 @@ export type BidProfileType = {
 
 function ProfileProgressBidPage(): JSX.Element {
     const [bids, setBids] = useState<BidProfileType[]>([]);
-  
+    const userID = localStorage.getItem('userID');
+
     useEffect(() => {
-      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
+      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid/progress`, {params:{userID}})
         .then((res) => setBids(res.data));
     }, []);
-    // console.log(bids);
+    
     
   
     return (
