@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
 import { useEffect } from "react";
 import { getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
+import { getLikes } from "../../../features/likeBidsSlice.ts";
 
 export default function BidList() {
   const dispatch = useAppDispatch();
@@ -10,6 +11,7 @@ export default function BidList() {
 
   useEffect(() => {
     dispatch(getBids())
+    dispatch(getLikes())
   }, [dispatch])
 
   const userId : string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.

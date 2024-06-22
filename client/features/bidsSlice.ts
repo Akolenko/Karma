@@ -12,6 +12,7 @@ export interface Bid {
 }
 
 export interface BidsState {
+  likes: any;
   list: Bid[] | [],
   loading: boolean,
   error: null | string
