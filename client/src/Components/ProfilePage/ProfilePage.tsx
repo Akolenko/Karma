@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect, Children } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export type BioProfileType = {
