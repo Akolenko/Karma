@@ -30,6 +30,7 @@ export default class AuthStore {
             const response = await AuthService.login(email, password)
             console.log(response);
             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('userID', response.data.user.id)
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {
@@ -43,6 +44,7 @@ export default class AuthStore {
             const response = await AuthService.registration(email, password)
             console.log(response);
             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('userID', response.data.user.id)
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {
@@ -55,6 +57,7 @@ export default class AuthStore {
         try {
             const response = await AuthService.logout()
             localStorage.removeItem('token')
+            localStorage.removeItem('userID')
             this.setAuth(false)
             this.setUser({} as IUser)
         } catch (error) {
@@ -71,6 +74,7 @@ export default class AuthStore {
             console.log(response);
             
             localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('userID', response.data.user.id)
             this.setAuth(true)
             this.setUser(response.data.user)
         } catch (error) {

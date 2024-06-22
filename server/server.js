@@ -14,6 +14,7 @@ const profileBidsRouter = require("./routes/views/profile.bid.router")
 const bidApiRouter = require('./routes/API/bid.api.route');
 const responseApiRouter = require('./routes/API/response.api.route')
 const changeStatusBIdRouter = require('./routes/API/changeStatusBid.api.route')
+// const profileBidApiRouter = require("./routes/API/profile.bid.api.router")
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -22,7 +23,9 @@ serverConfig(app);
 //GET
 app.use('/api', bidsRouter)
 app.use('/api/profile', profileRouter)
-app.use("/api/profile/bids", profileBidsRouter)
+app.use("/api/profile/bid/active", profileBidsRouter)
+app.use("/api/profile/bid/closed", profileBidsRouter)
+app.use("/api/profile/bid/progress", profileBidsRouter)
 //API
 app.use('/api',bidApiRouter, responseApiRouter, changeStatusBIdRouter)
 

@@ -14,9 +14,10 @@ export type BidProfileType = {
 
 function ProfileActiveBidPage(): JSX.Element {
     const [bids, setBids] = useState<BidProfileType[]>([]);
-  
+    const userID = localStorage.getItem('userID');
+
     useEffect(() => {
-      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
+      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid/active`, {params:{userID}})
         .then((res) => setBids(res.data));
     }, []);
 
