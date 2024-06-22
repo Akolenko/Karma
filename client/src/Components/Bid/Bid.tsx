@@ -2,10 +2,9 @@ import type { Bid } from "../../../features/bidsSlice.ts";
 import { responseUserBid } from "../../../features/userResponseSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import ButtonResponse from "../ButtonResponse/ButtonResponse.tsx";
-import { useContext, useState } from "react";
-import { AuthContext } from "../../main.tsx";
+import {  useState } from "react";
 
-export default function Bid({bid}: { bid: Bid }) {
+export default function Bid({bid, userId}: { bid: Bid, userId: string|null }) {
   const [count, setCount] = useState(0);
   const [clicked, setClicked] = useState(false);
   const handlerLike = () => {
@@ -14,15 +13,10 @@ export default function Bid({bid}: { bid: Bid }) {
   }
   const dispatch = useAppDispatch();
 
-  const { authStore } = useContext(AuthContext);
 
-  console.log(authStore.user)
-
-
-  const userId = 1; // TODO: хард-код, заменить при рабочей авторизации, должен храниться в глобальном стейте приложения.
 
   const handleRespond = () => {
-    dispatch(responseUserBid({userId, bidId: bid.id}));
+    dispatch(responseUserBid({userId: userId, bidId: bid.id}));
   };
 
   return (

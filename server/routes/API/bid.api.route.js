@@ -4,6 +4,8 @@ const {Bid} = require('../../db/models');
 
 router.post('/bids', async (req, res) => {
   const {title, description, address} = req.body;
+  const {userId} = req.query;
+  console.log(userId)
   try {
     console.log(req.body)
     const newBid = await Bid.create({
@@ -11,7 +13,7 @@ router.post('/bids', async (req, res) => {
       description,
       address,
       status: 'create',
-      author_id: 2//TODO Хард-код, изменить при рабочей авторизации
+      author_id: userId
     });
     if (newBid) {
       res.status(201).json({title, description, address});
