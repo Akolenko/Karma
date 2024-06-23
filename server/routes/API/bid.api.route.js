@@ -5,10 +5,9 @@ const {Bid} = require('../../db/models');
 router.post('/bids', async (req, res) => {
   const {title, description, address} = req.body;
   const {userId} = req.query;
-  console.log(userId)
+
   try {
-    console.log(req.body)
-    const newBid = await Bid.create({
+      const newBid = await Bid.create({
       title,
       description,
       address,

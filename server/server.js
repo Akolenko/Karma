@@ -32,9 +32,6 @@ app.use('/api',
   likeApiRouter
   )
 
-
-
-
 app.use('/api', router)
 
 app.listen(PORT, () => {
