@@ -2,29 +2,25 @@ import { BidType } from "../../../features/bidsSlice.ts";
 import { responseUserBid } from "../../../features/userResponseSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import ButtonResponse from "../ButtonResponse/ButtonResponse.tsx";
-import {  useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store.ts";
-import { likeBid } from "../../../features/likeBidsSlice.ts";
+import {  likeBid } from "../../../features/likeBidsSlice.ts";
+
 
 export default function Bid({bid, userId}: { bid: BidType, userId: string | null }) {
-  const [count, setCount] = useState(0);
   const [clicked, setClicked] = useState(false);
   const dispatch = useAppDispatch();
 
-
   const handlerLike = () => {
-    setCount(count + 1);
     setClicked(true)
     dispatch(likeBid({bidId: bid.id, userId}))
+
   }
 
   const likes = useSelector((state: RootState) =>
     state.likes.likes.filter(like => like.bids_id === bid.id).length
   )
-  console.log(likes
-  )
-
   const handleRespond = () => {
     dispatch(responseUserBid({userId: userId, bidId: bid.id}));
   };

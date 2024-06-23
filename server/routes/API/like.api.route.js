@@ -4,7 +4,6 @@ const {Like} = require('../../db/models/')
 
 router.post('/bids/:id/like', async( req, res) =>{
   const { user_id, bid_id } = req.body;
-  console.log(user_id, bid_id)
 
   try {
     const prevLike = await Like.findOne({where: {user_id: Number(user_id), bids_id: bid_id}})
@@ -14,7 +13,7 @@ router.post('/bids/:id/like', async( req, res) =>{
     } else {
       const newLike = await Like.create({user_id, bids_id: bid_id})
       if(newLike){
-        res.status(201).json({message: 'лайк поставлен!'})
+        res.status(201).json(newLike)
       }
     }
   } catch (e) {
