@@ -1,16 +1,16 @@
 import './App.css'
-import BidForm from "../components/BidForm/BidForm.tsx";
-import MainPage from "../components/MainPage/MainPage.tsx";
+import BidForm from "../Components/BidForm/BidForm.tsx";
+import MainPage from "../Components/MainPage/MainPage.tsx";
 import { Route, Routes } from "react-router";
-import ProfileBidPage from '../components/ProfilePage/ProfileBidPage.tsx';
-import BidList from "../components/BidList/BidList.tsx";
-import LoginForm from "../components/LoginForm.tsx";
-import ProfilePage from "../components/ProfilePage/ProfilePage.tsx";
-import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
-import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
-import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
-import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
-import Navbar from '../components/Navbar/Navbar.tsx';
+import ProfileBidPage from '../Components/ProfilePage/ProfileBidPage.tsx';
+import BidList from "../Components/BidList/BidList.tsx";
+import LoginForm from "../Components/LoginForm.tsx";
+import ProfilePage from "../Components/ProfilePage/ProfilePage.tsx";
+import ProfileBioPage from "../Components/ProfilePage/ProfileBioPage.tsx";
+import ProfileActiveBidPage from "../Components/ProfilePage/ProfileActiveBidPage.tsx";
+import ProfileProgressBidPage from "../Components/ProfilePage/ProfileProgressBidPage.tsx";
+import ProfileClosedBidPage from "../Components/ProfilePage/ProfileClosedBidPage.tsx";
+import Navbar from '../Components/Navbar/Navbar.tsx';
 
 function App() {
   return (
@@ -21,9 +21,8 @@ function App() {
         {/*<Route path={'/register'} element={<RegisterForm/>}/>Форма регистрации*/}
         <Route index element={<MainPage/>}/>
         <Route path={'/bid-form'} element={<BidForm/>}/>
-        <Route path={'/bid-list'} element={<BidList/>}/>
-        <Route path={"/profile/bids"} element={<ProfileBidPage/>}/>
-        <Route path={"/profile"} element={<ProfilePage />}/>
+        <Route path={'/bids-list'} element={<BidList/>}/>
+        <Route path={"/profile"} element={<ProfilePage/>}/>
         <Route path={"/profile/bio"} element={<ProfileBioPage/>}/>
         <Route path={"/profile/bid"} element={<ProfileBidPage/>}/>
         <Route path={"/profile/bid/active"} element={<ProfileActiveBidPage/>}/>
