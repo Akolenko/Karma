@@ -8,7 +8,7 @@ const LoginForm: FC = () => {
     const [password, setPassword] = useState<string>('')
 
     const { authStore } = useContext(AuthContext)
-
+    
 
     return ( 
         <div>
@@ -22,7 +22,7 @@ const LoginForm: FC = () => {
         type="password" 
         placeholder="password"/>
         <button onClick={() => authStore.login(email, password)}>Войти</button>
-        <button onClick={() => authStore.registration(email, password)}>Регистрация</button>
+    
         </div>
      );
 }
