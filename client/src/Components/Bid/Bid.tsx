@@ -2,25 +2,28 @@ import { BidType } from "../../../features/bidsSlice.ts";
 import { responseUserBid } from "../../../features/userResponseSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import ButtonResponse from "../ButtonResponse/ButtonResponse.tsx";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store.ts";
-import {  likeBid } from "../../../features/likeBidsSlice.ts";
-
+import { likeBid, unlikeBid } from "../../../features/likeBidsSlice.ts";
 
 export default function Bid({bid, userId}: { bid: BidType, userId: string | null }) {
-  const [clicked, setClicked] = useState(false);
   const dispatch = useAppDispatch();
-
-  const handlerLike = () => {
-    setClicked(true)
-    dispatch(likeBid({bidId: bid.id, userId}))
-
-  }
-
   const likes = useSelector((state: RootState) =>
     state.likes.likes.filter(like => like.bids_id === bid.id).length
   )
+  const hasLiked = useSelector((state: RootState) =>
+    state.likes.likes.some(like => like.bids_id === bid.id && like.user_id === Number(userId)
+    ));
+
+  const handlerLike = () => {
+    if (hasLiked) {
+      dispatch(unlikeBid({bidId: bid.id, userId}));
+
+    } else {
+      dispatch(likeBid({bidId: bid.id, userId}))
+    }
+  }
+
   const handleRespond = () => {
     dispatch(responseUserBid({userId: userId, bidId: bid.id}));
   };
@@ -35,10 +38,7 @@ export default function Bid({bid, userId}: { bid: BidType, userId: string | null
         </div>
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
-          {clicked ?
-            <button>🙏 {likes}</button>
-            :
-            <button onClick={handlerLike}>🙏 {likes}</button>}
+          <button onClick={handlerLike}>🙏 {likes}</button>
           {bid.status === 'create' ? <ButtonResponse handleRespond={handleRespond}/> :
             <button className={'focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md' +
               ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
