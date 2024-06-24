@@ -10,15 +10,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       room_id: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Responses',
+          key: 'id'
+        }
       },
       user_id: {
-        type: Sequelize.INTEGER
-      },
-      user_fio: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       text_message: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
