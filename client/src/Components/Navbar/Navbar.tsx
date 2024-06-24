@@ -6,7 +6,7 @@ const Navbar = (): JSX.Element => {
   const normalLink = 'text-[#515066] hover:text-[#51B85B] transition ease-in-out duration-100'
   
   return (
-    <header className='sticky inset-x-0 bg-green-600 top-0 pt-5 pl-2 pr-2 pb-5'>
+    <header className='sticky inset-x-0 top-0 pt-5 pl-2 pr-2 pb-5'>
       <div className="bg-white rounded-full">
         <div className='mx-auto flex items-center justify-between p-4" aria-label="Global'>
           <div>
