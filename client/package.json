@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.5",
     "@reduxjs/toolkit": "^2.2.5",
     "@types/axios": "^0.14.0",
     "axios": "^1.7.2",
     "env": "^0.0.2",
     "mobx": "^6.12.4",
     "mobx-react-lite": "^4.0.7",
+    "multi-geocoder": "^0.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.0",
@@ -23,6 +25,8 @@
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "redux": "^5.0.1",
+    "uuid": "^10.0.0",
+    "yandex-maps": "^0.0.1"
     "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
