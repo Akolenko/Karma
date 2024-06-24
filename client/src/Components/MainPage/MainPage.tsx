@@ -16,7 +16,7 @@ export default function MainPage() {
               Нужна помощь
             </button>
           </Link>
-          <Link to={'/bid-list'}>
+          <Link to={'/bids-list'}>
             <button
               className={'focus:outline-none transition duration-300 w-80 border-lime-600 hover:bg-lime-600' +
                 ' hover:text-white bg-white text-lime-600'}>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ProfilePage from "./ProfilePage.tsx";
+import ProfilePage from "./ProfilePage";
 import { NavLink } from "react-router-dom";
 
 export type BidProfileType = {

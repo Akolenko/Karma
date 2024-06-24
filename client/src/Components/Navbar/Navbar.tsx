@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 const Navbar = (): JSX.Element => {
   const activeLink = 'text-[#249C30]'
   const normalLink = 'text-[#515066] hover:text-[#51B85B] transition ease-in-out duration-100'
-  
+
   return (
     <header className='sticky inset-x-0 top-0 pt-5 pl-2 pr-2 pb-5'>
       <div className="bg-white rounded-full">
@@ -33,7 +33,7 @@ const Navbar = (): JSX.Element => {
               <NavLink
                 className={({ isActive }) =>
                   isActive ? activeLink : normalLink}
-                to='/bid-list'>
+                to='/bids-list'>
                 Список заявок
               </NavLink>
             </button>
@@ -48,6 +48,7 @@ const Navbar = (): JSX.Element => {
             </button>
 
           </div>
+
           <div>
 
             <button type='button'>
@@ -60,6 +61,7 @@ const Navbar = (): JSX.Element => {
             </button>
 
           </div>
+
         </div>
       </div>
     </header>
