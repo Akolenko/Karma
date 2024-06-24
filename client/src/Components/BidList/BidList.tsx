@@ -4,6 +4,8 @@ import { useContext, useEffect } from "react";
 import { getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
 import { AuthContext } from "../../main.tsx";
+import { getLikes } from "../../../features/likeBidsSlice.ts";
+
 
 export default function BidList() {
   const dispatch = useAppDispatch();
@@ -13,7 +15,10 @@ export default function BidList() {
 
   useEffect(() => {
     dispatch(getBids())
-  }, [dispatch]) // eslint сказал добавь в зависимости dispatch !
+    dispatch(getLikes())
+  }, [dispatch])
+
+  const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
 
   return (
     <>
@@ -22,12 +27,13 @@ export default function BidList() {
         <Link to={'/bid-form'}>
           <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
             ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
-            ' hover:border-lime-600 bg-white text-lime-600'} >+ Cоздать заявку</button>
+            ' hover:border-lime-600 bg-white text-lime-600'}>+ Cоздать заявку
+          </button>
         </Link>
       </div>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
-          bids.map((bid) => (<Bid key={bid.id} bid={bid} />))
+          bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))
           :
           <div>Пользователи еще не создали ни одну заявку!</div>
         }

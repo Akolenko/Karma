@@ -19,8 +19,8 @@ function ProfileProgressBidPage(): JSX.Element {
       axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
         .then((res) => setBids(res.data));
     }, []);
-    // console.log(bids);
-    
+  const userId : string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
+
   
     return (
         <>
@@ -28,7 +28,7 @@ function ProfileProgressBidPage(): JSX.Element {
 
       <div className={"flex flex-col"}>
       {bids && bids.map((bid) => 
-        {return bid.status === "response" ? (<Bid key={bid.id} bid={bid} />) : (<></>)})}
+        {return bid.status === "response" ? (<Bid key={bid.id} bid={bid} userId={userId}/>) : (<></>)})}
       </div>
       
         </>
