@@ -47,6 +47,15 @@ const Navbar = (): JSX.Element => {
               </NavLink>
             </button>
 
+            <button type='button'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? activeLink : normalLink}
+                to='/chat'>
+                Список чатов
+              </NavLink>
+            </button>
+
           </div>
 
           <div>
