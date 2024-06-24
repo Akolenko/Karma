@@ -12,8 +12,6 @@ import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage
 import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
 import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
 import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
-import MainPage from '../components/MainPage/MainPage.tsx';
-import BidForm from '../components/BidForm/BidForm.tsx';
 import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
