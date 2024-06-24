@@ -11,6 +11,7 @@ import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage
 import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
 import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
 import Navbar from '../components/Navbar/Navbar.tsx';
+import ChatPage from '../components/ChatPage/ChatPage.tsx';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path={"/profile/bid/active"} element={<ProfileActiveBidPage/>}/>
         <Route path={"/profile/bid/progress"} element={<ProfileProgressBidPage/>}/>
         <Route path={"/profile/bid/closed"} element={<ProfileClosedBidPage/>}/>
+        <Route path={"/chat"} element={<ChatPage/>}/>
       </Routes>
     </>
   )
