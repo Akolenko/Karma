@@ -67,21 +67,28 @@ const Navbar = (): JSX.Element => {
           </div>
 
 
-          <div>{
-              token ? <NavLink
-              to='/' onClick={() => authStore.logout()} 
-               className={({ isActive }) =>
-                  isActive ? activeLink : normalLink}>
-              Выйти
-            </NavLink> :
-            <NavLink
-              className={({ isActive }) =>
-                  isActive ? activeLink : normalLink}
-              to='/login'>
-              Войти
-            </NavLink>
+          <div>
+            {
+              token ?
+              <button type='button'>
+                <NavLink
+                  to='/' onClick={() => authStore.logout()}
+                  className={({ isActive }) =>
+                    isActive ? activeLink : normalLink}>
+                  Выйти
+                </NavLink>
+              </button>
+                :
+                <button type='button'>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? activeLink : normalLink}
+                    to='/login'>
+                      Войти
+                   </NavLink>
+                </button>
             }
-
+          </div>
         </div>
       </div>
     </header>
