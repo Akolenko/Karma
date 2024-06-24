@@ -1,6 +1,7 @@
 import './App.css'
-// import BidForm from "../Components/BidForm/BidForm.tsx";
-// import MainPage from "../Components/MainPage/MainPage.tsx";
+
+import BidForm from "../components/BidForm/BidForm.tsx";
+import MainPage from "../components/MainPage/MainPage.tsx";
 import { Route, Routes } from "react-router";
 import ProfileBidPage from '../components/ProfilePage/ProfileBidPage.tsx';
 import BidList from "../components/BidList/BidList.tsx";
@@ -13,8 +14,9 @@ import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage
 import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
 import MainPage from '../components/MainPage/MainPage.tsx';
 import BidForm from '../components/BidForm/BidForm.tsx';
-import Navbar from '../components/Navbar/Navbar.tsx';
 import MapComponent from '../components/Map/Map.tsx';
+import Navbar from '../components/Navbar/Navbar.tsx';
+import ChatPage from '../components/ChatPage/ChatPage.tsx';
 
 
 function App() {
@@ -26,17 +28,17 @@ function App() {
         <Route path={'/register'} element={<RegisterForm/>}/>
         <Route index element={<MainPage/>}/>
         <Route path={'/bid-form'} element={<BidForm/>}/>
-        <Route path={'/bid-list'} element={<BidList/>}/>
-        <Route path={"/profile/bids"} element={<ProfileBidPage/>}/>
-        <Route path={"/profile"} element={<ProfilePage />}/>
+        <Route path={'/bids-list'} element={<BidList/>}/>
+        <Route path={"/profile"} element={<ProfilePage/>}/>
         <Route path={"/profile/bio"} element={<ProfileBioPage/>}/>
         <Route path={"/profile/bid"} element={<ProfileBidPage/>}/>
         <Route path={"/profile/bid/active"} element={<ProfileActiveBidPage/>}/>
         <Route path={"/profile/bid/progress"} element={<ProfileProgressBidPage/>}/>
         <Route path={"/profile/bid/closed"} element={<ProfileClosedBidPage/>}/>
         <Route path={"/map"} element={<MapComponent/>}/>
-      </Routes>
+        <Route path={"/chat"} element={<ChatPage/>}/>
 
+      </Routes>
     </>
   )
 }

@@ -5,25 +5,37 @@ import axios from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 
 export default class AuthStore {
-    user = {} as IUser
-    isAuth = false
-    isLoading = false
+  user = {} as IUser
+  isAuth = false
+  isLoading = false
 
-    constructor() {
-        makeAutoObservable(this)
-    }
+  constructor() {
+    makeAutoObservable(this)
+  }
 
-    setAuth(bool: boolean) {
-        this.isAuth = bool
-    }
+  setAuth(bool: boolean) {
+    this.isAuth = bool
+  }
 
-    setUser(user: IUser) {
-        this.user = user
-    }
+  setUser(user: IUser) {
+    this.user = user
+  }
 
-    setLoading(bool: boolean) {
-        this.isLoading = bool
-    }
+  setLoading(bool: boolean) {
+    this.isLoading = bool
+  }
+
+  async login(email: string, password: string) {
+    try {
+      const response = await AuthService.login(email, password)
+      console.log(response);
+      localStorage.setItem('token', response.data.accessToken)
+      localStorage.setItem('userId', response.data.user.id)
+      this.setAuth(true)
+      this.setUser(response.data.user)
+    } catch (error) {
+      console.log(error.response?.data?.message);
+
 
     async login(email: string, password: string) {
         try {
@@ -36,6 +48,20 @@ export default class AuthStore {
             console.log('Что-то пошло не так в файле "auth.store.ts, метод login.');
         }
     }
+  }
+
+  async registration(email: string, password: string) {
+    try {
+      const response = await AuthService.registration(email, password)
+      console.log(response);
+      localStorage.setItem('token', response.data.accessToken,)
+      localStorage.setItem('userId', response.data.user.id)
+
+      this.setAuth(true)
+      this.setUser(response.data.user)
+    } catch (error) {
+      console.log(error.response?.data?.message);
+
 
     async registration(name: string, dateOfBirth: string, email: string, password: string, phone: string) {
         try {
@@ -50,6 +76,13 @@ export default class AuthStore {
             
         }
     }
+  }
+
+  async logout() {
+    try {
+      const response = await AuthService.logout()
+      localStorage.removeItem('token')
+      localStorage.removeItem('userId')
 
     async logout() {
         try {
@@ -63,6 +96,7 @@ export default class AuthStore {
             console.log('Что-то пошло не так в файле "auth.store.ts, метод logout.');
         }
     }
+  }
 
     async checkAuth() {
         this.isLoading = true
@@ -81,4 +115,5 @@ export default class AuthStore {
             this.setLoading(false)
         }
     }
+  }
 }
