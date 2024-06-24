@@ -9,12 +9,9 @@ class UserController {
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest('Validation error', errors.array()))
             }
-            // console.log('мой консольлог:', req.body);
             const { name, dateOfBirth, email, password, phone } = req.body
             const userData = await userService.registration(name, dateOfBirth, email, password, phone)
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
-            // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-            // res.setHeader('Access-Control-Allow-Credentials', true);
             return res.json(userData)
         } catch (error) {
             next(error)
@@ -67,7 +64,6 @@ class UserController {
     async getBids(req, res, next) {
         try {
             const bids = await userService.getAllBids()
-            console.log(bids);
             res.json(bids)
         } catch (error) {
             next(error)
