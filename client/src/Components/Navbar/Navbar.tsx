@@ -60,7 +60,7 @@ const Navbar = (): JSX.Element => {
                 className={({ isActive }) =>
                   isActive ? activeLink : normalLink}
                 to='/chat'>
-                Список чатов
+                Чат
               </NavLink>
             </button>
 
