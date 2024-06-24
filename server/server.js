@@ -1,7 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const serverConfig = require('./config/serverConfig');
-const router = require('./router/index')
+const router = require('./router/index');
+const socket = require('socket.io');
 
 
 //GET
