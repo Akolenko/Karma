@@ -1,9 +1,17 @@
 import { NavLink } from "react-router-dom"
+import { AuthContext } from "../../main";
+import { useContext } from "react";
 
 
 const Navbar = (): JSX.Element => {
+
+  const { authStore } = useContext(AuthContext)
+  const token = localStorage.getItem('token')
+
+
   const activeLink = 'text-[#249C30]'
   const normalLink = 'text-[#515066] hover:text-[#51B85B] transition ease-in-out duration-100'
+
 
   return (
     <header className='sticky inset-x-0 top-0 pt-5 pl-2 pr-2 pb-5'>
@@ -58,18 +66,21 @@ const Navbar = (): JSX.Element => {
 
           </div>
 
-          <div>
 
-            <button type='button'>
-              <NavLink
-                className={({ isActive }) =>
+          <div>{
+              token ? <NavLink
+              to='/' onClick={() => authStore.logout()} 
+               className={({ isActive }) =>
+                  isActive ? activeLink : normalLink}>
+              Выйти
+            </NavLink> :
+            <NavLink
+              className={({ isActive }) =>
                   isActive ? activeLink : normalLink}
-                to='/login'>
-                Войти
-              </NavLink>
-            </button>
-
-          </div>
+              to='/login'>
+              Войти
+            </NavLink>
+            }
 
         </div>
       </div>
