@@ -29,7 +29,6 @@ function App() {
         <Route path={"/profile/bid/progress"} element={<ProfileProgressBidPage/>}/>
         <Route path={"/profile/bid/closed"} element={<ProfileClosedBidPage/>}/>
       </Routes>
-
     </>
   )
 }
