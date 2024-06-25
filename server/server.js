@@ -2,8 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const serverConfig = require('./config/serverConfig');
 const router = require('./router/index');
-const { createServer } = require('node:http');
-const { Server } = require('socket.io');
 
 
 //GET
@@ -16,12 +14,13 @@ const chatRouter = require('./routes/chat/chat.route')
 const bidApiRouter = require('./routes/API/bid.api.route');
 const responseApiRouter = require('./routes/API/response.api.route')
 const changeStatusBIdRouter = require('./routes/API/changeStatusBid.api.route')
-const likeApiRouter = require('./routes/API/like.api.route')
+const likeApiRouter = require('./routes/API/like.api.route');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const server = createServer(app);
-const io = new Server(server);
+const http = require("http").createServer(app)
+const io = require("socket.io")(http)
+
 
 serverConfig(app);
 app.use('/api', router)
@@ -37,7 +36,7 @@ app.use('/api',
   likeApiRouter
 )
 
-io.on('connect', (socket) => {
+io.on('connection', (socket) => {
   console.log('connect');
 })
 
