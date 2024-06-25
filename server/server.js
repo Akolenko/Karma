@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const serverConfig = require('./config/serverConfig');
 const router = require('./router/index');
+const http = require('http');
+const { Server } = require('socket.io');
 
 
 //GET
@@ -18,9 +20,10 @@ const likeApiRouter = require('./routes/API/like.api.route');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const http = require("http").createServer(app)
-const io = require("socket.io")(http)
 
+const server = http.createServer(app)
+
+const io = new Server(server);
 
 serverConfig(app);
 app.use('/api', router)

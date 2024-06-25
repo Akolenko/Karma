@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { getMessages } from "../../../features/messagesSlice";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 
 function Messages(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(state => state.messages.list);
 
-  const socket = io(`${import.meta.env.VITE_REACT_APP_API_URL}`, {origins: `domain_1:${import.meta.env.VITE_REACT_APP_API_URL}`})
+const socket = io.connect('http://localhost:3000');
   
 
   useEffect(() => {
