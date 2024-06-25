@@ -10,6 +10,7 @@ const { where } = require('sequelize')
 
 class UserService {
     async registration(name, dateOfBirth, email, password, phone) {
+        
         const candidate = await User.findOne({where: {
             email: email
         }})
@@ -17,6 +18,7 @@ class UserService {
         if (candidate) {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует.`)
         }
+        
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = uuid.v4()
         

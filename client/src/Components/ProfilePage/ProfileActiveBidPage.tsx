@@ -30,7 +30,7 @@ function ProfileActiveBidPage(): JSX.Element {
 
       <div className={"flex flex-col"}>
         {bids && bids.map((bid) => {
-          return <Bid key={bid.id} bid={bid}/>
+          return <Bid key={bid.id} bid={bid} userId={null}/>
         })}
       </div>
 
