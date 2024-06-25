@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
   Message.init({
     room_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    user_fio: DataTypes.STRING,
     text_message: DataTypes.STRING
   }, {
     sequelize,
