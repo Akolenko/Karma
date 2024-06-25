@@ -8,10 +8,11 @@ export interface Bid {
   address: string,
   author_id: number,
   status: string,
-  userId: number|string,
+  }
+export type UserBid = {
+  userId: string | null,
   bidId: number
 }
-
 export interface BidsState {
   list: Bid[] | [],
   loading: boolean,
@@ -31,7 +32,7 @@ export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {r
     return rejectWithValue(error)
   }
 })
-export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async ({bidId, userId}:Bid)=>{
+export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async ({bidId, userId}:UserBid)=>{
   await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`, {data:{user_id: userId, bid_id: bidId}})
   return  {bidId}
 })
