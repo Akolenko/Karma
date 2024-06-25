@@ -24,7 +24,7 @@ export type ResponseType = {
 }
 const userId: string | null = localStorage.getItem('userId');
 
-export const responseUserBid = createAsyncThunk('bids/changeBidStatus', async ({userId, bidId}: ResponseType) => {
+export const responseUserBid = createAsyncThunk('responses/changeBidStatus', async ({userId, bidId}: ResponseType) => {
   await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'response'});
   await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {user_id: userId, bid_id: bidId});
   window.location.assign('/profile/responses')
@@ -46,7 +46,7 @@ export const cancelResponse = createAsyncThunk('responses/cancelResponse', async
 })
 
 const responseSlice = createSlice({
-  name: "bids",
+  name: "responses",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
