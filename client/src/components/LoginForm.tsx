@@ -1,6 +1,7 @@
 import { FC, useContext, useState } from "react";
 import { AuthContext } from "../main";
 import { observer } from "mobx-react-lite";
+import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const LoginForm: FC = () => {
@@ -21,8 +22,22 @@ const LoginForm: FC = () => {
         value={password} 
         type="password" 
         placeholder="password"/>
-        <button onClick={() => authStore.login(email, password)}>Войти</button>
-    
+
+        
+        <button onClick={() => authStore.login(email, password)}>
+        <NavLink
+            to='/'>
+            Войти
+        </NavLink>
+        </button>
+
+        <button>
+        <NavLink
+            to='/register'>
+            Создать акаунт
+        </NavLink>
+        </button>
+
         </div>
      );
 }
