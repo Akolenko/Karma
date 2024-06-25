@@ -20,9 +20,13 @@ export default function BidResponse({response, userId }:{response:BidType, userI
         </div>
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
-          <button>Позвонить</button>
-          <button>Начать чат</button>
-          <button onClick={handlerClick}>Отказаться от помощи</button>
+          <div>
+            <div className={'flex justify-between'}>
+              <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
+              <img className={'w-10'} src={'/svg/PhoneOutlined.svg'} alt='logo'/>
+            </div>
+            <button className={'text-sm'} onClick={handlerClick}>Отказаться от помощи</button>
+          </div>
         </div>
       </div>
     </>
