@@ -3,8 +3,8 @@ import { useAppDispatch } from "../../../hooks/redux.ts";
 import { cancelResponse } from "../../../features/userResponseSlice.ts";
 
 export default function BidResponse({response, userId }:{response:BidType, userId:string|null}) {
-  const dispatch = useAppDispatch();
 
+  const dispatch = useAppDispatch();
   const handlerClick = () => {
     dispatch(cancelResponse({bidId:response.id, userId}))
   }
@@ -25,7 +25,7 @@ export default function BidResponse({response, userId }:{response:BidType, userI
               <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
               <img className={'w-10'} src={'/svg/PhoneOutlined.svg'} alt='logo'/>
             </div>
-            <button className={'text-sm'} onClick={handlerClick}>Отказаться от помощи</button>
+            <button className={'text-sm'} onClick={handlerClick}>Отказать в помощи</button>
           </div>
         </div>
       </div>
