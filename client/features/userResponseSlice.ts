@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export interface Bid {
+export interface BidType {
   id: number,
   title: string,
   description: string,
@@ -11,13 +11,11 @@ export interface Bid {
 }
 
 export interface BidsState {
-  bids: Bid[] | [],
-
+  bids: BidType[] | [],
 }
 
 const initialState: BidsState = {
   bids: [],
-
 }
 
 export type Response = {
@@ -26,32 +24,41 @@ export type Response = {
 }
 
 export const responseUserBid = createAsyncThunk('bids/changeBidStatus', async ({userId, bidId}: Response) => {
-
-  await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'in progress'});
+  await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'create'});
   await axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {user_id: userId, bid_id: bidId});
   window.location.assign('/profile/responses')
   return {bidId}
+})
+const userId: string | null = localStorage.getItem('userId');
+export const getResponses = createAsyncThunk('responses/getResponses', async(_, {rejectWithValue}) => {
+  try {
+    const responses = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/my-responses`, {params: {userId}})
+    return responses.data
+  } catch (error){
+    console.log({error})
+    return rejectWithValue(error)
+  }
+
 })
 
 const responseSlice = createSlice({
   name: "bids",
   initialState,
-  reducers: {
-    // setBids(state, action: PayloadAction<Bid[]>) {
-    //   state.bids = action.payload
-    // }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(responseUserBid.fulfilled, (state, action:PayloadAction<{bidId: number}>) => {
+    builder
+      .addCase(responseUserBid.fulfilled, (state, action:PayloadAction<{bidId: number}>) => {
       const {bidId} = action.payload;
       const bid = state.bids.find(bid => bid.id === bidId)
       if (bid) {
-        bid.status = 'response'
+        bid.status = 'create'
       }
       return
     })
+      .addCase(getResponses.fulfilled, (state, action)=>{
+      state.bids = action.payload
+      })
   }
 })
 
-// export const {setBids} = responseSlice.actions; //TODO: можно добавить в компонент если нужно удаление заявки после отклика со страницы всех заявок
 export default responseSlice.reducer;

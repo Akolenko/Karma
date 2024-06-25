@@ -17,7 +17,6 @@ export default function BidForm(): JSX.Element {
   console.log(userId)
 
   const submit: SubmitHandler<Form> = function (data) {
-
     axios.post(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, data, {params: {userId}})
       .then(response => {
         console.log(response.data)

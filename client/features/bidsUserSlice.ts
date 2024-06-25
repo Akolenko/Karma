@@ -26,7 +26,7 @@ export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {r
     const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`)
     return userBids.data
   } catch (error) {
-    return rejectWithValue
+    return rejectWithValue(error)
   }
 })
 
