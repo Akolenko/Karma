@@ -1,5 +1,14 @@
+import { BidType } from "../../../features/bidsSlice.ts";
+import { useAppDispatch } from "../../../hooks/redux.ts";
+import { cancelResponse } from "../../../features/userResponseSlice.ts";
 
-export default function BidResponse({response}) {
+export default function BidResponse({response, userId }:{response:BidType, userId:string|null}) {
+  const dispatch = useAppDispatch();
+
+  const handlerClick = () => {
+    dispatch(cancelResponse({bidId:response.id, userId}))
+  }
+
 
   return (
     <>
@@ -13,7 +22,7 @@ export default function BidResponse({response}) {
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
           <button>Позвонить</button>
           <button>Начать чат</button>
-          <button>Отказаться от помощи</button>
+          <button onClick={handlerClick}>Отказаться от помощи</button>
         </div>
       </div>
     </>
