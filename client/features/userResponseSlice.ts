@@ -38,7 +38,6 @@ export const getResponses = createAsyncThunk('responses/getResponses', async(_, 
     console.log({error})
     return rejectWithValue(error)
   }
-
 })
 
 const responseSlice = createSlice({
