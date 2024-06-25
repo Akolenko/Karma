@@ -18,7 +18,7 @@ router.post('/responses', async (req, res) => {
 })
   .delete('/responses/', async (req, res) => {
     const {user_id, bid_id} = req.body;
-    console.log(user_id, bid_id);
+
     try {
       await Response.destroy({where: {user_id: Number(user_id), bid_id}})
       res.status(201).json({message: 'deleted response'})

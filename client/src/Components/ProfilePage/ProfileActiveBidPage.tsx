@@ -1,7 +1,8 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Bid from "../Bid/Bid"
+import {  useEffect } from "react";
 import ProfileBidPage from "./ProfileBidPage";
+import ActiveBid from "../Bid/ActiveBid.tsx";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
+import { getUserBids } from "../../../features/bidsUserSlice.ts";
 
 export type BidProfileType = {
   id: number,
@@ -13,27 +14,25 @@ export type BidProfileType = {
 }
 
 function ProfileActiveBidPage(): JSX.Element {
-  const [bids, setBids] = useState<BidProfileType[]>([]);
+  // const [bids, setBids] = useState<BidProfileType[]>([]);
+  const bids = useAppSelector(state => state.userBids.list);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
-      .then((res) => setBids(res.data));
-  }, []);
+    dispatch(getUserBids())
+  }, [dispatch]);
 
- //TODO: так как это страница отвечает за отображение заявок созданных пользователем,
+  //TODO: так как это страница отвечает за отображение заявок созданных пользователем,
   // TODO: то в дальнейшем надо выполнять проверку user_id и author_id для скрытия кнопки откликнуться на "закрыть заявку"
-
 
   return (
     <>
       <ProfileBidPage/>
-
-      <div className={"flex flex-col"}>
+      <div className={"flex flex-col mt-10 gap-y-5"}>
         {bids && bids.map((bid) => {
-          return <Bid key={bid.id} bid={bid}/>
+          return <ActiveBid key={bid.id} bid={bid}/>
         })}
       </div>
-
     </>
   );
 }

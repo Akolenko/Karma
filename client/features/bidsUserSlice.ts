@@ -7,7 +7,9 @@ export interface Bid {
   description: string,
   address: string,
   author_id: number,
-  status: string
+  status: string,
+  userId: number|string,
+  bidId: number
 }
 
 export interface BidsState {
@@ -23,11 +25,15 @@ const initialState: BidsState = {
 }
 export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {rejectWithValue}) => {
   try {
-    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`)
+    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
     return userBids.data
   } catch (error) {
     return rejectWithValue(error)
   }
+})
+export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async ({bidId, userId}:Bid)=>{
+  await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`, {data:{user_id: userId, bid_id: bidId}})
+  return  {bidId}
 })
 
 export const userBidsSlice = createSlice({
@@ -47,6 +53,10 @@ export const userBidsSlice = createSlice({
         })
         .addCase(getUserBids.rejected, (state, action) => {
           state.error = action.payload as string
+        })
+        .addCase(deleteUserBid.fulfilled,(state, action)=>{
+          const {bidId} = action.payload;
+          state.list = state.list.filter(bid => bid.id !== bidId)
         })
     }
   }

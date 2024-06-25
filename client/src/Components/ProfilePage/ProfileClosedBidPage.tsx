@@ -14,9 +14,9 @@ export type BidProfileType = {
 
 function ProfileClosedBidPage(): JSX.Element {
   const [bids, setBids] = useState<BidProfileType[]>([]);
-
+const userId = localStorage.getItem('user')
   useEffect(() => {
-    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
+    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
       .then((res) => setBids(res.data));
   }, []);
   // console.log(bids);
@@ -27,7 +27,7 @@ function ProfileClosedBidPage(): JSX.Element {
       <ProfileBidPage/>
       <div className={"flex flex-col"}>
         {bids && bids.map((bid) => {
-          return bid.status === "closed" ? (<Bid key={bid.id} bid={bid}/>) : (<></>)
+          return bid.status === "closed" ? (<Bid key={bid.id} bid={bid} userId={userId}/>) : (<></>)
         })}
       </div>
     </>
