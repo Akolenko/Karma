@@ -9,5 +9,4 @@ export const rootReducer = combineReducers({
   userBids: userBidsSlice,
   responseBid: userResponseSlice,
   likes: likeBidsSlice,
-
 })

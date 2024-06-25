@@ -12,19 +12,16 @@ export default function ResponsesPage() {
     dispatch(getResponses())
   }, [dispatch])
 
-
   return (
     <>
       <ProfilePage/>
       <div className={'flex flex-col gap-2 mt-10'}>
         {responses && responses.length ?
-          responses.map((response) => (<BidResponse key={response.id} response={response} />))
+          responses.map((response) => (<BidResponse key={response.id} response={response}/>))
           :
           <div>Вы еще не откликнулись на заявки!</div>
         }
       </div>
     </>
-
   )
-
 }
