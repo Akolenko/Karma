@@ -7,14 +7,10 @@ function Messages(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(state => state.messages.list);
 
-  const socket = io({
-    extraHeaders: {
-      "custom-header": "chat-app"
-    }
-  })
+  const socket = io(`${import.meta.env.VITE_REACT_APP_API_URL}`, {origins: `domain_1:${import.meta.env.VITE_REACT_APP_API_URL}`})
+  
 
   useEffect(() => {
-
     dispatch(getMessages())
   }, [dispatch])
 
