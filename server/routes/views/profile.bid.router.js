@@ -3,8 +3,9 @@ const router = express.Router()
 const { Bid } = require('../../db/models');
 
 router.get("/", async (req,res)=>{
-    // const userID = 1//TODO исправить при рабочей авторизации
-    const {userID} = req.query;
+    const userID = 3;
+    // const {userID} = req.query;
+    // console.log(userID);
   
     try {
         const bidsDB = await Bid.findAll({where:{author_id: userID, status: 'create'}});
