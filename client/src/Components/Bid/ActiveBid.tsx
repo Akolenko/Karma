@@ -1,13 +1,15 @@
-import { BidType } from "../../../features/bidsSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
-import { deleteUserBid } from "../../../features/bidsUserSlice.ts";
+import { Bid, deleteUserBid } from "../../../features/bidsUserSlice.ts";
+import EditBidModal from "../UI/Modal/EditBidModal.tsx";
+import { useState } from "react";
 
-export default function ActiveBid({bid}: { bid: BidType }) {
+export default function ActiveBid({bid}: { bid: Bid }) {
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
   const dispatch = useAppDispatch();
-  const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
+  const userId = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
 
   const deleteHandler = () => {
-        dispatch(deleteUserBid({bidId: bid.id, userId}))
+    dispatch(deleteUserBid({bidId: bid.id, userId}))
   }
 
   return (
@@ -20,11 +22,14 @@ export default function ActiveBid({bid}: { bid: BidType }) {
         </div>
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
-          <button>Редактировать</button>
+          <button onClick={() => setEditModalOpen(true)}>Редактировать</button>
           <button onClick={deleteHandler}>Удаление</button>
-
         </div>
       </div>
+
+      <EditBidModal isOpen={isEditModalOpen}
+                    onRequestClose={() => setEditModalOpen(false)}
+                    bid={bid} />
     </>
   )
 }
