@@ -15,9 +15,14 @@ import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
 import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
+import { useEffect, useState } from 'react';
+import { IUser } from '../models/IUser.ts';
+
 
 
 function App() {
+
+
   return (
     <>
       <Navbar/>

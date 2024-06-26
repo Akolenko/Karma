@@ -16,7 +16,7 @@ export default function BidList() {
   }, [dispatch])
 
   const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
-
+  
   return (
     <>
       <div className={'flex justify-between mb-8 w-[1200px]'}>
