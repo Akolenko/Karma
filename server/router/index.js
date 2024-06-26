@@ -14,7 +14,7 @@ router.post('/logout', userController.logout)
 router.get('/activate/:link', userController.activate)
 router.get('/refresh', userController.refresh)
 // router.get('/bids', authMiddleware, userController.getBids)
-router.get('/bids', userController.getBids)
+// router.get('/bids', userController.getBids)
 
 
 module.exports = router
