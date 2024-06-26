@@ -44,8 +44,6 @@ app.use('/api',
   bidApiRouter,
   responseApiRouter,
   changeStatusBIdRouter,
-  likeApiRouter
-)
   likeApiRouter,
   activeBidApiRouter
   )
