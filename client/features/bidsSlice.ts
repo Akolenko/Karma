@@ -23,6 +23,7 @@ const initialState: BidsState = {
   loading: false,
   error: null,
 }
+
 const userId = localStorage.getItem('userId');
 
 
@@ -32,6 +33,7 @@ export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithVal
     const bids = await $api(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, {params: {userId}})
     return bids.data
   } catch (error) {
+    console.log({error})
     return rejectWithValue
   }
 })
