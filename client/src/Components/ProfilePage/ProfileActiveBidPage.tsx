@@ -16,7 +16,7 @@ function ProfileActiveBidPage(): JSX.Element {
     <>
       <ProfileBidPage/>
       <div className={"flex flex-col mt-10 gap-y-5"}>
-        {bids && bids.map((bid) => {
+        {bids && bids.length && bids.map((bid) => {
           return <ActiveBid key={bid.id} bid={bid}/>
         })}
       </div>

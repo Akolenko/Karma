@@ -28,6 +28,8 @@ const userId = localStorage.getItem('userId');
 export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
   try {
     const bids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, {params: {userId}})
+    console.log(bids.data);
+    
     return bids.data
   } catch (error) {
     console.log({error})
