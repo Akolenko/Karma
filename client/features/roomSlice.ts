@@ -5,6 +5,7 @@ export interface RoomType {
   id: number,
   user_id: number,
   bid_id: number,
+  Bid: any
 }
 
 export interface RoomsState {

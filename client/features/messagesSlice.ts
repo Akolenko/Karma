@@ -22,7 +22,7 @@ const initialState: MessagesState = {
   error: null,
 }
 
-const userId = localStorage.getItem('userId');
+// const userId = localStorage.getItem('userId');
 
 export const getMessages = createAsyncThunk('messages/getMessages',
   async (_, {rejectWithValue}) => {
