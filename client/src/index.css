@@ -22,7 +22,7 @@
 body {
   margin: 0;
   padding: 0;
-  display: flex;
+  /*display: flex;*/
  /* place-items: center; */
   width: 100vw;
   min-width: 320px;
