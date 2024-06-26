@@ -18,6 +18,8 @@ import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
 
 function App() {
+
+
   return (
     <>
       <Navbar/>
