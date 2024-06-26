@@ -22,7 +22,7 @@ export type UserDataType = {
 
 function ProfileBioPage(): JSX.Element {
     const [user, setUser] = useState<BioProfileType | null> (null);
-    const userID = localStorage.getItem('userID');
+    const userID = localStorage.getItem('userId');
 
     const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
