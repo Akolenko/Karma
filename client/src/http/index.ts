@@ -12,9 +12,8 @@ const $api = axios.create({
 })
 
 $api.interceptors.request.use((config) => {
-    console.log('интерцептор');
     config.withCredentials = true
-    // config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config
 })
 
@@ -22,6 +21,7 @@ $api.interceptors.response.use((config) => {
     return config
 }, async (err) => {
     const originalRequest = err.config
+  
     if (err.response.status === 401 && err.config && !err.config._isRetry) {
         originalRequest._isRetry = true
         try {

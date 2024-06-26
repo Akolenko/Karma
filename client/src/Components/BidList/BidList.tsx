@@ -16,7 +16,6 @@ export default function BidList() {
     dispatch(getLikes())
   }, [dispatch])
 
-
   return (
     <>
       <div className={'flex justify-between mb-8 w-[1200px]'}>
