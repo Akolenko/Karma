@@ -3,12 +3,15 @@ const router = express.Router()
 const { Bid } = require('../../db/models');
 
 router.get("/", async (req,res)=>{
-    const userID = 3//TODO исправить при рабочей авторизации
+    const userID = 3;
+    // const {userID} = req.query;
+    // console.log(userID);
   
     try {
         const bidsDB = await Bid.findAll({where:{author_id: userID, status: 'create'}});
         if(bidsDB){
             const bids = JSON.parse(JSON.stringify(bidsDB));
+            // console.log(bids);
             res.json(bids)
         }else{
             res.status(403).json({ message: 'err_finding_bids'})
