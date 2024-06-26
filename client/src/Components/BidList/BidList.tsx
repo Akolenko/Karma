@@ -9,14 +9,13 @@ import { getLikes } from "../../../features/likeBidsSlice.ts";
 export default function BidList() {
   const dispatch = useAppDispatch();
   const bids = useAppSelector(state => state.bids.list)
+  const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
 
   useEffect(() => {
     dispatch(getBids())
     dispatch(getLikes())
   }, [dispatch])
 
-  const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
-  
   return (
     <>
       <div className={'flex justify-between mb-8 w-[1200px]'}>

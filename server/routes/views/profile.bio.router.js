@@ -4,7 +4,7 @@ const { User } = require('../../db/models');
 
 router.get("/", async (req,res)=>{
     // const user = res.locals?.user;
-    const userID = 11
+    const {userID} = req.query;
   
     try {
         const userDB = await User.findOne({where:{id: userID}});
