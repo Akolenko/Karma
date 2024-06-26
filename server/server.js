@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const serverConfig = require('./config/serverConfig');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const router = require('./router/index')
 
 
@@ -14,6 +16,9 @@ const responsesRouter = require('./routes/views/myResponses.router')
 const bidApiRouter = require('./routes/API/bid.api.route');
 const responseApiRouter = require('./routes/API/response.api.route')
 const changeStatusBIdRouter = require('./routes/API/changeStatusBid.api.route')
+// const profileBidApiRouter = require("./routes/API/profile.bid.api.router")
+const userEditProfileRouter = require("./routes/API/user.api.route")
+
 const likeApiRouter = require('./routes/API/like.api.route')
 const activeBidApiRouter = require('./routes/API/activeBid.api.route')
 
@@ -21,12 +26,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 serverConfig(app);
-app.use('/api', router)
-//GET
-app.use('/api', bidsRouter, likeRouter, responsesRouter)
-app.use('/api/profile', profileRouter)
-app.use("/api/profile/bids", profileBidsRouter)
+
+
 //API
+app.use("/api/profile", userEditProfileRouter)
+app.use('/api', router)
 app.use('/api',
   bidApiRouter,
   responseApiRouter,
@@ -34,6 +38,14 @@ app.use('/api',
   likeApiRouter,
   activeBidApiRouter
   )
+//GET
+app.use("/api/profile/bid/active", profileBidsRouter)
+app.use("/api/profile/bid/closed", profileBidsRouter)
+app.use("/api/profile/bid/progress", profileBidsRouter)
+app.use('/api', bidsRouter, likeRouter, responsesRouter)
+app.use('/api/profile', profileRouter)
+app.use("/api/profile/bids", profileBidsRouter)
+
 
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);

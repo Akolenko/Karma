@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ProfileBidPage from "./ProfileBidPage";
+import ProfileBidPage from "./ProfileBidPage.tsx";
 import ActiveBid from "../Bid/ActiveBid.tsx";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
 import { getUserBids } from "../../../features/bidsUserSlice.ts";
