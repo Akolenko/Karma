@@ -3,7 +3,7 @@ export default {
   mode: 'jit',
   content: [
     "./index.html",
-    "./src/Components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},

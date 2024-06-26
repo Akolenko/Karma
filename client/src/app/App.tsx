@@ -15,7 +15,7 @@ import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
 import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
-
+import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
         <Route path={"/profile"} element={<ProfilePage/>}/>
         <Route path={"/profile/bio"} element={<ProfileBioPage/>}/>
         <Route path={"/profile/bid"} element={<ProfileBidPage/>}/>
+        <Route path={"profile/responses"} element={<ResponsesPage/>}/>
         <Route path={"/profile/bid/active"} element={<ProfileActiveBidPage/>}/>
         <Route path={"/profile/bid/progress"} element={<ProfileProgressBidPage/>}/>
         <Route path={"/profile/bid/closed"} element={<ProfileClosedBidPage/>}/>
@@ -40,7 +41,5 @@ function App() {
     </>
   )
 }
-
-
 
 export default App

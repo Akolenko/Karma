@@ -22,6 +22,7 @@ const initialState: BidsState = {
   loading: false,
   error: null,
 }
+
 const userId = localStorage.getItem('userId');
 
 export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
@@ -31,6 +32,7 @@ export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithVal
     
     return bids.data
   } catch (error) {
+    console.log({error})
     return rejectWithValue
   }
 })
