@@ -20,6 +20,7 @@ function ProfileActiveBidPage(): JSX.Element {
           return <ActiveBid key={bid.id} bid={bid}/>
         })}
       </div>
+
     </>
   );
 }
