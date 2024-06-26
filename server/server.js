@@ -3,7 +3,7 @@ const express = require('express');
 const serverConfig = require('./config/serverConfig');
 const router = require('./router/index')
 
-
+const authMiddleware = require('./middleware/auth-middleware')
 //GET
 const bidsRouter = require('./routes/views/bids.router')
 const profileRouter = require("./routes/views/profile.bio.router")
@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 serverConfig(app);
 app.use('/api', router)
 //GET
-app.use('/api', bidsRouter, likeRouter)
+app.use('/api', authMiddleware, bidsRouter, likeRouter )
 app.use('/api/profile', profileRouter)
 app.use("/api/profile/bid", profileBidsRouter)
 //API
