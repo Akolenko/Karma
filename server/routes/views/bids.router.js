@@ -4,15 +4,14 @@ const {Bid} = require('../../db/models')
 const {Op} = require("sequelize");
 
 router.get('/bids', async (req, res) => {
-  const user_id = 1 //TODO Хард код исправить когда появятся авторизация
+  const {userId} = req.query;
   const bids = await Bid.findAll({
     where: {
       status: 'create', author_id: {
-        [Op.ne]: user_id
+        [Op.ne]: userId
       }
     }, raw: true
   });
-
   res.status(200).json(bids);
 })
 

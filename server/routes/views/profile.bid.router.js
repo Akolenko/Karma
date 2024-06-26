@@ -7,8 +7,7 @@ router.get("/", async (req,res)=>{
     const {userID} = req.query;
   
     try {
-        const bidsDB = await Bid.findAll({where:{author_id: userID}});
-
+        const bidsDB = await Bid.findAll({where:{author_id: userID, status: 'create'}});
         if(bidsDB){
             const bids = JSON.parse(JSON.stringify(bidsDB));
             // console.log(bids);

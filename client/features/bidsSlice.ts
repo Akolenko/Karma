@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export interface Bid {
+export interface BidType {
   id: number,
   title: string,
   description: string,
@@ -12,7 +12,7 @@ export interface Bid {
 }
 
 export interface BidsState {
-  list: Bid[] | [],
+  list: BidType[] | [],
   loading: boolean,
   error: null | string
 }
@@ -22,11 +22,15 @@ const initialState: BidsState = {
   loading: false,
   error: null,
 }
+
+const userId = localStorage.getItem('userId');
+
 export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
   try {
-    const bids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`)
+    const bids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, {params: {userId}})
     return bids.data
   } catch (error) {
+    console.log({error})
     return rejectWithValue
   }
 })

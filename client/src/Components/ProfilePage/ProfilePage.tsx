@@ -15,6 +15,7 @@ function ProfilePage(): JSX.Element {
   const [user, setUser] = useState<BioProfileType[]>([]);
 
   useEffect(() => {
+    
     const user = axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`).then((res) =>
       setUser(res.data)
     );
@@ -44,7 +45,7 @@ function ProfilePage(): JSX.Element {
             Мои заявки
           </button>
         </NavLink>
-        <NavLink to={"/"}>
+        <NavLink to={"/profile/responses"}>
           <button
             className={
               "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"

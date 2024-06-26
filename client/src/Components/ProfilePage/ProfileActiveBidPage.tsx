@@ -1,39 +1,28 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Bid from "../Bid/Bid"
+import { useEffect } from "react";
 import ProfileBidPage from "./ProfileBidPage";
-
-export type BidProfileType = {
-    id: number,
-    title:string,
-    description:string,
-    address:string,
-    status:string,
-    author_id:number
-}
+import ActiveBid from "../Bid/ActiveBid.tsx";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
+import { getUserBids } from "../../../features/bidsUserSlice.ts";
 
 function ProfileActiveBidPage(): JSX.Element {
-    const [bids, setBids] = useState<BidProfileType[]>([]);
-    const userID = localStorage.getItem('userID');
+  const bids = useAppSelector(state => state.userBids.list);
+  const dispatch = useAppDispatch();
 
-    useEffect(() => {
-      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid/active`, {params:{userID}})
-        .then((res) => setBids(res.data));
-    }, []);
+  useEffect(() => {
+    dispatch(getUserBids())
+  }, [dispatch]);
 
-    
-  
-    return (
-        <>
-       <ProfileBidPage/>
-
-      <div className={"flex flex-col"}>
-      {bids && bids.map((bid) => 
-        {return bid.status === "create" ?  <Bid key={bid.id} bid={bid} /> : <div>no</div>})}
+  return (
+    <>
+      <ProfileBidPage/>
+      <div className={"flex flex-col mt-10 gap-y-5"}>
+        {bids && bids.map((bid) => {
+          return <ActiveBid key={bid.id} bid={bid}/>
+        })}
       </div>
-      
-        </>
-    );
-  }
-  
-  export default ProfileActiveBidPage;
+
+    </>
+  );
+}
+
+export default ProfileActiveBidPage;
