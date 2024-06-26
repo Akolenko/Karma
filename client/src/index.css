@@ -3,6 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+  padding: 0 !important;
+}
+
 :root {
   font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,8 +21,10 @@
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
-  place-items: center;
+ /* place-items: center; */
+  width: 100vw;
   min-width: 320px;
   min-height: 100vh;
   background: rgb(243,245,249);

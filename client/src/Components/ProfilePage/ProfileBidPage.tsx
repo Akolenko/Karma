@@ -15,12 +15,11 @@ export type BidProfileType = {
 function ProfileBidPage(): JSX.Element {
     const [bids, setBids] = useState<BidProfileType[]>([]);
   
-    // useEffect(() => {
-    //   axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid`)
-    //     .then((res) => setBids(res.data));
-    // }, []);
-    // console.log(bids);
-    
+    useEffect(() => {
+      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
+        .then((res) => setBids(res.data));
+    }, []);
+
   
     return (
         <>

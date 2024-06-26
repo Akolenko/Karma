@@ -9,7 +9,8 @@ const ApiError = require('../exceptions/api-error')
 const { where } = require('sequelize')
 
 class UserService {
-    async registration(email, password) {
+    async registration(name, dateOfBirth, email, password, phone) {
+        
         const candidate = await User.findOne({where: {
             email: email
         }})
@@ -17,14 +18,17 @@ class UserService {
         if (candidate) {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует.`)
         }
+        
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = uuid.v4()
-        const user = await User.create({email, password: hashPassword, activationLink})
+        
+        const user = await User.create({fio: name, date_of_birth: dateOfBirth, email, password: hashPassword, phone, activationLink})
+        console.log('мой ', user.get());
         await mailService.sendActivationMail(email, `http://localhost:3000/api/activate/${activationLink}`)
         const userDto = new UserDto (user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        console.log('user-servise', userDto);
+
         return {
             ...tokens,
             user: userDto

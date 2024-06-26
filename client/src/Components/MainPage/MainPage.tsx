@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 
 export default function MainPage() {
+
+  const token = localStorage.getItem('token')
+
   return (
     <>
-      <div className={'flex flex-wrap h-44 gap-5'}>
+    <div>
+      {
+        token ? <div className={'flex flex-wrap h-44 gap-5'}>
         <h1 className={'w-7/12 font-medium'}>Найдите исполнителя или <br/> станьте исполнителем сами</h1>
         <div className={''}>
           <img src={''} alt={'Здесь будет какая-нибудь картинка красивая'}/>
@@ -16,7 +21,7 @@ export default function MainPage() {
               Нужна помощь
             </button>
           </Link>
-          <Link to={'/bid-list'}>
+          <Link to={'/bids-list'}>
             <button
               className={'focus:outline-none transition duration-300 w-80 border-lime-600 hover:bg-lime-600' +
                 ' hover:text-white bg-white text-lime-600'}>
@@ -24,7 +29,32 @@ export default function MainPage() {
             </button>
           </Link>
         </div>
+      </div> : 
+      <div className={'flex flex-wrap h-44 gap-5'}>
+      <h1 className={'w-7/12 font-medium'}>Найдите исполнителя или <br/> станьте исполнителем сами</h1>
+      <div className={''}>
+        <img src={''} alt={'Здесь будет какая-нибудь картинка красивая'}/>
       </div>
+      <div className={'flex mt-5'}>
+        <Link to={'/login'}>
+          <button
+            className={'focus:outline-none transition duration-300 w-80 mr-14 border-lime-600 hover:bg-lime-600' +
+              ' hover:text-white bg-white text-lime-600 '}>
+            Нужна помощь
+          </button>
+        </Link>
+        <Link to={'/login'}>
+          <button
+            className={'focus:outline-none transition duration-300 w-80 border-lime-600 hover:bg-lime-600' +
+              ' hover:text-white bg-white text-lime-600'}>
+            Хочу помочь
+          </button>
+        </Link>
+      </div>
+    </div>
+      }
+    </div>
+
     </>
   )
 }

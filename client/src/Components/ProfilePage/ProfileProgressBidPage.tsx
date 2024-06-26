@@ -17,11 +17,11 @@ function ProfileProgressBidPage(): JSX.Element {
     const userID = localStorage.getItem('userID');
 
     useEffect(() => {
-      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bid/progress`, {params:{userID}})
+      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
         .then((res) => setBids(res.data));
     }, []);
-    
-    
+  const userId : string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
+
   
     return (
         <>
@@ -29,7 +29,7 @@ function ProfileProgressBidPage(): JSX.Element {
 
       <div className={"flex flex-col"}>
       {bids && bids.map((bid) => 
-        {return bid.status === "response" ? (<Bid key={bid.id} bid={bid} />) : (<></>)})}
+        {return bid.status === "response" ? (<Bid key={bid.id} bid={bid} userId={userId}/>) : (<></>)})}
       </div>
       
         </>

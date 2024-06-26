@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface Bid {
@@ -6,8 +6,11 @@ export interface Bid {
   title: string,
   description: string,
   address: string,
-  author_id: number,
-  status: string
+}
+
+export type UserBid = {
+  userId: string | null,
+  bidId: number
 }
 
 export interface BidsState {
@@ -23,11 +26,34 @@ const initialState: BidsState = {
 }
 export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {rejectWithValue}) => {
   try {
-    const userBids = await axios('http://localhost:3000/profile/bids')
+    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
     return userBids.data
   } catch (error) {
-    return rejectWithValue
+    return rejectWithValue(error)
   }
+})
+export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async ({bidId, userId}: UserBid) => {
+  await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/${bidId}}`, {
+    data: {
+      user_id: userId,
+      bid_id: bidId
+    }
+  })
+  return {bidId}
+})
+export const editUserBid = createAsyncThunk('userBids/editUserBids', async ({
+                                                                                id,
+                                                                                title,
+                                                                                description,
+                                                                                address
+                                                                              }: Bid) => {
+  const response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/${id}`, {
+    id,
+    title,
+    description,
+    address
+  })
+  return response.data
 })
 
 export const userBidsSlice = createSlice({
@@ -47,6 +73,16 @@ export const userBidsSlice = createSlice({
         })
         .addCase(getUserBids.rejected, (state, action) => {
           state.error = action.payload as string
+        })
+        .addCase(deleteUserBid.fulfilled, (state, action) => {
+          const {bidId} = action.payload;
+          state.list = state.list.filter(bid => bid.id !== bidId)
+        })
+        .addCase(editUserBid.fulfilled, (state, action: PayloadAction<Bid>) => {
+          const index = state.list.findIndex(bid => bid.id === action.payload.id)
+          if (index !== -1) {
+            state.list[index] = action.payload
+          }
         })
     }
   }
