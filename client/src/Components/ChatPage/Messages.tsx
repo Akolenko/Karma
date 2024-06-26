@@ -7,10 +7,10 @@ function Messages(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(state => state.messages.list);
 
-const socket = io.connect('http://localhost:3000');
-  
+  const socket = io('localhost:4000');
 
   useEffect(() => {
+    socket.on('connect', () => {})
     dispatch(getMessages())
   }, [dispatch])
 

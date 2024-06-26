@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import $api from "../src/http";
 
 export interface MessageType {
   id: number,
@@ -22,11 +22,12 @@ const initialState: MessagesState = {
   error: null,
 }
 
-// const userId = localStorage.getItem('userId');
+const userId = localStorage.getItem('userId');
 
-export const getMessages = createAsyncThunk('messages/getMessages', async (_, {rejectWithValue}) => {
+export const getMessages = createAsyncThunk('messages/getMessages',
+  async (_, {rejectWithValue}) => {
   try {
-    const messages = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/chat`)
+    const messages = await $api(`${import.meta.env.VITE_REACT_APP_API_URL}/chat/:roomId`)
     return messages.data
   } catch (error) {
     return rejectWithValue(error)
