@@ -23,7 +23,7 @@ export default function EditBidModal({
   const dispatch = useAppDispatch();
   const [title, setTitle] = useState(bid.title);
   const [description, setDescription] = useState(bid.description);
-  const [address, setAddress] = useState(title);
+  const [address, setAddress] = useState(bid.address);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await dispatch(editUserBid({ id: bid.id, title, description, address }));
