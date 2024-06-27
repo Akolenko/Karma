@@ -28,12 +28,21 @@ const userId = localStorage.getItem('userId')
 
 export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {rejectWithValue}) => {
   try {
-    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`, {params:{userId}})
+    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/active`, {params:{userId}})
     return userBids.data
   } catch (error) {
     return rejectWithValue(error)
   }
 })
+export const getUserBidsProgress = createAsyncThunk('userBids/getUserBidsProgress', async (_, {rejectWithValue}) => {
+  try {
+    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/progress`, {params:{userId}})
+    return userBids.data
+  } catch (error) {
+    return rejectWithValue(error)
+  }
+})
+
 export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async ({bidId, userId}: UserBid) => {
   await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/${bidId}}`, {
     data: {
@@ -85,6 +94,9 @@ export const userBidsSlice = createSlice({
           if (index !== -1) {
             state.list[index] = action.payload
           }
+        })
+        .addCase(getUserBidsProgress.fulfilled, (state, action)=> {
+          state.list = action.payload;
         })
     }
   }

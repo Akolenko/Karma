@@ -1,38 +1,30 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Bid from "../Bid/Bid"
 import ProfileBidPage from "./ProfileBidPage";
-
-export type BidProfileType = {
-    id: number,
-    title:string,
-    description:string,
-    address:string,
-    status:string,
-    author_id:number
-}
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
+import { useEffect } from "react";
+import { getUserBidsProgress } from "../../../features/bidsUserSlice.ts";
+import BidProgress from "../Bid/BidInProgress.tsx";
 
 function ProfileProgressBidPage(): JSX.Element {
-    const [bids, setBids] = useState<BidProfileType[]>([]);
-  
-    useEffect(() => {
-      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
-        .then((res) => setBids(res.data));
-    }, []);
-  const userId : string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
+  const bids = useAppSelector(state => {
+    return state.userBids.list;
+  })
+  const dispatch = useAppDispatch();
 
-  
-    return (
-        <>
-       <ProfileBidPage/>
+  useEffect(() => {
+    dispatch(getUserBidsProgress())
+  }, [dispatch]);
 
+  return (
+    <>
+      <ProfileBidPage/>
       <div className={"flex flex-col"}>
-      {bids && bids.map((bid) => 
-        {return bid.status === "response" ? (<Bid key={bid.id} bid={bid} userId={userId}/>) : (<></>)})}
+        {bids && bids.map((bid) => {
+          return <BidProgress key={bid.id} bid={bid}/>
+        })}
       </div>
-      
-        </>
-    );
-  }
-  
-  export default ProfileProgressBidPage;
+
+    </>
+  );
+}
+
+export default ProfileProgressBidPage;
