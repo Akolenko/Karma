@@ -1,7 +1,5 @@
-import React, { FC, useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
+import React, { useEffect, useState } from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-import axios from "axios";
 import { v4 as uuidv4 } from 'uuid'
 
 

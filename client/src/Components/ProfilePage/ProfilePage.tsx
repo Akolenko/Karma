@@ -2,10 +2,10 @@ import { NavLink } from "react-router-dom";
 
 function ProfilePage(): JSX.Element {
   return (
-    <div className="mainConteiner">
-      <h2 className="profile-page-title">МОЯ СТРАНИЦА</h2>
+    <div className='mainConteiner'>
+      <h2 className='profile-page-title'>МОЯ СТРАНИЦА</h2>
 
-      <div className="profile-page-button">
+      <div className='profile-page-button'>
         <NavLink to={"/profile/bio"}>
           <button
             className={
@@ -35,12 +35,9 @@ function ProfilePage(): JSX.Element {
         </NavLink>
       </div>
 
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 }
 
 export default ProfilePage;
-
