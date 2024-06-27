@@ -28,7 +28,7 @@ const userId = localStorage.getItem('userId')
 
 export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {rejectWithValue}) => {
   try {
-    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/active`, {params:{userId}})
+    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/active`, {params: {userId}})
     return userBids.data
   } catch (error) {
     return rejectWithValue(error)
@@ -36,15 +36,32 @@ export const getUserBids = createAsyncThunk('userBids/getUserBids', async (_, {r
 })
 export const getUserBidsProgress = createAsyncThunk('userBids/getUserBidsProgress', async (_, {rejectWithValue}) => {
   try {
-    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/progress`, {params:{userId}})
+    const userBids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/progress`, {params: {userId}})
     return userBids.data
   } catch (error) {
     return rejectWithValue(error)
   }
 })
+export const completeUserBids = createAsyncThunk('userBids/completeUserBids', async ({
+                                                                                       bidId,
+                                                                                       userId
+                                                                                     }: UserBid, {rejectWithValue}) => {
+  try {
+    await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'complete'});
+    await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {
+      data: {
+        user_id: userId,
+        bid_id: bidId
+      }
+    })
+    return {bidId}
+  } catch (error) {
+    rejectWithValue(error)
+  }
+})
 
 export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async ({bidId, userId}: UserBid) => {
-  await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/${bidId}}`, {
+  await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/${bidId}`, {
     data: {
       user_id: userId,
       bid_id: bidId
@@ -53,11 +70,11 @@ export const deleteUserBid = createAsyncThunk('userBids/deleteUserBids', async (
   return {bidId}
 })
 export const editUserBid = createAsyncThunk('userBids/editUserBids', async ({
-                                                                                id,
-                                                                                title,
-                                                                                description,
-                                                                                address
-                                                                              }: Bid) => {
+                                                                              id,
+                                                                              title,
+                                                                              description,
+                                                                              address
+                                                                            }: Bid) => {
   const response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/${id}`, {
     id,
     title,
@@ -95,8 +112,12 @@ export const userBidsSlice = createSlice({
             state.list[index] = action.payload
           }
         })
-        .addCase(getUserBidsProgress.fulfilled, (state, action)=> {
+        .addCase(getUserBidsProgress.fulfilled, (state, action) => {
           state.list = action.payload;
+        })
+        .addCase(completeUserBids.fulfilled, (state, action)=>{
+          const {bidId} = action.payload;
+          state.list = state.list.filter(bid => bid.id !== bidId)
         })
     }
   }
