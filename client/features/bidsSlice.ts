@@ -9,7 +9,8 @@ export interface BidType {
   description: string,
   address: string,
   author_id: number,
-  status: string
+  status: string,
+  coords: Array<[number, number]> | []
 }
 
 export interface BidsState {
