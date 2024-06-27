@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Navbar/>
-      <Routes>
+      <Routes> //TODO: Сделать рефакторинг, в отдельный файл.
         <Route path={'/login'} element={<LoginForm/>}/>
         <Route path={'/register'} element={<RegisterForm/>}/>
         <Route index element={<MainPage/>}/>
