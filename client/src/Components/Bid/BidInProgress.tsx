@@ -1,5 +1,14 @@
+import { Bid, completeUserBids } from "../../../features/bidsUserSlice.ts";
+import { useAppDispatch } from "../../../hooks/redux.ts";
 
-export default function BidProgress({bid}) {
+export default function BidProgress({bid}: { bid: Bid }) {
+  const dispatch = useAppDispatch();
+  const userId = localStorage.getItem('userId');
+  const completeHandler = () => {
+    dispatch(completeUserBids({bidId: bid.id, userId}));
+  }
+
+
   return (
     <>
       <div className={'rounded-md bg-white p-3 text-left hover:scale-105 transition duration-300 pl-8'}>
@@ -15,7 +24,7 @@ export default function BidProgress({bid}) {
               <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
               <img className={'w-10'} src={'/svg/PhoneOutlined.svg'} alt='logo'/>
             </div>
-            <button>Помощь оказана</button>
+            <button onClick={completeHandler}>Помощь оказана</button>
           </div>
         </div>
       </div>
