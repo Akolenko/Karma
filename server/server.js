@@ -48,7 +48,7 @@ app.use('/api',
   activeBidApiRouter
   )
 //GET
-app.use("/api/profile/bid/active", profileBidsRouter)
+app.use("/api/profile/bids/active", profileBidsRouter)
 app.use("/api/profile/bid/closed", profileBidsRouter)
 app.use("/api/profile/bid/progress", profileBidsRouter)
 app.use('/api', bidsRouter, likeRouter, responsesRouter, chatRouter)
