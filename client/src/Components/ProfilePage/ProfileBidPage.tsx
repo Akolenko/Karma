@@ -1,30 +1,11 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
 import { NavLink } from "react-router-dom";
 
-export type BidProfileType = {
-  id: number,
-  title: string,
-  description: string,
-  address: string,
-  status: string,
-  author_id: number
-}
-
 function ProfileBidPage(): JSX.Element {
-    const [bids, setBids] = useState<BidProfileType[]>([]);
-  
-    useEffect(() => {
-      axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids`)
-        .then((res) => setBids(res.data));
-    }, []);
 
-  
     return (
         <>
         <ProfilePage/>
-
         <NavLink to={"/profile/bid/active"}>
           <button
             className={
@@ -53,12 +34,7 @@ function ProfileBidPage(): JSX.Element {
             Закрытые заявки
           </button>
         </NavLink>
-
-      {/* <div className={"flex flex-col"}>
-      {bids && bids.map((bid) => (<Bid key={bid.id} bid={bid} />))}
-      </div> */}
-      
-        </>
+      </>
     );
   }
   

@@ -22,7 +22,7 @@ export type ResponseType = {
   userId: string|null,
   bidId: number
 }
-const userId: string | null = localStorage.getItem('userId');
+const userId = localStorage.getItem('userId');
 
 export const responseUserBid = createAsyncThunk('responses/changeBidStatus', async ({userId, bidId}: ResponseType) => {
   await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'response'});
@@ -30,6 +30,7 @@ export const responseUserBid = createAsyncThunk('responses/changeBidStatus', asy
   window.location.assign('/profile/responses')
   return {bidId}
 })
+
 export const getResponses = createAsyncThunk('responses/getResponses', async(_, {rejectWithValue}) => {
   try {
     const responses = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/my-responses`, {params: {userId}})
@@ -39,6 +40,7 @@ export const getResponses = createAsyncThunk('responses/getResponses', async(_, 
     return rejectWithValue(error)
   }
 })
+
 export const cancelResponse = createAsyncThunk('responses/cancelResponse', async({userId, bidId}: ResponseType) => {
   await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {data:{user_id: userId, bid_id: bidId}})
   await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {status: 'create'})
