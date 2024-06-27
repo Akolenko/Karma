@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import $api from "../../http";
 
 export type BioProfileType = {
   id?: number;
@@ -16,7 +17,7 @@ function ProfilePage(): JSX.Element {
 
   useEffect(() => {
     
-    const user = axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`).then((res) =>
+    const user = $api(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`).then((res) =>
       setUser(res.data)
     );
   }, []);
