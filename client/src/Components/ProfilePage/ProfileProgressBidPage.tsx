@@ -18,9 +18,9 @@ function ProfileProgressBidPage(): JSX.Element {
     <>
       <ProfileBidPage/>
       <div className={"flex flex-col"}>
-        {bids && bids.map((bid) => {
+        {bids && bids.length ? bids.map((bid) => {
           return <BidProgress key={bid.id} bid={bid}/>
-        })}
+        }) : <div>Пока что еще нет заявок на которые откликнулись!</div>}
       </div>
 
     </>
