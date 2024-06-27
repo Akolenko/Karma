@@ -30,8 +30,10 @@ export default class AuthStore {
       const response = await AuthService.login(email, password)
       localStorage.setItem('token', response.data.accessToken)
       localStorage.setItem('user', JSON.stringify(response.data.user))
+      localStorage.setItem('userId', response.data.user.id)
       this.setAuth(true)
       this.setUser(response.data.user)
+      window.location.assign('/')
     } catch (error) {
       console.log('Что-то пошло не так в файле "auth.store.ts, метод login.');
     }
@@ -43,6 +45,7 @@ export default class AuthStore {
       console.log(response);
       localStorage.setItem('token', response.data.accessToken)
       localStorage.setItem('user', JSON.stringify(response.data.user))
+      localStorage.setItem('userId', response.data.user.id)
       this.setAuth(true)
       this.setUser(response.data.user)
     } catch (error) {
@@ -55,6 +58,7 @@ export default class AuthStore {
     try {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      localStorage.removeItem('userId')
       await AuthService.logout()
 
       this.setAuth(false)
@@ -70,9 +74,10 @@ export default class AuthStore {
       const response = await axios.get<AuthResponse>(`${import.meta.env.VITE_REACT_APP_API_URL}/refresh`, {
         withCredentials: true
       })
-
+      
       localStorage.setItem('token', response.data.accessToken)
       localStorage.setItem('user', JSON.stringify(response.data.user))
+      localStorage.setItem('userId', response.data.user.id)
       this.setAuth(true)
       this.setUser(response.data.user)
     } catch (error) {
