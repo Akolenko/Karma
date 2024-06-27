@@ -7,7 +7,7 @@ const router = require('./router/index')
 // const http = require('http');
 // const { Server } = require('socket.io');
 
-
+const authMiddleware = require('./middleware/auth-middleware')
 //GET
 const bidsRouter = require('./routes/views/bids.router')
 const profileRouter = require("./routes/views/profile.bio.router")

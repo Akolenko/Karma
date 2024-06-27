@@ -1,6 +1,7 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import $api from "../src/http";
 
 export interface BidType {
   id: number,
@@ -25,11 +26,11 @@ const initialState: BidsState = {
 
 const userId = localStorage.getItem('userId');
 
+
 export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithValue}) => {
   try {
-    const bids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, {params: {userId}})
-    console.log(bids.data);
-    
+    // const bids = await axios(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, {params: {userId}})
+    const bids = await $api(`${import.meta.env.VITE_REACT_APP_API_URL}/bids`, {params: {userId}})
     return bids.data
   } catch (error) {
     console.log({error})
