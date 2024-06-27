@@ -1,9 +1,12 @@
 import {memo, useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { getMessages } from "../../../features/messagesSlice";
+import MessageForm from "./MessageForm.tsx";
 // import io from "socket.io-client";
 
-function Messages(): JSX.Element {
+export type roomId = any
+
+function Messages({roomId}: roomId): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(state => state.messages.list);
 
@@ -11,7 +14,7 @@ function Messages(): JSX.Element {
 
   useEffect(() => {
     // socket.on('connect', () => {})
-    dispatch(getMessages())
+    dispatch(getMessages(roomId))
   }, [dispatch])
 
   // const userId: string | null = localStorage.getItem('userId')
@@ -31,6 +34,7 @@ function Messages(): JSX.Element {
             :
             <div>Нет сообщений</div>
           }
+          <MessageForm roomId={roomId}/>
         </div>
       </div>
     )

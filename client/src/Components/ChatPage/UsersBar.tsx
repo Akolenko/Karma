@@ -2,9 +2,10 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux.ts";
 import {useEffect, useState} from "react";
 import {getRooms, RoomType} from "../../../features/roomSlice.ts";
 import Messages from "./Messages.tsx";
+import MessageForm from "./MessageForm.tsx";
 
 function UsersBar(): JSX.Element {
-  const [choise, setChoise] = useState(false)
+  const [choise, setChoise] = useState({choise: false, roomId: 0})
   const dispatch = useAppDispatch();
   const rooms = useAppSelector(state => state.rooms.list);
   console.log(choise)
@@ -24,7 +25,7 @@ function UsersBar(): JSX.Element {
                   <div key={room.id}>
                     <div
                       className='bg-green-500 border'
-                      onClick={() => setChoise(!choise)}
+                      onClick={() => setChoise({choise: !choise.choise, roomId: room.id})}
                     >
                       {room.Bid.title}
                     </div>
@@ -37,8 +38,8 @@ function UsersBar(): JSX.Element {
         </div>
         <div>
           {
-            choise ?
-              <Messages/>
+            choise.choise ?
+              <Messages roomId={choise.roomId}/>
               :
               <div></div>
           }
