@@ -10,19 +10,18 @@ router.get('/chat', async (req, res) => {
       include: {
         model: Bid,
         where: { '$user_id$': userId },
-        required: false
+        // required: false
       },
     });
-    // console.log(rooms)
-    // const bid = await Bid.findOne(where())
     res.status(200).json(rooms)
   } catch (error) {
     console.log('Ошибка при закгрузке комнат', error);
   }
 })
 
-router.get('/chat:room_id', async (req, res) => {
+router.get('/chat/:room_id', async (req, res) => {
   const {userId} = req.query;
+  const room_id = req.params.room_id;
   try {
     const messages = await Message.findAll({where: { room_id: 1}});
     //Поменять room_id: 1 на выбранную комнату
