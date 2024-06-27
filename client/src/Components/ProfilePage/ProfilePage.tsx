@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-
 function ProfilePage(): JSX.Element {
-
   return (
     <div className="mainConteiner">
       <h2 className="profile-page-title">МОЯ СТРАНИЦА</h2>
