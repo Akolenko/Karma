@@ -21,7 +21,6 @@ export default function ActiveBid({bid}: { bid: Bid }) {
           <p className={'text-sm font-sans tracking-wide leading-8 text-gray-500'}>{bid.address}</p>
         </div>
         <div className={'flex justify-between items-baseline -mt-2'}>
-          <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
           <button onClick={() => setEditModalOpen(true)}>Редактировать</button>
           <button onClick={deleteHandler}>Удаление</button>
         </div>
@@ -29,7 +28,7 @@ export default function ActiveBid({bid}: { bid: Bid }) {
 
       <EditBidModal isOpen={isEditModalOpen}
                     onRequestClose={() => setEditModalOpen(false)}
-                    bid={bid} />
+                    bid={bid}/>
     </>
   )
 }

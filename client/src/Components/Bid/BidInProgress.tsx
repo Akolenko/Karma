@@ -8,7 +8,6 @@ export default function BidProgress({bid}: { bid: Bid }) {
     dispatch(completeUserBids({bidId: bid.id, userId}));
   }
 
-
   return (
     <>
       <div className={'rounded-md bg-white p-3 text-left hover:scale-105 transition duration-300 pl-8'}>
