@@ -143,6 +143,9 @@ export const userBidsSlice = createSlice({
           state.list[index] = action.payload;
         }
       })
+      .addCase(getUserBidsProgress.fulfilled, (state, action) => {
+        state.list = action.payload;
+      })
       .addCase(completeUserBids.fulfilled, (state, action) => {
         const { bidId } = action.payload;
         state.list = state.list.filter((bid) => bid.id !== bidId);
