@@ -39,10 +39,7 @@ export default function Bid({bid, userId}: { bid: BidType, userId: string | null
         <div className={'flex justify-between items-baseline -mt-2'}>
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
           <button onClick={handlerLike}>🙏 {likes}</button>
-          {bid.status === 'create' ? <ButtonResponse handleRespond={handleRespond}/> :
-            <button className={'focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md' +
-              ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
-              ' hover:border-lime-600 bg-white text-lime-600'}>Закрыть заявку</button>}
+          <ButtonResponse handleRespond={handleRespond}/>
         </div>
       </div>
     </>
