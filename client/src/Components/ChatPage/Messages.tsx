@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import {memo, useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { getMessages } from "../../../features/messagesSlice";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 function Messages(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(state => state.messages.list);
 
-  const socket = io('localhost:4000');
+  // const socket = io('localhost:4000');
 
   useEffect(() => {
-    socket.on('connect', () => {})
+    // socket.on('connect', () => {})
     dispatch(getMessages())
   }, [dispatch])
 
@@ -36,4 +36,4 @@ function Messages(): JSX.Element {
     )
   }
   
-  export default Messages;
+  export default memo(Messages);

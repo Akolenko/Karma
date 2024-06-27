@@ -101,7 +101,7 @@ const Navbar = (): JSX.Element => {
            </div>
  
            <div>
-                 <button type='button' onClick={() => setNavBarState(0)}>
+                 <button type='button' onClick={() => setNavBarState(!navBarState)}>
                    <NavLink
                      className={({ isActive }) =>
                        isActive ? activeLink : normalLink}
