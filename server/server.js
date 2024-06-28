@@ -65,8 +65,10 @@ io.on('connection', (socket) => {
   socket.on('join', ({room_id, user_id}) => {
     console.log(room_id, user_id);
     socket.join(room_id);
-    
-    socket.emit()
+
+    socket.emit('message', {
+      data: 'Привет'
+    })
   })
   io.on('disconnect', () => {
     console.log('Disconnect');

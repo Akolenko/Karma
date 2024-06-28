@@ -2,13 +2,11 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux.ts";
 import {useEffect, useState} from "react";
 import {getRooms, RoomType} from "../../../features/roomSlice.ts";
 import Messages from "./Messages.tsx";
-import MessageForm from "./MessageForm.tsx";
 
 function UsersBar(): JSX.Element {
   const [choise, setChoise] = useState({choise: false, roomId: 0})
   const dispatch = useAppDispatch();
   const rooms = useAppSelector(state => state.rooms.list);
-  console.log(choise)
 
   useEffect(() => {
     dispatch(getRooms())

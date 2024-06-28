@@ -25,6 +25,12 @@ function Messages({roomId}: roomId): JSX.Element {
     dispatch(getMessages(roomId))
   }, [dispatch])
 
+  useEffect(() => {
+    socket.on('message', ({data}) => {
+      console.log(data);
+    })
+  })
+
     return(
       <div>
         <div>
