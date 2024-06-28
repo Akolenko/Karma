@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Response, Room, User, Bid} = require('../../db/models')
+const {Response, Room, User} = require('../../db/models')
 
 router.post('/responses', async (req, res) => {
   const {user_id, bid_id, author_id} = req.body;
