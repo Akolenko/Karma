@@ -36,6 +36,9 @@ module.exports = {
       activationLink: {
         type: Sequelize.STRING
       },
+      scores: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

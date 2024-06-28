@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Response} = require('../../db/models')
+const {Response, Room, User, Bid} = require('../../db/models')
 
 router.post('/responses', async (req, res) => {
   const {user_id, bid_id, author_id} = req.body;
@@ -19,14 +19,20 @@ router.post('/responses', async (req, res) => {
   }
 })
   .delete('/responses/', async (req, res) => {
-    const {user_id, bid_id} = req.body;
+      const {user_id, bid_id} = req.body;
 
-    try {
-      await Response.destroy({where: {user_id: Number(user_id), bid_id}})
-      res.status(201).json({message: 'deleted response'})
-    } catch (e) {
-      console.log(e)
+      try {
+        const userId = await Response.findOne({where: {bid_id}})
+        const currUser = await User.findOne({where: {id: userId.user_id}});
+        //TODO можно ли эти запросы упростить?
+        await currUser.update({scores: currUser.scores + 25})
+        await Response.destroy({where: {user_id: Number(user_id), bid_id}})
+        res.status(201).json({message: 'deleted response'})
+      } catch
+        (e) {
+        console.log(e.message)
+      }
     }
-  })
+  )
 
 module.exports = router;
