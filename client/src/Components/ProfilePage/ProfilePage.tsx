@@ -1,32 +1,11 @@
-import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import $api from "../../http";
-
-export type BioProfileType = {
-  id?: number;
-  fio: string;
-  date_of_birth: any; //???
-  email: string;
-  password: string;
-  phone: string;
-};
 
 function ProfilePage(): JSX.Element {
-  const [user, setUser] = useState<BioProfileType[]>([]);
-
-  useEffect(() => {
-    
-    const user = $api(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`).then((res) =>
-      setUser(res.data)
-    );
-  }, []);
-  // console.log(user);
-
   return (
-    <div className="mainConteiner">
-      <h2 className="profile-page-title">МОЯ СТРАНИЦА</h2>
+    <div className='mainConteiner'>
+      <h2 className='profile-page-title'>МОЯ СТРАНИЦА</h2>
 
-      <div className="profile-page-button">
+      <div className='profile-page-button'>
         <NavLink to={"/profile/bio"}>
           <button
             className={
@@ -36,7 +15,7 @@ function ProfilePage(): JSX.Element {
             Мои данные
           </button>
         </NavLink>
-        <NavLink to={"/profile/bid"}>
+        <NavLink to={"/profile/bid/active"}>
           <button
             className={
               "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
@@ -56,12 +35,9 @@ function ProfilePage(): JSX.Element {
         </NavLink>
       </div>
 
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 }
 
 export default ProfilePage;
-
