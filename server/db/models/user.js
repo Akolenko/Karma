@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     phone: DataTypes.STRING,
     isActivated: DataTypes.BOOLEAN,
-    activationLink: DataTypes.STRING
+    activationLink: DataTypes.STRING,
+    scores: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',
