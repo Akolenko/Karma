@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../features/userEditProfileSlice";
-// import { Paper, Typography } from "@mui/material";
-// import { Doughnut } from "react-chartjs-2";
+import { Paper, Typography } from "@mui/material";
+import { Doughnut } from "react-chartjs-2";
+import { RootState } from "../../../redux/store/store.ts";
+import {Chart, ArcElement} from 'chart.js'
+Chart.register(ArcElement);
 
 export interface BioProfileType {
   id?: number;
@@ -13,7 +16,7 @@ export interface BioProfileType {
   email: string;
   password: string;
   phone: string;
-};
+}
 
 export type UserDataType = {
   fio: string;
@@ -32,17 +35,17 @@ function ProfileBioPage(): JSX.Element {
   const [isEditing, setIsEditing] = useState(false);
 
   const saveUserDataToBackend = ({
-    fio,
-    email,
-    phone,
-    userId,
-  }: UserDataType) => {
+                                   fio,
+                                   email,
+                                   phone,
+                                   userId,
+                                 }: UserDataType) => {
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/date`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ fio, email, phone, userId }),
+      body: JSON.stringify({fio, email, phone, userId}),
     })
       .then((response) => {
         if (response.ok) {
@@ -57,42 +60,41 @@ function ProfileBioPage(): JSX.Element {
   };
 
   const handleUpdateUser = (): void => {
-    const { fio, email, phone } = user as BioProfileType;
-    dispatch(updateUser({ fio, email, phone }));
-    saveUserDataToBackend({ fio, email, phone, userId });
+    const {fio, email, phone} = user as BioProfileType;
+    dispatch(updateUser({fio, email, phone}));
+    saveUserDataToBackend({fio, email, phone, userId});
     setIsEditing(false);
   };
 
   const handleUser = (name: string, type: any): void => {
-    const temp = { ...user, [`${type}`]:name } as BioProfileType;
+    const temp = {...user, [`${type}`]: name} as BioProfileType;
     // temp[type] = name;
     setUser(temp);
   };
 
   useEffect(() => {
     axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`, {
-      params: { userId },
+      params: {userId},
     }).then((res) => setUser(res.data));
   }, []);
 
-  // const totalOrders = useSelector((state) => state.userActivity?.totalOrders || 0);
-  // const completedOrders = useSelector((state) => state.userActivity?.totalOrders || 0);
+  const totalOrders = useSelector((state:RootState) => state.activity.totalOrders);
+  const completedOrders = useSelector((state:RootState) => state.activity.completedOrders);
 
-  // const data = {
-  //   labels: ["Выполненные заказы", "Оставшиеся заказы"],
-  //   datasets: [
-  //     {
-  //       data: [completedOrders, totalOrders - completedOrders],
-  //       backgroundColor: ["#36A2EB", "#FF6384"],
-  //     },
-  //   ],
-  // };
-
+  const data = {
+    labels: ["Выполненные заказы", "Оставшиеся заказы"],
+    datasets: [
+      {
+        data: [completedOrders, totalOrders - completedOrders],
+        backgroundColor: ["#36A2EB", "#FF6384"],
+      },
+    ],
+  };
 
 
   return (
     <>
-      <ProfilePage />
+      <ProfilePage/>
 
       <div className={"flex flex-col"}>
         <div className={"flex flex-row"}>
@@ -101,15 +103,15 @@ function ProfileBioPage(): JSX.Element {
             src="https://adindex.ru/files2/news/2019_07/273997_inkognito.jpg?ts="
             alt="pic"
           />
-{/* 
-          <div>
-            <Paper elevation={3} variant="outlined" sx={{ p: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Диаграмма активности пользователя
-              </Typography>
-              <Doughnut data={data} type='doughnut'/>
-            </Paper>
-          </div> */}
+          {
+            <div>
+              <Paper elevation={3} variant="outlined" sx={{p: 2}}>
+                <Typography variant="h6" gutterBottom>
+                  Диаграмма активности пользователя
+                </Typography>
+                <Doughnut data={data} type='doughnut'/>
+              </Paper>
+            </div>}
         </div>
 
         {user && (
