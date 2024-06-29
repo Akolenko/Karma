@@ -25,6 +25,7 @@ const likeApiRouter = require("./routes/API/like.api.route");
 const profileActiveBidsApiRouter = require("./routes/API/activeBid.api.route");
 // const profileBidApiRouter = require("./routes/API/profile.bid.api.router")
 const userEditProfileRouter = require("./routes/API/user.api.route");
+const certificatesRouter = require('./routes/views/certificates.router')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -55,7 +56,9 @@ app.use(
   changeStatusBIdRouter,
   likeApiRouter,
   profileActiveBidsApiRouter
-);
+)
+
+app.use("/api/certificates", certificatesRouter)
 
 // io.listen(4000);
 //
