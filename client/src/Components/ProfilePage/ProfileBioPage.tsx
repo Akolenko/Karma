@@ -101,7 +101,7 @@ function ProfileBioPage(): JSX.Element {
             src="https://adindex.ru/files2/news/2019_07/273997_inkognito.jpg?ts="
             alt="pic"
           />
-{/* 
+{/*
           <div>
             <Paper elevation={3} variant="outlined" sx={{ p: 2 }}>
               <Typography variant="h6" gutterBottom>
