@@ -1,48 +1,50 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { v4 as uuidv4 } from 'uuid'
-
+import $api from "../../http";
+import { BidType } from "../../../features/bidsSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const center = [55.76, 37.64];
 
-// const images = [...Array(26)].map((n, i) => { 
-//   const letter = String.fromCharCode(i + 97);
-//   return `https://img.icons8.com/ios-filled/2x/marker-${letter}.png`;
-// })
-
-
 
 function MapComponent(): JSX.Element {
 
-  const [coords, setCoords] = useState<Array<[]>>([])
+  const [bidsWithCoords, setBidsWithCoords] = useState<Array<BidType>>([{} as BidType])
 
-  useEffect(() => {
-      const addresses = ['Тверская область, Кашинский район, Верхняя Троица', 'верская область, Кашинский район, б-ца им. Калинина']
+  const navigate = useNavigate()
 
-  const promises = addresses.map(async address => {
-    const response = await fetch(`https://geocode-maps.yandex.ru/1.x/?format=json&apikey=53ab01a5-fcd6-4af6-8795-4f7d5fdf4504&geocode=${encodeURIComponent(address)}`)
-    const data = await response.json();
-    const foundCoordinates =
-      data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-        .split(' ')
-        .map(parseFloat)
-        .reverse();
-    return foundCoordinates
-  
-  })
+    useEffect(() => {
+    
+      async function fetchData() {
+        const response = await $api(`${import.meta.env.VITE_REACT_APP_API_URL}/all-bids`)
+        const bidObjects = response.data
 
-  Promise.all(promises)
-  .then(res => setCoords(res))
+        const promises = bidObjects.map(async (bidObj: BidType) => {
+          const response = await fetch(`https://geocode-maps.yandex.ru/1.x/?format=json&apikey=53ab01a5-fcd6-4af6-8795-4f7d5fdf4504&geocode=${encodeURIComponent(bidObj.address)}`)
+          const data = await response.json();
+          const foundCoordinates =
+            data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+              .split(' ')
+              .map(parseFloat)
+              .reverse();
+          bidObj['coords'] = foundCoordinates
+          
+          return bidObj
+        })
+        Promise.all(promises)
+        .then(res => setBidsWithCoords(res))
+      }
+      
+      fetchData()
   }, [])
-
-
-  
 
 
 return (
   <YMaps query={{ load: "package.full" }} >
-    <Map
+    <Map 
       state={{
         center,
         zoom: 9,
@@ -51,15 +53,17 @@ return (
       width="500px"
       height="500px"
     >
-      {coords.map((n) => (
-        <Placemark
+      {bidsWithCoords.map((n) => (
+
+          <Placemark
           key={uuidv4}
-          geometry={n}
+          geometry={n.coords}
           options={{
             iconLayout: "default#image",
             iconImageSize: [50, 50],
             iconImageHref: 'https://img.icons8.com/ios-filled/2x/marker'
           }}
+          onClick={() => navigate(`/bid/${n.id}`)}
         />
       ))}
     </Map>

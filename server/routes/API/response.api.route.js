@@ -19,7 +19,7 @@ router.post('/responses', async (req, res) => {
   }
 })
   .delete('/responses/', async (req, res) => {
-    const {user_id, bid_id} = req.body;
+      const {user_id, bid_id} = req.body;
 
     try {
       await Room.destroy({where: {bid_id}})
@@ -27,6 +27,17 @@ router.post('/responses', async (req, res) => {
       res.status(201).json({message: 'deleted response'})
     } catch (e) {
       console.log(e)
+      try {
+        const userId = await Response.findOne({where: {bid_id}})
+        const currUser = await User.findOne({where: {id: userId.user_id}});
+        //TODO можно ли эти запросы упростить?
+        await currUser.update({scores: currUser.scores + 25})
+        await Response.destroy({where: {user_id: Number(user_id), bid_id}})
+        res.status(201).json({message: 'deleted response'})
+      } catch
+        (e) {
+        console.log(e.message)
+      }
     }
   })
 

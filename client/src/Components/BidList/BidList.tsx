@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
+import MapComponent from "../Map/Map.tsx";
 
 
 export default function BidList() {
@@ -28,6 +29,7 @@ export default function BidList() {
           </button>
         </Link>
       </div>
+      <MapComponent/>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))

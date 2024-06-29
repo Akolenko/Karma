@@ -22,7 +22,7 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3)
         const activationLink = uuid.v4()
         
-        const user = await User.create({fio: name, date_of_birth: dateOfBirth, email, password: hashPassword, phone, activationLink})
+        const user = await User.create({fio: name, date_of_birth: dateOfBirth, email, password: hashPassword, phone, activationLink, scores: 0})
         console.log('мой ', user.get());
         await mailService.sendActivationMail(email, `http://localhost:3000/api/activate/${activationLink}`)
         const userDto = new UserDto (user)

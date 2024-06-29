@@ -16,6 +16,8 @@ import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
+import Bid from '../components/Bid/Bid.tsx';
+import BidPage from '../components/Pages/BidPage.tsx';
 
 function App() {
 
@@ -38,7 +40,7 @@ function App() {
         <Route path={"/profile/bid/closed"} element={<ProfileCompleteBidPage/>}/>
         <Route path={"/map"} element={<MapComponent/>}/>
         <Route path={"/chat"} element={<ChatPage/>}/>
-
+        <Route path={"/bid/:id"} element={<BidPage/>}/>
       </Routes>
     </>
   )
