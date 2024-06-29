@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+export interface userActivityState {
+  totalOrders: number,
+  completedOrders: number,
+}
+
+const initialState: userActivityState = {
   totalOrders: 0,
   completedOrders: 0,
 };
