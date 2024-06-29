@@ -6,6 +6,7 @@ import likeBidsSlice from "../../features/likeBidsSlice.ts";
 import messagesSlice from "../../features/messagesSlice.ts";
 import roomsSlice from "../../features/roomSlice.ts";
 import  useReducer from "../../features/userEditProfileSlice";
+import userActivitySlice from "../../features/userActivitySlice.ts"
 
 
 export const rootReducer = combineReducers({
@@ -16,4 +17,5 @@ export const rootReducer = combineReducers({
   user: useReducer,
   messages: messagesSlice,
   rooms: roomsSlice,
+  activity: userActivitySlice,
 })
