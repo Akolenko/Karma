@@ -31,7 +31,7 @@ function Messages({roomId}: roomId): JSX.Element {
   }, [])
 
   useEffect(() => {
-    socket.on('messages', async ({data}) => {
+    socket.on('messages', ({data}) => {
       console.log('socket####', data);
       setMessages(data)
     })

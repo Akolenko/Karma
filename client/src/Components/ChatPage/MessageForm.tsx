@@ -4,7 +4,6 @@ import {roomId} from "./Messages.tsx";
 
 function MessageForm({roomId}: roomId): JSX.Element {
   const [message, setMessage] = useState({roomId, text: ''});
-  const dispatch = useAppDispatch();
   // console.log(message)
 
     return(

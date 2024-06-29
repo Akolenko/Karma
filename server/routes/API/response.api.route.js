@@ -3,11 +3,11 @@ const router = express.Router();
 const {Response, Room} = require('../../db/models')
 
 router.post('/responses', async (req, res) => {
-  const {user_id, bid_id, author_id} = req.body;
+  const {user_id, bid_id, author_id, title} = req.body;
   try {
     const newResponse = await Response.create({user_id, bid_id});
-    const newRoom = await Room.create({user_id, bid_id, room_id: newResponse.id})
-    const newUserRoom = await Room.create({user_id: author_id, bid_id, room_id: newResponse.id})
+    const newRoom = await Room.create({user_id, bid_id, room_id: newResponse.id, title})
+    const newUserRoom = await Room.create({user_id: author_id, bid_id, room_id: newResponse.id, title})
     if (newResponse) {
       res.status(201).json({text: 'Запись в Response успешно создана'})
     } else {

@@ -1,18 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const {Message, Room, Bid} = require('../../db/models');
-const {where} = require("sequelize");
+const {where, Sequelize} = require("sequelize");
 
 router.get('/chat', async (req, res) => {
   const { userId } = req.query;
   try {
     const rooms = await Room.findAll({
-      include: [
-        {
-          association: 'Bid',
-          required: true
-        }
-      ]
+      where: {
+        user_id: userId
+      }
     });
     console.log(rooms)
     res.status(200).json(rooms)

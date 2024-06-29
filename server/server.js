@@ -25,6 +25,7 @@ const likeApiRouter = require("./routes/API/like.api.route");
 const profileActiveBidsApiRouter = require("./routes/API/activeBid.api.route");
 // const profileBidApiRouter = require("./routes/API/profile.bid.api.router")
 const userEditProfileRouter = require("./routes/API/user.api.route");
+const {Message} = require("./db/models");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -62,12 +63,13 @@ io.listen(4000);
 
 io.on('connection', (socket) => {
   console.log('connect');
-  socket.on('join', ({room_id, user_id}) => {
+  socket.on('join', async ({room_id, user_id}) => {
     console.log(room_id, user_id);
     socket.join(room_id);
+    const messages = await Message.findAll({where: { room_id }});
 
-    socket.emit('message', {
-      data: 'Привет'
+    socket.emit('messages', {
+      data: messages
     })
   })
   io.on('disconnect', () => {
