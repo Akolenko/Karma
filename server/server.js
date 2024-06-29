@@ -1,28 +1,31 @@
-require('dotenv').config();
-const express = require('express');
-const serverConfig = require('./config/serverConfig');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const router = require('./router/index')
+require("dotenv").config();
+const express = require("express");
+const serverConfig = require("./config/serverConfig");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const router = require("./router/index");
 const http = require('http');
 const { Server } = require('socket.io');
 
-const authMiddleware = require('./middleware/auth-middleware')
+const authMiddleware = require("./middleware/auth-middleware");
 //GET
-const bidsRouter = require('./routes/views/bids.router')
-const profileRouter = require("./routes/views/profile.bio.router")
-const profileBidsRouter = require("./routes/views/profile.bid.router")
-const likeRouter = require('./routes/views/likes.router')
-const responsesRouter = require('./routes/views/myResponses.router')
-const chatRouter = require('./routes/chat/chat.route')
+const bidsRouter = require("./routes/views/bids.router");
+const profileRouter = require("./routes/views/profile.bio.router");
+const profileActiveBidsRouter = require("./routes/views/profile.active.bid.router");
+const likeRouter = require("./routes/views/likes.router");
+const responsesRouter = require("./routes/views/myResponses.router");
+const profileProgressBidsRouter = require("./routes/views/profile.progress.bid.router");
+const profileCompleteBidsRouter = require("./routes/views/profile.complete.bid.router");
+const chatRouter = require("./routes/chat/chat.route");
 //API
-const bidApiRouter = require('./routes/API/bid.api.route');
-const responseApiRouter = require('./routes/API/response.api.route')
-const changeStatusBIdRouter = require('./routes/API/changeStatusBid.api.route')
+const bidApiRouter = require("./routes/API/bid.api.route");
+const responseApiRouter = require("./routes/API/response.api.route");
+const changeStatusBIdRouter = require("./routes/API/changeStatusBid.api.route");
+const likeApiRouter = require("./routes/API/like.api.route");
+const profileActiveBidsApiRouter = require("./routes/API/activeBid.api.route");
 // const profileBidApiRouter = require("./routes/API/profile.bid.api.router")
-const userEditProfileRouter = require("./routes/API/user.api.route")
-const activeBidApiRouter = require('./routes/API/activeBid.api.route')
-const likeApiRouter = require('./routes/API/like.api.route');
+const userEditProfileRouter = require("./routes/API/user.api.route");
+const {Message} = require("./db/models");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,37 +34,49 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    methods: ['GET', 'POST']
   }
 });
 
 serverConfig(app);
-app.use('/api', router)
+app.use("/api", router);
+//GET
+app.use("/api", bidsRouter, likeRouter, responsesRouter, chatRouter);
+app.use("/api/profile", profileRouter);
+app.use("/api/profile/bids/active", profileActiveBidsRouter);
+app.use("/api/profile/bids/progress", profileProgressBidsRouter);
+app.use("/api/profile/bids/complete", profileCompleteBidsRouter);
 //API
-app.use("/api/profile", userEditProfileRouter)
-app.use('/api', router)
-app.use('/api',
+app.use("/api/profile", userEditProfileRouter);
+app.use("/api", router);
+app.use(
+  "/api",
   bidApiRouter,
   responseApiRouter,
   changeStatusBIdRouter,
   likeApiRouter,
-  activeBidApiRouter
-  )
-//GET
-app.use("/api/profile/bid/active", profileBidsRouter)
-app.use("/api/profile/bid/closed", profileBidsRouter)
-app.use("/api/profile/bid/progress", profileBidsRouter)
-app.use('/api', bidsRouter, likeRouter, responsesRouter)
-app.use('/api/profile', profileRouter)
-app.use("/api/profile/bids", profileBidsRouter)
-
+  profileActiveBidsApiRouter
+);
 
 io.listen(4000);
 
 io.on('connection', (socket) => {
   console.log('connect');
+  socket.on('join', async ({room_id, user_id}) => {
+    console.log(room_id, user_id);
+    socket.join(room_id);
+    const messages = await Message.findAll({where: { room_id }});
+
+    socket.emit('messages', {
+      data: messages
+    })
+  })
+  io.on('disconnect', () => {
+    console.log('Disconnect');
+  })
 })
 
 app.listen(PORT, () => {
-  console.log('Listening on port ' + PORT);
-})
+  console.log("Listening on port " + PORT);
+});

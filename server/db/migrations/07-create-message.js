@@ -12,10 +12,6 @@ module.exports = {
       room_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {
-          model: 'Responses',
-          key: 'id'
-        }
       },
       user_id: {
         allowNull: false,

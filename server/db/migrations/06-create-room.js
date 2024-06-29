@@ -2,42 +2,40 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Rooms', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fio: {
+      user_id: {
         allowNull: false,
-        type: Sequelize.STRING
-      },
-      date_of_birth: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      password: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      phone: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      scores: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
-      isActivated: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      bid_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Bids',
+          key: 'id'
+        }
       },
-      activationLink: {
-        type: Sequelize.STRING
+      room_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Responses',
+          key: 'id'
+        }
+      },
+      title: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -50,6 +48,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Rooms');
   }
 };

@@ -10,12 +10,14 @@ import ProfilePage from "../components/ProfilePage/ProfilePage.tsx";
 import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
 import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
 import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
-import ProfileClosedBidPage from "../components/ProfilePage/ProfileClosedBidPage.tsx";
+import ProfileCompleteBidPage from "../components/ProfilePage/ProfileCompleteBidPage.tsx";
 import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
 import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
+import Bid from '../components/Bid/Bid.tsx';
+import BidPage from '../components/Pages/BidPage.tsx';
 
 function App() {
 
@@ -23,7 +25,7 @@ function App() {
   return (
     <>
       <Navbar/>
-      <Routes>
+      <Routes> //TODO: Сделать рефакторинг, в отдельный файл.
         <Route path={'/login'} element={<LoginForm/>}/>
         <Route path={'/register'} element={<RegisterForm/>}/>
         <Route index element={<MainPage/>}/>
@@ -35,10 +37,10 @@ function App() {
         <Route path={"profile/responses"} element={<ResponsesPage/>}/>
         <Route path={"/profile/bid/active"} element={<ProfileActiveBidPage/>}/>
         <Route path={"/profile/bid/progress"} element={<ProfileProgressBidPage/>}/>
-        <Route path={"/profile/bid/closed"} element={<ProfileClosedBidPage/>}/>
+        <Route path={"/profile/bid/closed"} element={<ProfileCompleteBidPage/>}/>
         <Route path={"/map"} element={<MapComponent/>}/>
         <Route path={"/chat"} element={<ChatPage/>}/>
-
+        <Route path={"/bid/:id"} element={<BidPage/>}/>
       </Routes>
     </>
   )
