@@ -20,10 +20,7 @@ router.get("/", async (req,res)=>{
         console.log('ERR_FINDING_RESTAURANT', error);
         res.status(500).json({ message: 'err_finding_user'})
     }
-  } catch (error) {
-    console.log("ERR_FINDING_RESTAURANT", error);
-    res.status(500).json({ message: "err_finding_user" });
-  }
+
 });
 
 module.exports = router;
