@@ -9,9 +9,8 @@
     "db-drop": "npx sequelize db:drop",
     "db-migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
     "db-seed-create": "npx sequelize seed:generate --name cities",
-    "db-seed": "npx sequelize db:seed:all",
-    "install-db": "npm run db-drop && npm run db-create && npm run db-migrate && npm run db-seed",
-    "postinstall": "npm run install-db"
+    "db-seed": "npx sequelize db:seed:all"
+    
   },
   "keywords": [],
   "author": "",
