@@ -13,19 +13,20 @@ function UsersBar(): JSX.Element {
   }, [dispatch])
 
     return(
-      <div>
+      <div
+        className='flex flex-row grow'
+      >
         <div>
           {
             rooms && rooms.length ?
               rooms.map((room: RoomType) => {
-                console.log(room)
                 return (
                   <div key={room.id}>
                     <div
                       className='bg-green-500 border'
-                      onClick={() => setChoise({choise: !choise.choise, roomId: room.id})}
+                      onClick={() => setChoise({choise: !choise.choise, roomId: room.room_id})}
                     >
-                      {room.Bid.title}
+                      {room.title}
                     </div>
                   </div>
                 )
@@ -34,7 +35,9 @@ function UsersBar(): JSX.Element {
               <div>Нет чатов</div>
           }
         </div>
-        <div>
+        <div
+          className='flex grow'
+        >
           {
             choise.choise ?
               <Messages roomId={choise.roomId}/>

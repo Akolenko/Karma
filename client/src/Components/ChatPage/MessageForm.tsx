@@ -9,7 +9,13 @@ function MessageForm({roomId}: roomId): JSX.Element {
 
     return(
       <div>
-        <input type='text' placeholder='Написать сообщение' onChange={(e) => message.text = e.target.value}/>
+        <input
+          type='text'
+          name='inputMessage'
+          placeholder='Написать сообщение'
+          // onChange={inputHandler}
+          required
+        />
         <button onClick={() => dispatch(message)}>Отправить</button>
       </div>
     )
