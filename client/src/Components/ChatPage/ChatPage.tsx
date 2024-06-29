@@ -7,7 +7,6 @@ function ChatPage(): JSX.Element {
     <>
       <div>Чат паге</div>
       <UsersBar/>
-      <MessageForm/>
     </>
   )
 }

@@ -10,12 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fio: {
-        // allowNull: false,
+        allowNull: false,
         type: Sequelize.STRING
       },
       date_of_birth: {
-        // allowNull: false,
-        type: Sequelize.DATEONLY
+        allowNull: false,
+        type: Sequelize.STRING
       },
       email: {
         allowNull: false,
@@ -26,8 +26,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       phone: {
-        // allowNull: false,
+        allowNull: false,
         type: Sequelize.STRING
+      },
+      scores: {
+        type: Sequelize.INTEGER,
       },
       isActivated: {
         type: Sequelize.BOOLEAN,

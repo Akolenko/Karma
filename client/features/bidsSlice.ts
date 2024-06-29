@@ -1,6 +1,4 @@
-
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import $api from "../src/http";
 
 export interface BidType {
@@ -9,17 +7,20 @@ export interface BidType {
   description: string,
   address: string,
   author_id: number,
-  status: string
+  status: string,
+  coords: Array<[number, number]> | []
 }
 
 export interface BidsState {
   list: BidType[] | [],
+  filteredBids: BidType[] | [],
   loading: boolean,
   error: null | string
 }
 
 const initialState: BidsState = {
   list: [],
+  filteredBids: [],
   loading: false,
   error: null,
 }
@@ -41,7 +42,12 @@ export const getBids = createAsyncThunk('bids/getBids', async (_, {rejectWithVal
 export const bidsSlice = createSlice({
     name: 'bids',
     initialState,
-    reducers: {},
+    reducers: {
+      filterBids(state, action: PayloadAction<string>) {
+        const searchTitle = action.payload.toLowerCase();
+        state.filteredBids = state.list.filter(bid => bid.title.toLowerCase().includes((searchTitle)))
+      }
+    },
     extraReducers: (builder) => {
       builder
         .addCase(getBids.pending, (state) => {
@@ -52,6 +58,7 @@ export const bidsSlice = createSlice({
           state.loading = false
           state.error = null
           state.list = action.payload
+          state.filteredBids = action.payload
         })
         .addCase(getBids.rejected, (state, action) => {
           state.error = action.payload as string
@@ -59,5 +66,5 @@ export const bidsSlice = createSlice({
     }
   }
 )
-
+export const { filterBids } = bidsSlice.actions;
 export default bidsSlice.reducer

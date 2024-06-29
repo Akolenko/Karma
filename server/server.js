@@ -4,8 +4,8 @@ const serverConfig = require("./config/serverConfig");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const router = require("./router/index");
-// const http = require('http');
-// const { Server } = require('socket.io');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const authMiddleware = require("./middleware/auth-middleware");
 //GET
@@ -25,17 +25,19 @@ const likeApiRouter = require("./routes/API/like.api.route");
 const profileActiveBidsApiRouter = require("./routes/API/activeBid.api.route");
 // const profileBidApiRouter = require("./routes/API/profile.bid.api.router")
 const userEditProfileRouter = require("./routes/API/user.api.route");
+const {Message} = require("./db/models");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// const server = http.createServer(app)
-//
-// const io = new Server(server, {
-//   cors: {
-//     origin: "http://localhost:5173"
-//   }
-// });
+const server = http.createServer(app)
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ['GET', 'POST']
+  }
+});
 
 serverConfig(app);
 app.use("/api", router);
@@ -57,11 +59,23 @@ app.use(
   profileActiveBidsApiRouter
 );
 
-// io.listen(4000);
-//
-// io.on('connection', (socket) => {
-//   console.log('connect');
-// })
+io.listen(4000);
+
+io.on('connection', (socket) => {
+  console.log('connect');
+  socket.on('join', async ({room_id, user_id}) => {
+    console.log(room_id, user_id);
+    socket.join(room_id);
+    const messages = await Message.findAll({where: { room_id }});
+
+    socket.emit('messages', {
+      data: messages
+    })
+  })
+  io.on('disconnect', () => {
+    console.log('Disconnect');
+  })
+})
 
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);
