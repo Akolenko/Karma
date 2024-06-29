@@ -3,10 +3,10 @@ const router = express.Router();
 const { User } = require("../../db/models");
 
 router.get("/", async (req, res) => {
-  const { userID } = req.query;
+  const { userId } = req.query;
 
   try {
-    const userDB = await User.findOne({ where: { id: userID } });
+    const userDB = await User.findOne({ where: { id: userId } });
 
     if (userDB) {
       const user = JSON.parse(JSON.stringify(userDB));

@@ -17,12 +17,12 @@ export type UserDataType = {
   fio: string;
   email: string;
   phone: string;
-  userID?: string | null;
+  userId?: string | null;
 };
 
 function ProfileBioPage(): JSX.Element {
   const [user, setUser] = useState<BioProfileType | null>(null);
-  const userID = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
 
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
@@ -34,14 +34,14 @@ function ProfileBioPage(): JSX.Element {
     fio,
     email,
     phone,
-    userID,
+    userId,
   }: UserDataType) => {
     fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/date`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ fio, email, phone, userID }),
+      body: JSON.stringify({ fio, email, phone, userId }),
     })
       .then((response) => {
         if (response.ok) {
@@ -57,13 +57,13 @@ function ProfileBioPage(): JSX.Element {
 
   const handleUpdateUser = () => {
     dispatch(updateUser({ fio, email, phone }));
-    saveUserDataToBackend({ fio, email, phone, userID });
+    saveUserDataToBackend({ fio, email, phone, userId });
     window.location.assign("/profile/bio");
   };
 
   useEffect(() => {
     axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`, {
-      params: { userID },
+      params: { userId },
     }).then((res) => setUser(res.data));
   }, []);
 
