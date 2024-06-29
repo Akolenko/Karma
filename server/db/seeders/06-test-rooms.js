@@ -8,6 +8,7 @@ module.exports = {
          user_id: 1,
          bid_id: 1,
          room_id: 1,
+         title: 'Поймать кота',
          createdAt: new Date(),
          updatedAt: new Date(),
        },
@@ -15,6 +16,7 @@ module.exports = {
          user_id: 2,
          bid_id: 1,
          room_id: 1,
+         title: 'Поймать кота',
          createdAt: new Date(),
          updatedAt: new Date(),
        }

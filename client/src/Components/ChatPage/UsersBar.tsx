@@ -4,29 +4,29 @@ import {getRooms, RoomType} from "../../../features/roomSlice.ts";
 import Messages from "./Messages.tsx";
 
 function UsersBar(): JSX.Element {
-  const [choise, setChoise] = useState(false)
+  const [choise, setChoise] = useState({choise: false, roomId: 0})
   const dispatch = useAppDispatch();
   const rooms = useAppSelector(state => state.rooms.list);
-  console.log(choise)
 
   useEffect(() => {
     dispatch(getRooms())
   }, [dispatch])
 
     return(
-      <div>
+      <div
+        className='flex flex-row grow'
+      >
         <div>
           {
             rooms && rooms.length ?
               rooms.map((room: RoomType) => {
-                console.log(room)
                 return (
                   <div key={room.id}>
                     <div
                       className='bg-green-500 border'
-                      onClick={() => setChoise(!choise)}
+                      onClick={() => setChoise({choise: !choise.choise, roomId: room.room_id})}
                     >
-                      {room.Bid.title}
+                      {room.title}
                     </div>
                   </div>
                 )
@@ -35,10 +35,12 @@ function UsersBar(): JSX.Element {
               <div>Нет чатов</div>
           }
         </div>
-        <div>
+        <div
+          className='flex grow'
+        >
           {
-            choise ?
-              <Messages/>
+            choise.choise ?
+              <Messages roomId={choise.roomId}/>
               :
               <div></div>
           }

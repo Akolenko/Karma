@@ -25,7 +25,7 @@ export default function Bid({bid, userId}: { bid: BidType, userId: string | null
   }
 
   const handleRespond = () => {
-    dispatch(responseUserBid({userId: userId, bidId: bid.id, authorId: bid.author_id}));
+    dispatch(responseUserBid({userId: userId, bidId: bid.id, authorId: bid.author_id, title: bid.title}));
   };
 
   return (
