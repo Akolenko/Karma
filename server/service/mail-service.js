@@ -28,6 +28,23 @@ class MailService {
 
         })
     }
+
+    async sendCertificationBuyingMail(to, image, name) {
+        await this.transporter.sendMail({
+            from: 'app.karma@yandex.ru',
+            to,
+            subject: `Поздравляем с покупкой!`,
+            text: ``,
+            html: `
+            <div>
+                <div>Уважаемый(-ая) ${name}</div>
+                <div>Поздравляем с покупокй сертификата!</div>
+                <div><img src=${image} alt="certificate" style="width: 200px; height: 150px"/></div>
+            </div>
+            `
+
+        })
+    }
 }
 
 module.exports = new MailService()

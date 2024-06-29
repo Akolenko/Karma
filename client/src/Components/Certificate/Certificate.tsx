@@ -1,5 +1,6 @@
 import React from 'react'
 import './Certificate.css'
+import $api from '../../http'
 
 interface Certificate {
     id: number,
@@ -13,8 +14,12 @@ interface Certificate {
 
 export default function Certificate ({ certificate } : { certificate: Certificate }) {
 
-    function buyCertificatehandler(): void {
+
+    async function buyCertificatehandler(sum: string, image: string): Promise<void> {
         const userId = localStorage.getItem('userId')
+        const response = await $api.post(`${import.meta.env.VITE_REACT_APP_API_URL}/certificates/buy`,
+            {userId, sum, image}
+        )
     }
     
     return ( 
@@ -23,7 +28,7 @@ export default function Certificate ({ certificate } : { certificate: Certificat
             <div>{certificate.description}</div>
             <div>{certificate.sum} руб.</div>
             <div>
-                <button onClick={() => buyCertificatehandler()}>КУПИТЬ</button>
+                <button onClick={() => buyCertificatehandler(`${certificate.sum}`, `${certificate.image}`)}>КУПИТЬ</button>
             </div>
         </div>
      );

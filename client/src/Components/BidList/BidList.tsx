@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
 import { useEffect } from "react";
 import { getBids } from "../../../features/bidsSlice.ts";
@@ -28,7 +28,13 @@ export default function BidList() {
           </button>
         </Link>
       </div>
-      <MapComponent/>
+      <div>
+        <NavLink to={"/map"}>
+          <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
+            ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+            ' hover:border-lime-600 bg-white text-lime-600 mb-5'}>ПОКАЗАТЬ НА КАРТЕ</button>
+        </NavLink>
+      </div>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))
