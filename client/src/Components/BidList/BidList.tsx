@@ -16,7 +16,6 @@ export default function BidList() {
     dispatch(getBids())
     dispatch(getLikes())
   }, [dispatch])
-  console.log(bids)
 
   return (
     <>
