@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../features/userEditProfileSlice";
+// import { Paper, Typography } from "@mui/material";
+// import { Doughnut } from "react-chartjs-2";
 
-export type BioProfileType = {
+export interface BioProfileType {
   id?: number;
   fio: string;
   date_of_birth: Date; //???
@@ -20,15 +22,14 @@ export type UserDataType = {
   userId?: string | null;
 };
 
+// type UserData = keyof BioProfileType;
+
 function ProfileBioPage(): JSX.Element {
-  const [user, setUser] = useState<BioProfileType | null>(null);
+  const [user, setUser] = useState<BioProfileType>({} as BioProfileType);
   const userId = localStorage.getItem("userId");
 
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [fio, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
 
   const saveUserDataToBackend = ({
     fio,
@@ -55,10 +56,17 @@ function ProfileBioPage(): JSX.Element {
       });
   };
 
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (): void => {
+    const { fio, email, phone } = user as BioProfileType;
     dispatch(updateUser({ fio, email, phone }));
     saveUserDataToBackend({ fio, email, phone, userId });
-    window.location.assign("/profile/bio");
+    setIsEditing(false);
+  };
+
+  const handleUser = (name: string, type: any): void => {
+    const temp = { ...user, [`${type}`]:name } as BioProfileType;
+    // temp[type] = name;
+    setUser(temp);
   };
 
   useEffect(() => {
@@ -67,16 +75,43 @@ function ProfileBioPage(): JSX.Element {
     }).then((res) => setUser(res.data));
   }, []);
 
+  // const totalOrders = useSelector((state) => state.userActivity?.totalOrders || 0);
+  // const completedOrders = useSelector((state) => state.userActivity?.totalOrders || 0);
+
+  // const data = {
+  //   labels: ["Выполненные заказы", "Оставшиеся заказы"],
+  //   datasets: [
+  //     {
+  //       data: [completedOrders, totalOrders - completedOrders],
+  //       backgroundColor: ["#36A2EB", "#FF6384"],
+  //     },
+  //   ],
+  // };
+
+
+
   return (
     <>
       <ProfilePage />
 
       <div className={"flex flex-col"}>
-        <img
-          className={"object-cover h-60 w-96 my-20"}
-          src='https://adindex.ru/files2/news/2019_07/273997_inkognito.jpg?ts='
-          alt='pic'
-        />
+        <div className={"flex flex-row"}>
+          <img
+            className={"object-cover h-60 w-96 my-20"}
+            src="https://adindex.ru/files2/news/2019_07/273997_inkognito.jpg?ts="
+            alt="pic"
+          />
+{/*
+          <div>
+            <Paper elevation={3} variant="outlined" sx={{ p: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Диаграмма активности пользователя
+              </Typography>
+              <Doughnut data={data} type='doughnut'/>
+            </Paper>
+          </div> */}
+        </div>
+
         {user && (
           <>
             <div
@@ -90,25 +125,28 @@ function ProfileBioPage(): JSX.Element {
                     className={
                       "font-extrabold text-xl col-start-1 col-end-3 flex-1 m-3 w-96"
                     }
-                    type='text'
-                    placeholder={user.fio || "Ваше ФИО"}
-                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder={"Ваше ФИО"}
+                    value={user ? user.fio : ""}
+                    onChange={(e) => handleUser(e.target.value, "fio")}
                   />
                   <input
                     className={
                       "font-extrabold text-xl col-start-1 col-end-3 flex-1 flex flex-row m-3 w-96"
                     }
-                    type='text'
-                    placeholder={user.email || "email"}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    value={user ? user.email : ""}
+                    placeholder={"email"}
+                    onChange={(e) => handleUser(e.target.value, "email")}
                   />
                   <input
                     className={
                       "font-extrabold text-xl col-start-1 col-end-3 flex-1 flex flex-row m-3 w-96"
                     }
-                    type='text'
+                    type="text"
                     placeholder={user.phone || "номер телефона"}
-                    onChange={(e) => setPhone(e.target.value)}
+                    value={user ? user.phone : ""}
+                    onChange={(e) => handleUser(e.target.value, "phone")}
                   />
                   <button
                     className={

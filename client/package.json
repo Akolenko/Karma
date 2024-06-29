@@ -10,15 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.20",
     "@pbe/react-yandex-maps": "^1.2.5",
     "@reduxjs/toolkit": "^2.2.5",
     "@types/axios": "^0.14.0",
     "axios": "^1.7.2",
+    "chart.js": "^4.4.3",
     "env": "^0.0.2",
     "mobx": "^6.12.4",
     "mobx-react-lite": "^4.0.7",
     "multi-geocoder": "^0.1.6",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.0",
     "react-modal": "^3.16.1",
@@ -26,9 +31,9 @@
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "redux": "^5.0.1",
+    "socket.io-client": "^4.7.5",
     "uuid": "^10.0.0",
-    "yandex-maps": "^0.0.1",
-    "socket.io-client": "^4.7.5"
+    "yandex-maps": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
