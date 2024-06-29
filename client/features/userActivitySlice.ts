@@ -6,8 +6,8 @@ export interface userActivityState {
 }
 
 const initialState: userActivityState = {
-  totalOrders: 0,
-  completedOrders: 0,
+  totalOrders: 5,
+  completedOrders: 10,
 };
 
 const userActivitySlice = createSlice({
