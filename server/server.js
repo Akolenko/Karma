@@ -17,6 +17,7 @@ const responsesRouter = require("./routes/views/myResponses.router");
 const profileProgressBidsRouter = require("./routes/views/profile.progress.bid.router");
 const profileCompleteBidsRouter = require("./routes/views/profile.complete.bid.router");
 const chatRouter = require("./routes/chat/chat.route");
+const namesRouter = require('./routes/views/names.bid.router')
 //API
 const bidApiRouter = require("./routes/API/bid.api.route");
 const responseApiRouter = require("./routes/API/response.api.route");
@@ -32,7 +33,7 @@ const PORT = process.env.PORT || 3000;
 serverConfig(app);
 app.use("/api", router);
 //GET
-app.use("/api", bidsRouter, likeRouter, responsesRouter, chatRouter);
+app.use("/api", bidsRouter, likeRouter, responsesRouter, chatRouter,namesRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/profile/bids/active", profileActiveBidsRouter);
 app.use("/api/profile/bids/progress", profileProgressBidsRouter);
