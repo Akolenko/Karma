@@ -1,15 +1,18 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { updateUser } from "../../../features/userEditProfileSlice";
-import {setTotalOrders, setCompletedOrders, getOrders } from "../../../features/userActivitySlice.ts"
+import { getOrders } from "../../../features/userActivitySlice.ts"
 import { Paper, Typography } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
-import {Chart, ArcElement, registerables } from 'chart.js'
+import { Chart, ArcElement, registerables, ChartOptions, Plugin, ChartType } from 'chart.js'
 import 'chartjs-plugin-datalabels'
-Chart.register(ArcElement, ...registerables )
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useAppDispatch } from "../../../hooks/redux.ts";
+
+Chart.register(ArcElement, ...registerables, ChartDataLabels)
 
 export interface BioProfileType {
   id?: number;
@@ -27,13 +30,22 @@ export type UserDataType = {
   userId?: string | null;
 };
 
+declare module 'chart.js' {
+  interface PluginOptionsByType<TType extends ChartType> {
+    centerText?: {
+      display: boolean;
+      text: string;
+    };
+  }
+}
+
 // type UserData = keyof BioProfileType;
 
 function ProfileBioPage(): JSX.Element {
   const [user, setUser] = useState<BioProfileType>({} as BioProfileType);
   const userId = localStorage.getItem("userId");
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
   const saveUserDataToBackend = ({
@@ -68,68 +80,89 @@ function ProfileBioPage(): JSX.Element {
     setIsEditing(false);
   };
 
-  const handleUser = (name: string, type: any): void => {
+  const handleUser = (name: string, type: keyof BioProfileType): void => {
     const temp = {...user, [`${type}`]: name} as BioProfileType;
-    // temp[type] = name;
+    temp[type] = name;
     setUser(temp);
   };
 
-  useEffect(() => {
-    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`, {
-      params: {userId},
-    }).then((res) => setUser(res.data));
-
-    dispatch(getOrders(userId))
-    
-  }, []);
-
-
-  const totalOrders = useSelector((state:RootState) => state.activity.totalOrders);
-  const completedOrders = useSelector((state:RootState) => state.activity.completedOrders);
+  const totalOrders = useSelector((state: RootState) => state.activity.totalOrders);
+  const completedOrders = useSelector((state: RootState) => state.activity.completedOrders);
 
   const data = {
-    labels: ["Выполненные заказы", "Опубликованные заказы"],
+    labels: ["Активные заказы", "Опубликованные заказы"],
     datasets: [
       {
-        // label: ["Выполненные заказы", "Опубликованные заказы"],
         data: [completedOrders, totalOrders],
         backgroundColor: ["#FF6384", "#36A2EB"],
       },
     ],
   };
 
-  const options = {
+  const centerTextPlugin: Plugin<'doughnut'> = {
+    id: 'centerText',
+    beforeDraw: (chart) => {
+      if (
+        chart.config &&
+        chart.config.options &&
+        chart.config.options.plugins &&
+        chart.config.options.plugins.centerText &&
+        chart.config.options.plugins.centerText.display
+      ) {
+        drawCenterText(chart);
+      }
+    },
+  };
+  const drawCenterText = (chart: any) => {
+    const width = chart.width;
+    const height = chart.height;
+    const ctx = chart.ctx;
+    ctx.restore();
+    const fontSize = (height / 280).toFixed(2);
+    ctx.font = `${fontSize}em sans-serif`;
+    ctx.textBaseline = 'middle';
+    const text = chart.config.options.plugins.centerText.text;
+    const textX = Math.round((width - ctx.measureText(text).width) / 2);
+    const textY = height / 2.5;
+    ctx.fillText(text, textX, textY);
+    ctx.save();
+  };
+  const options: ChartOptions<'doughnut'> = {
     responsive: true,
     plugins: {
       legend: {
         display: true,
-        position: 'top',
+        position: 'bottom',
       },
       datalabels: {
-        // display: true, 
-        formatter: (value:any, context:any) => { // определяем кастомный форматтер
-          if (context.dataset.data[0] > context.dataset.data[1]) {
-            return "Ты деятель";
-          } else {
-            return "Ты проситель";
-          }
-        },
+        display: true,
         align: 'center',
         anchor: 'center',
         color: 'black',
         font: {
           weight: 'bold',
           size: 16
-        }
+        },
+        offset: 0
       },
+      centerText: {
+        display: true,
+        text: completedOrders > totalOrders ? "Ты деятель" : "Ты проситель",
+      }
     },
+
   };
+  useEffect(() => {
+    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`, {
+      params: {userId},
+    }).then((res) => setUser(res.data));
 
+    dispatch(getOrders(userId))
 
+  }, []);
   return (
     <>
       <ProfilePage/>
-
       <div className={"flex flex-col"}>
         <div className={"flex flex-row"}>
           <img
@@ -139,11 +172,11 @@ function ProfileBioPage(): JSX.Element {
           />
           {
             <div>
-              <Paper elevation={0} variant="outlined" sx={{p: 2}}>
+              <Paper elevation={0} variant="outlined" sx={{p: 3}}>
                 <Typography variant="h6" gutterBottom>
-                  Диаграмма Вашей активности 
+                  Диаграмма Вашей активности
                 </Typography>
-                <Doughnut data={data} options={options} />
+                <Doughnut data={data} options={options} plugins={[centerTextPlugin]}/>
               </Paper>
             </div>}
         </div>
