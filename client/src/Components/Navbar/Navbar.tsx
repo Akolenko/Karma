@@ -12,7 +12,7 @@ const Navbar = (): JSX.Element => {
     "text-[#515066] hover:text-[#51B85B] transition ease-in-out duration-100";
 
   return (
-    <header className='sticky inset-x-0 top-0 pt-5 pl-2 pr-2 pb-5 px-10'>
+    <header className='sticky inset-x-0 top-0 pt-5 pl-2 pr-2 pb-5 px-10 z-10'>
       <div className='bg-white rounded-full shadow-md'>
         {token ? (
           <div className='mx-auto flex items-center justify-between p-1'>

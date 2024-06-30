@@ -1,8 +1,8 @@
 import Modal from "react-modal";
 import { FormEvent, useState } from "react";
 import "./styles.css";
-import { useAppDispatch } from "../../../../hooks/redux.ts";
-import { editUserBid } from "../../../../features/bidsUserSlice.ts";
+import { useAppDispatch } from "../../../../../hooks/redux.ts";
+import { editUserBid } from "../../../../../features/bidsUserSlice.ts";
 
 interface EditBidModalProps {
   isOpen: boolean;
