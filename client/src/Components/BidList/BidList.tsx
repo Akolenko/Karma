@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
 import { useEffect } from "react";
-import { getBids } from "../../../features/bidsSlice.ts";
+import { filterBids, getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
 import MapComponent from "../Map/Map.tsx";
@@ -11,8 +11,8 @@ export default function BidList() {
   const dispatch = useAppDispatch();
   const bids = useAppSelector(state => state.bids.filteredBids)
   const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
-  const handleChange = ()=> {
-    dispatch(filterBids())
+  const handleChange = (e) => {
+    dispatch(filterBids(e.target.value))
   }
 
 
@@ -32,7 +32,7 @@ export default function BidList() {
           </button>
         </Link>
       </div>
-      <SearchInput  />
+      <SearchInput onChange={handleChange}/>
       <MapComponent/>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
