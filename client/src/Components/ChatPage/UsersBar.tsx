@@ -8,6 +8,8 @@ function UsersBar(): JSX.Element {
   const [choise, setChoise] = useState({choise: false, roomId: 0})
   const dispatch = useAppDispatch();
   const rooms = useAppSelector(state => state.rooms.list);
+  const activChat = 'rounded-md bg-lime-600 text-white p-3 text-left hover:scale-105 transition duration-300 pl-8 cursor-pointer m-2.5'
+  const normalChat = 'rounded-md bg-white p-3 text-left hover:scale-105 transition duration-300 pl-8 cursor-pointer m-2.5'
 
   useEffect(() => {
     dispatch(getRooms())
@@ -15,31 +17,33 @@ function UsersBar(): JSX.Element {
 
     return(
       <div
-        className='flex flex-row grow'
+        className='flex flex-row min-w-32'
       >
-        <div>
+        <div className='h-[80vh] overflow-auto'>
           {
             rooms && rooms.length ?
               rooms.map((room: RoomType) => {
                 return (
-                  <div key={room.id}>
+                  <>
                     <div
-                      className='bg-green-500 border'
-                      onClick={() => {
-                          setChoise({choise: !choise.choise, roomId: room.room_id})}}
+                      key={room.id}
+                      className={choise.choise && choise.roomId === room.room_id ? activChat : normalChat}
                     >
-                      {room.title}
+                      <div
+                        onClick={() => {
+                          setChoise({choise: !choise.choise, roomId: room.room_id})}}
+                      >
+                        {room.title}
+                      </div>
                     </div>
-                  </div>
+                  </>
                 )
               })
               :
               <div>Нет чатов</div>
           }
         </div>
-        <div
-          className='flex grow'
-        >
+        <div>
           {
             choise.choise ?
               <Messages roomId={choise.roomId}/>
@@ -50,5 +54,5 @@ function UsersBar(): JSX.Element {
       </div>
     )
   }
-  
+
   export default UsersBar;

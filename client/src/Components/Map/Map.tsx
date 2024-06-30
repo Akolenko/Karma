@@ -56,7 +56,7 @@ function MapComponent(): JSX.Element {
         {bidsWithCoords.map((n) => (
 
           <Placemark
-            key={uuidv4}
+            key={uuidv4()}
             geometry={n.coords}
             options={{
               iconLayout: "default#image",
