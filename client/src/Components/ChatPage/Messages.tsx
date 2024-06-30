@@ -60,7 +60,7 @@ function Messages({roomId}: roomId): JSX.Element {
 
   return(
     <div>
-      <div className='flex flex-col h-[80vh] overflow-auto'>
+      <div className='flex flex-col h-[80vh] w-[50vw] overflow-auto bg-white rounded-lg p-2.5'>
         {
           messages && messages.length ?
             messages.map((message: MessageType) => {
@@ -70,16 +70,24 @@ function Messages({roomId}: roomId): JSX.Element {
                     message.user_id === Number(userId) ?
                       <div
                         key={message.id}
-                        className='grow justify-end bg-gray-400'
+                        className='m-2.5'
                       >
-                        <div className='flex justify-end'>{message.text_message}</div>
+                        <div
+                          className='flex justify-end bg-gray-400 w-[70w]'
+                        >
+                          {message.text_message}
+                        </div>
                       </div>
                       :
                       <div
                         key={message.id}
-                        className='grow justify-start bg-gray-500'
+                        className='m-2.5'
                       >
-                        <div>{message.text_message}</div>
+                        <div
+                          className='flex bg-green-500 justify-start'
+                        >
+                          {message.text_message}
+                        </div>
                       </div>
                   }
                 </>
@@ -88,17 +96,23 @@ function Messages({roomId}: roomId): JSX.Element {
             :
             <div>Нет сообщений</div>
         }
-        <div className='inline sticky'>
-          <input
-            type='text'
-            name='inputMessage'
-            placeholder='Написать сообщение'
-            value={newMessage}
-            onChange={inputHandler}
-            required
-          />
-          <button onClick={buttonHandler}>Отправить</button>
-        </div>
+      </div>
+      <div className='flex'>
+        <input
+          className='rounded-lg w-[40vw] m-2.5 h-10'
+          type='text'
+          name='inputMessage'
+          placeholder='Написать сообщение'
+          value={newMessage}
+          onChange={inputHandler}
+          required
+        />
+        <button
+          className='rounded-md bg-lime-600 text-white p-1.5 text-left hover:scale-105 transition duration-300 cursor-pointer m-2.5'
+          onClick={buttonHandler}
+        >
+          Отправить
+        </button>
       </div>
     </div>
   )
