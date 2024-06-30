@@ -28,7 +28,7 @@ export default function BidList() {
         <h1>Заявки</h1>
         <Link to={'/bid-form'}>
           <button className={'shadow-md focus:outline-none transition duration-300 mt-3 rounded-md' +
-            ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
+            ' shadow-sm hover:bg-lime-600 hover:text-white' +
             ' hover:border-lime-600 bg-white text-lime-600'}>+ Cоздать заявку
           </button>
         </Link>
@@ -46,7 +46,7 @@ export default function BidList() {
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))
           :
-          <div>Пользователи еще не создали ни одну заявку!</div>
+          <div className={'flex items-center mx-[auto] mb-8 w-[1200px]'}><h1 className={'text-xl'}>Ничего не найдено!</h1></div>
         }
       </div>
     </>
