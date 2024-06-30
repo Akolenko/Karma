@@ -13,7 +13,7 @@ interface Form {
 export default function BidForm(): JSX.Element {
   const {register, handleSubmit, formState: {isSubmitting, errors}, reset} = useForm<Form>()
 
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(true);
   const user = localStorage.getItem('user')
   const userObject = JSON.parse(user as string)
   const userObjectId = String(userObject.id)
@@ -39,9 +39,9 @@ export default function BidForm(): JSX.Element {
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Создание Вашей
         заявки</h2>
       <form onSubmit={handleSubmit(submit)}
-            className={'drop-shadow-md flex flex-col bg-white p-6 w-96 rounded-xl gap-2 m-8 '}>
-        <label className="text-sm font-medium tracking-wide leading-8 text-gray-900" htmlFor={'title'}>Название
-          заявки</label>
+            className={'drop-shadow-md flex flex-col bg-white p-6 w-96 rounded-xl gap-2 mt-12 mx-[auto] '}>
+        <label className="text-sm font-medium tracking-wide leading-8 text-gray-900" htmlFor={'title'}>Название Вашей
+          заявки:</label>
         <input id={'title'} placeholder={'Введите название'}
                type={'text'} {...register('title', {
           required: 'Введите название заявки! (Не менее 5 символов)', minLength: {
@@ -64,8 +64,8 @@ export default function BidForm(): JSX.Element {
                   className={'outline-gray-100 border-gray-200 p-2 rounded-xl shadow-sm outline-none italic'}/>
         {errors.description && <p className="text-red-600 text-sm">{errors.description.message}</p>}
         <label htmlFor={'address'}
-               className={'text-sm font-medium tracking-wide leading-8 text-gray-900 mt-2'}>Адрес</label>
-        <input id={'address'} placeholder={'По которому необходимо оказать помощь'}
+               className={'text-sm font-medium tracking-wide leading-8 text-gray-900 mt-2'}>Адрес по которому Вам требуется помощь:</label>
+        <input id={'address'} placeholder={'Введите адрес'}
                type={'text'} {...register('address', {
           required: "Введите адрес! (Не менее 10 символов)", minLength: {
             value: 10,
@@ -80,7 +80,7 @@ export default function BidForm(): JSX.Element {
           ' hover:border-lime-600 bg-white text-lime-600'}>{isSubmitting ? 'Отправка...' : 'Создать заявку'}
         </button>
       </form>
-      {submitSuccess && (<SuccessModal handlePopupClose={handlePopupClose}/>)}
+      {submitSuccess && (<SuccessModal onClick={handlePopupClose}/>)}
     </>
   )
 
