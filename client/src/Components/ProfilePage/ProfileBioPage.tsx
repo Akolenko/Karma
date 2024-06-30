@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../features/userEditProfileSlice";
+import {setTotalOrders, setCompletedOrders, getOrders } from "../../../features/userActivitySlice.ts"
 import { Paper, Typography } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
-import {Chart, ArcElement} from 'chart.js'
-Chart.register(ArcElement);
+import {Chart, ArcElement, registerables } from 'chart.js'
+import 'chartjs-plugin-datalabels'
+Chart.register(ArcElement, ...registerables )
 
 export interface BioProfileType {
   id?: number;
@@ -76,19 +78,51 @@ function ProfileBioPage(): JSX.Element {
     axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`, {
       params: {userId},
     }).then((res) => setUser(res.data));
+
+    dispatch(getOrders(userId))
+    
   }, []);
+
 
   const totalOrders = useSelector((state:RootState) => state.activity.totalOrders);
   const completedOrders = useSelector((state:RootState) => state.activity.completedOrders);
 
   const data = {
-    labels: ["Выполненные заказы", "Оставшиеся заказы"],
+    labels: ["Выполненные заказы", "Опубликованные заказы"],
     datasets: [
       {
-        data: [completedOrders, totalOrders - completedOrders],
-        backgroundColor: ["#36A2EB", "#FF6384"],
+        // label: ["Выполненные заказы", "Опубликованные заказы"],
+        data: [completedOrders, totalOrders],
+        backgroundColor: ["#FF6384", "#36A2EB"],
       },
     ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+      datalabels: {
+        // display: true, 
+        formatter: (value:any, context:any) => { // определяем кастомный форматтер
+          if (context.dataset.data[0] > context.dataset.data[1]) {
+            return "Ты деятель";
+          } else {
+            return "Ты проситель";
+          }
+        },
+        align: 'center',
+        anchor: 'center',
+        color: 'black',
+        font: {
+          weight: 'bold',
+          size: 16
+        }
+      },
+    },
   };
 
 
@@ -107,9 +141,9 @@ function ProfileBioPage(): JSX.Element {
             <div>
               <Paper elevation={0} variant="outlined" sx={{p: 2}}>
                 <Typography variant="h6" gutterBottom>
-                  Диаграмма активности пользователя
+                  Диаграмма Вашей активности 
                 </Typography>
-                <Doughnut data={data} type='doughnut'/>
+                <Doughnut data={data} options={options} />
               </Paper>
             </div>}
         </div>
