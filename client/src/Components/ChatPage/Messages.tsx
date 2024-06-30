@@ -60,7 +60,7 @@ function Messages({roomId}: roomId): JSX.Element {
 
   return(
     <div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col h-[80vh] overflow-auto'>
         {
           messages && messages.length ?
             messages.map((message: MessageType) => {
@@ -88,7 +88,7 @@ function Messages({roomId}: roomId): JSX.Element {
             :
             <div>Нет сообщений</div>
         }
-        <div>
+        <div className='inline sticky'>
           <input
             type='text'
             name='inputMessage'
