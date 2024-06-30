@@ -6,7 +6,6 @@ import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
 import MapComponent from "../Map/Map.tsx";
 
-
 export default function BidList() {
   const dispatch = useAppDispatch();
   const bids = useAppSelector(state => state.bids.list)
