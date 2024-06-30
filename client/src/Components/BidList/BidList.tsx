@@ -5,11 +5,16 @@ import { getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
 import MapComponent from "../Map/Map.tsx";
+import SearchInput from "../UI/SearchInput/SearchInput.tsx";
 
 export default function BidList() {
   const dispatch = useAppDispatch();
-  const bids = useAppSelector(state => state.bids.list)
+  const bids = useAppSelector(state => state.bids.filteredBids)
   const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
+  const handleChange = ()=> {
+    dispatch(filterBids())
+  }
+
 
   useEffect(() => {
     dispatch(getBids())
@@ -27,6 +32,7 @@ export default function BidList() {
           </button>
         </Link>
       </div>
+      <SearchInput  />
       <MapComponent/>
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
