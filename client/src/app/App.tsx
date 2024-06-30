@@ -16,7 +16,6 @@ import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
-// import Bid from '../components/Bid/Bid.tsx';
 import BidPage from '../components/Pages/BidPage.tsx';
 
 function App() {
@@ -25,7 +24,8 @@ function App() {
   return (
     <>
       <Navbar/>
-      <Routes> //TODO: Сделать рефакторинг, в отдельный файл.
+      <Routes> //TODO: Сделать рефакторинг, в отдельный файл
+        // Также здесь можно сделать в зависимости есть ли токен,доступ к определенным роутам
         <Route path={'/login'} element={<LoginForm/>}/>
         <Route path={'/register'} element={<RegisterForm/>}/>
         <Route index element={<MainPage/>}/>

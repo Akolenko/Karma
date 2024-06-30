@@ -10,6 +10,7 @@
     "db-migrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate",
     "db-seed-create": "npx sequelize seed:generate --name cities",
     "db-seed": "npx sequelize db:seed:all"
+    
   },
   "keywords": [],
   "author": "",
