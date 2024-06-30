@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {getRooms, RoomType} from "../../../features/roomSlice.ts";
 import Messages from "./Messages.tsx";
 
+
 function UsersBar(): JSX.Element {
   const [choise, setChoise] = useState({choise: false, roomId: 0})
   const dispatch = useAppDispatch();
@@ -24,7 +25,8 @@ function UsersBar(): JSX.Element {
                   <div key={room.id}>
                     <div
                       className='bg-green-500 border'
-                      onClick={() => setChoise({choise: !choise.choise, roomId: room.room_id})}
+                      onClick={() => {
+                          setChoise({choise: !choise.choise, roomId: room.room_id})}}
                     >
                       {room.title}
                     </div>

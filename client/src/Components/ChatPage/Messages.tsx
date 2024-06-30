@@ -1,5 +1,4 @@
-import {memo, useEffect, useState} from "react";
-import MessageForm from "./MessageForm.tsx";
+import {useEffect, useState} from "react";
 import io from "socket.io-client";
 
 export interface MessageType {
@@ -9,34 +8,55 @@ export interface MessageType {
   text_message: string,
   is_read: boolean,
   createdAt: Date,
+  updatedAt: Date
 }
+
+export type MessagesType = [MessageType] | any
 
 export type roomId = any
 
 function Messages({roomId}: roomId): JSX.Element {
-  const [messages, setMessages] = useState([])
+  const [messages, setMessages] = useState<MessagesType>([])
+  const [newMessage, setNewMessage] = useState('')
 
   const userId: string | null = localStorage.getItem('userId')
 
   const socket = io('localhost:4000');
 
-  console.log('####', roomId, userId);
+  const inputHandler = (event: any) =>
+    setNewMessage(event.target.value)
+
+  const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+  const request = {
+    room_id: roomId,
+    text_message: newMessage,
+    user_id: userId,
+    is_read: false
+  }
+    if (!newMessage) return;
+
+    socket.emit('sendMessage', {request});
+    setNewMessage('')
+  }
 
   useEffect(() => {
     const searchParams = {
-      room_id: roomId,
-      user_id: userId
+      room: roomId,
+      user: userId
     }
     socket.emit('join', searchParams)
   }, [])
 
   useEffect(() => {
     socket.on('messages', ({data}) => {
-      console.log('socket####', data);
       setMessages(data)
     })
-  }, [setMessages])
-  console.log(messages)
+  }, [messages])
+
+  socket.on('message', (response) => {
+    setMessages((messages: MessagesType) => [...messages, response.data.messageCreate])
+  })
 
   return(
     <div>
@@ -68,10 +88,20 @@ function Messages({roomId}: roomId): JSX.Element {
             :
             <div>Нет сообщений</div>
         }
-        <MessageForm roomId={roomId}/>
+        <div>
+          <input
+            type='text'
+            name='inputMessage'
+            placeholder='Написать сообщение'
+            value={newMessage}
+            onChange={inputHandler}
+            required
+          />
+          <button onClick={buttonHandler}>Отправить</button>
+        </div>
       </div>
     </div>
   )
 }
 
-export default memo(Messages);
+export default Messages;
