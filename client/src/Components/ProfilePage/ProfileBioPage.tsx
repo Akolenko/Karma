@@ -139,7 +139,7 @@ function ProfileBioPage(): JSX.Element {
           />
           {
             <div>
-              <Paper elevation={3} variant="outlined" sx={{p: 2}}>
+              <Paper elevation={0} variant="outlined" sx={{p: 2}}>
                 <Typography variant="h6" gutterBottom>
                   Диаграмма Вашей активности 
                 </Typography>

@@ -1,6 +1,19 @@
 version: '3.9'
 
 services:
+  socket-app:
+    build:
+      context: ./socket
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    entrypoint:
+      -NODE_ENV=production
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+
   express-app:
     build:
       context: ./server

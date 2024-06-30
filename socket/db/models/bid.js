@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'bid_id',
         through: 'Likes'
       })
+      this.hasMany(Room, {foreignKey: 'bid_id'})
       // define association here
     }
   }
