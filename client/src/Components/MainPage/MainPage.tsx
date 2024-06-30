@@ -15,7 +15,7 @@ export default function MainPage() {
           <div className={'w-1/4'}>
             <img src={'./img/main_img.png'} alt={'Здесь будет какая-нибудь картинка красивая'}/>
           </div>
-          <div className={'flex -mt-20'}>
+          <div className={'flex'}>
             <Link to={'/bid-form'}>
               <button
                 className={'focus:outline-none transition' +
