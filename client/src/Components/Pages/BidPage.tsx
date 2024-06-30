@@ -10,7 +10,7 @@ export default function BidPage () {
     const userObject = JSON.parse(user as string)
     const userObjectId = String(userObject.id)
 
-    const [bid, setBid] = useState<BidType>({})
+    const [bid, setBid] = useState<BidType>({} as BidType)
 
     useEffect(() => {
         async function fetchData() {
