@@ -21,7 +21,6 @@ router.get('/chat', async (req, res) => {
 router.get('/chat/:room_id', async (req, res) => {
   const {userId} = req.query;
   const room_id = req.params.room_id;
-  console.log('################', room_id)
   try {
     const messages = await Message.findAll({where: { room_id }});
     res.status(200).json(messages);

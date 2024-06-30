@@ -1,4 +1,3 @@
-import MessageForm from "./MessageForm";
 import UsersBar from "./UsersBar";
 
 
