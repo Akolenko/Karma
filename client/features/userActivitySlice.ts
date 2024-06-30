@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  totalOrders: 0,
-  completedOrders: 0,
+export interface userActivityState {
+  totalOrders: number,
+  completedOrders: number,
+}
+
+const initialState: userActivityState = {
+  totalOrders: 5,
+  completedOrders: 10,
 };
 
 const userActivitySlice = createSlice({
