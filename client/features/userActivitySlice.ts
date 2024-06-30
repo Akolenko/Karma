@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+// import axios from 'axios';
+import $api from '../src/http';
 
 export interface userActivityState {
   totalOrders: number,
@@ -6,10 +8,21 @@ export interface userActivityState {
 }
 
 const initialState: userActivityState = {
-  totalOrders: 5,
-  completedOrders: 10,
+  totalOrders: 0,
+  completedOrders: 0,
 };
+export const getOrders = createAsyncThunk("userActivity/getOrders", async(userId)=>{
+    try {
+        const orders = await $api(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bio`, {
+            params: {userId},
+          })
+          console.log(orders.data)
+        return orders.data
+    } catch (error) {
+        console.log(error);     
+    }
 
+})
 const userActivitySlice = createSlice({
   name: 'userActivity',
   initialState,
@@ -21,6 +34,12 @@ const userActivitySlice = createSlice({
       state.completedOrders = action.payload;
     },
   },
+  extraReducers: (builder)=>{
+    builder.addCase(getOrders.fulfilled, (state,action)=>{
+        state.completedOrders = action.payload.completedOrders;
+        state.totalOrders = action.payload.totalOrders
+    })
+  }
 });
 
 export const { setTotalOrders, setCompletedOrders } = userActivitySlice.actions;
