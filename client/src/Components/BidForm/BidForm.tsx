@@ -13,7 +13,7 @@ interface Form {
 export default function BidForm(): JSX.Element {
   const {register, handleSubmit, formState: {isSubmitting, errors}, reset} = useForm<Form>()
 
-  const [submitSuccess, setSubmitSuccess] = useState(true);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const user = localStorage.getItem('user')
   const userObject = JSON.parse(user as string)
   const userObjectId = String(userObject.id)
