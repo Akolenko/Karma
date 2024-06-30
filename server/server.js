@@ -17,6 +17,7 @@ const responsesRouter = require("./routes/views/myResponses.router");
 const profileProgressBidsRouter = require("./routes/views/profile.progress.bid.router");
 const profileCompleteBidsRouter = require("./routes/views/profile.complete.bid.router");
 const chatRouter = require("./routes/chat/chat.route");
+const ordersRouter = require("./routes/views/profile.bio.order.router")
 const namesRouter = require('./routes/views/names.bid.router')
 //API
 const bidApiRouter = require("./routes/API/bid.api.route");
@@ -38,6 +39,7 @@ app.use("/api/profile", profileRouter);
 app.use("/api/profile/bids/active", profileActiveBidsRouter);
 app.use("/api/profile/bids/progress", profileProgressBidsRouter);
 app.use("/api/profile/bids/complete", profileCompleteBidsRouter);
+app.use("/api/profile/bio", ordersRouter)
 //API
 app.use("/api/profile", userEditProfileRouter);
 app.use("/api", router);
