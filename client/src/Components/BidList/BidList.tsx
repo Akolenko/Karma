@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { filterBids, getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
@@ -11,7 +11,7 @@ export default function BidList() {
   const dispatch = useAppDispatch();
   const bids = useAppSelector(state => state.bids.filteredBids)
   const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     dispatch(filterBids(e.target.value))
   }
 
