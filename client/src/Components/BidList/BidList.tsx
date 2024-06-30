@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { filterBids, getBids } from "../../../features/bidsSlice.ts";
 import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
@@ -9,9 +9,10 @@ import SearchInput from "../UI/SearchInput/SearchInput.tsx";
 
 export default function BidList() {
   const dispatch = useAppDispatch();
+  const [showMap, setShowMap] = useState(false);
   const bids = useAppSelector(state => state.bids.filteredBids)
   const userId: string | null = localStorage.getItem('userId'); // TODO: можно попробовать вынести в отдельный файл.
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(filterBids(e.target.value))
   }
 
@@ -23,17 +24,24 @@ export default function BidList() {
 
   return (
     <>
-      <div className={'flex justify-between mb-8 w-[1200px]'}>
+      <div className={'flex items-center justify-between mx-[auto] mb-8 w-[1200px]'}>
         <h1>Заявки</h1>
         <Link to={'/bid-form'}>
-          <button className={' focus:outline-none transition duration-300 mt-3 rounded-md' +
+          <button className={'shadow-md focus:outline-none transition duration-300 mt-3 rounded-md' +
             ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
             ' hover:border-lime-600 bg-white text-lime-600'}>+ Cоздать заявку
           </button>
         </Link>
       </div>
-      <SearchInput onChange={handleChange}/>
-      <MapComponent/>
+      <div className={' flex flex-row'}>
+        <SearchInput onChange={handleChange}/>
+        <button className={'decoration-1 mb-4 underline'}
+                onClick={() => showMap ? setShowMap(false) : setShowMap(true)}>
+          Показать на карте
+        </button>
+      </div>
+
+      {showMap && <div className={'flex items-center justify-between mx-[300px] m-[25px] rounded-md'}><MapComponent/></div>}
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))
