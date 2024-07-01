@@ -60,7 +60,7 @@ function Messages({roomId}: roomId): JSX.Element {
 
   return(
     <div>
-      <div className='flex flex-col h-[80vh] w-[50vw] overflow-auto bg-white rounded-lg p-2.5'>
+      <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>
         {
           messages && messages.length ?
             messages.map((message: MessageType) => {
@@ -70,10 +70,10 @@ function Messages({roomId}: roomId): JSX.Element {
                     message.user_id === Number(userId) ?
                       <div
                         key={message.id}
-                        className='m-2.5'
+                        className='flex justify-end m-2.5'
                       >
                         <div
-                          className='flex justify-end bg-gray-400 w-[70w]'
+                          className='bg-gray-400 rounded-lg p-1.5'
                         >
                           {message.text_message}
                         </div>
@@ -81,10 +81,10 @@ function Messages({roomId}: roomId): JSX.Element {
                       :
                       <div
                         key={message.id}
-                        className='m-2.5'
+                        className='flex justify-start m-2.5'
                       >
                         <div
-                          className='flex bg-green-500 justify-start'
+                          className='bg-green-500 rounded-lg p-1.5'
                         >
                           {message.text_message}
                         </div>
@@ -97,9 +97,9 @@ function Messages({roomId}: roomId): JSX.Element {
             <div>Нет сообщений</div>
         }
       </div>
-      <div className='flex'>
+      <div className='flex w-[50vw]]'>
         <input
-          className='rounded-lg w-[40vw] m-2.5 h-10'
+          className='rounded-lg grow mt-2.5 mb-2.5 h-10 pl-1.5'
           type='text'
           name='inputMessage'
           placeholder='Написать сообщение'
@@ -108,7 +108,7 @@ function Messages({roomId}: roomId): JSX.Element {
           required
         />
         <button
-          className='rounded-md bg-lime-600 text-white p-1.5 text-left hover:scale-105 transition duration-300 cursor-pointer m-2.5'
+          className='rounded-md bg-lime-600 text-white p-1.5 text-left hover:scale-105 transition duration-300 cursor-pointer mt-2.5 mb-2.5 ml-2.5'
           onClick={buttonHandler}
         >
           Отправить
