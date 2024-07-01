@@ -1,5 +1,8 @@
 import { Bid, completeUserBids } from "../../../features/bidsUserSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
+import {NavLink} from "react-router-dom";
+
+// export type bidId = object
 
 export default function BidProgress({bid}: { bid: Bid }) {
   const dispatch = useAppDispatch();
@@ -20,7 +23,11 @@ export default function BidProgress({bid}: { bid: Bid }) {
           <p className={'font-serif'}>{'Исполнитель: Имя исполнителя'}</p>
           <div>
             <div className={'flex justify-between'}>
-              <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
+              <NavLink
+                to={`/chat/?chat=${bid.id}&choise=${true}`}
+              >
+                <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
+              </NavLink>
               <img className={'w-10'} src={'/svg/PhoneOutlined.svg'} alt='logo'/>
             </div>
             <button onClick={completeHandler}>Помощь оказана</button>

@@ -33,6 +33,7 @@ export default function Bid({bid, userId}: { bid: BidType, userId: string | null
     $api(`${import.meta.env.VITE_REACT_APP_API_URL}/names-customers`, {params: {authorId: bid.author_id}})
       .then(res => setName(res.data))
   }, []);
+
   return (
     <>
       <div
