@@ -82,7 +82,7 @@ function ProfileBioPage(): JSX.Element {
 
   const handleUser = (name: string, type: keyof BioProfileType): void => {
     const temp = {...user, [`${type}`]: name} as BioProfileType;
-    temp[type] = name;
+    // temp[type] = name;
     setUser(temp);
   };
 
@@ -135,6 +135,16 @@ function ProfileBioPage(): JSX.Element {
         position: 'bottom',
       },
       datalabels: {
+        // display: true, 
+        formatter: (value:any, context:any) => { // определяем кастомный форматтер
+          console.log(value)
+          if (context.dataset.data[0] > context.dataset.data[1]) {
+            return "Ты деятель";
+          } else {
+            return "Ты проситель";
+          }
+        },
+
         display: true,
         align: 'center',
         anchor: 'center',

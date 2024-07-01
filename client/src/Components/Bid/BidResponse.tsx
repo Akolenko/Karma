@@ -2,11 +2,11 @@ import { BidType } from "../../../features/bidsSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import { cancelResponse } from "../../../features/userResponseSlice.ts";
 
-export default function BidResponse({response, userId }:{response:BidType, userId:string|null}) {
+export default function BidResponse({response, userId }:{response: BidType, userId: string|null}) {
 
   const dispatch = useAppDispatch();
   const handlerClick = () => {
-    dispatch(cancelResponse({bidId:response.id, userId}))
+    dispatch(cancelResponse({bidId: response.id, userId}))
   }
 
 

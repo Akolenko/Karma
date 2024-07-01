@@ -8,8 +8,8 @@ function UsersBar(): JSX.Element {
   const [choise, setChoise] = useState({choise: false, roomId: 0})
   const dispatch = useAppDispatch();
   const rooms = useAppSelector(state => state.rooms.list);
-  const activChat = 'rounded-md bg-lime-600 text-white p-3 text-left hover:scale-105 transition duration-300 pl-8 cursor-pointer m-2.5'
-  const normalChat = 'rounded-md bg-white p-3 text-left hover:scale-105 transition duration-300 pl-8 cursor-pointer m-2.5'
+  const activChat = 'rounded-md bg-lime-600 text-white p-3 text-left hover:scale-105 transition duration-300 cursor-pointer m-2.5'
+  const normalChat = 'rounded-md bg-white p-3 text-left hover:scale-105 transition duration-300 cursor-pointer m-2.5'
 
   useEffect(() => {
     dispatch(getRooms())
