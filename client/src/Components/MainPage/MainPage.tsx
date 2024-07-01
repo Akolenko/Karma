@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import './MainPage.styles.css'
-import { Cards, SimpleCard } from "../UI/UserCard/Card.tsx";
+import { Cards } from "../UI/UserCard/Card.tsx";
 
 export default function MainPage() {
 
