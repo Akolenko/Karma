@@ -40,8 +40,7 @@ export default function BidList() {
           Показать на карте
         </button>
       </div>
-
-      {showMap && <div className={'flex items-center justify-between mx-[300px] m-[25px] rounded-md'}><MapComponent/></div>}
+      {showMap && <div className={'flex justify-center m-10'}><MapComponent/></div>}
       <div className={'flex flex-col gap-2'}>
         {bids && bids.length ?
           bids.map((bid) => (<Bid key={bid.id} bid={bid} userId={userId}/>))
