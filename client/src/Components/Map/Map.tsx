@@ -16,61 +16,6 @@ function MapComponent(): JSX.Element {
 
   const navigate = useNavigate()
 
-<<<<<<< HEAD
-    useEffect(() => {
-    
-      async function fetchData() {
-        const response = await $api(`${import.meta.env.VITE_REACT_APP_API_URL}/all-bids`)
-        const bidObjects = response.data
-
-        const promises = bidObjects.map(async (bidObj: BidType) => {
-          const response = await fetch(`https://geocode-maps.yandex.ru/1.x/?format=json&apikey=53ab01a5-fcd6-4af6-8795-4f7d5fdf4504&geocode=${encodeURIComponent(bidObj.address)}`)
-          const data = await response.json();
-          const foundCoordinates =
-            data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-              .split(' ')
-              .map(parseFloat)
-              .reverse();
-          bidObj['coords'] = foundCoordinates
-          
-          return bidObj
-        })
-        Promise.all(promises)
-        .then(res => setBidsWithCoords(res))
-      }
-      
-      fetchData()
-  }, [])
-
-
-return (
-  <YMaps query={{ load: "package.full" }} >
-    <Map 
-      state={{
-        center,
-        zoom: 9,
-        controls: []
-      }}
-      width="500px"
-      height="500px"
-    >
-      {bidsWithCoords.map((n) => (
-
-          <Placemark
-          key={uuidv4()}
-          geometry={n.coords}
-          options={{
-            iconLayout: "default#image",
-            iconImageSize: [50, 50],
-            iconImageHref: 'https://img.icons8.com/ios-filled/2x/marker'
-          }}
-          onClick={() => navigate(`/bid/${n.id}`)}
-        />
-      ))}
-    </Map>
-  </YMaps>
-)
-=======
   useEffect(() => {
 
     async function fetchData() {
@@ -124,8 +69,6 @@ return (
       </Map>
     </YMaps>
   )
->>>>>>> 7f952d8781e7a7932cb4f6608bf35f58d9b63847
 }
 
 export default MapComponent
-
