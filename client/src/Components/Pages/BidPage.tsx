@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import Bid from "../Bid/Bid";
+import Bid from "../Bid/Bid/Bid.tsx";
 import { useEffect, useState } from "react";
 import $api from "../../http";
 import { BidType } from "../../../features/bidsSlice";
@@ -19,16 +19,15 @@ export default function BidPage () {
           setBid(responsedata)
         }
         fetchData();
-    
+
       }, []);
 
-    
 
-    
+
+
     return ( 
-        
+
         <Bid bid={bid} userId={userObjectId}/>
 
      );
 }
- 

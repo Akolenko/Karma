@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Bid, Response, Token, Message }) {
+    static associate({ Bid, Response, Token, Message, Room }) {
       this.hasMany(Bid, { foreignKey: 'author_id' })
       this.hasMany(Response, { foreignKey: 'user_id' })
       this.belongsToMany(Bid, {
@@ -19,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasOne(Token, {
         foreignKey: 'user_id'
       })
+      this.hasMany(Room, {foreignKey: 'user_id'})
       this.hasMany(Message, {foreignKey: 'user_id'})
     }
   }
@@ -29,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     phone: DataTypes.STRING,
     isActivated: DataTypes.BOOLEAN,
-    activationLink: DataTypes.STRING
+    activationLink: DataTypes.STRING,
+    scores: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',

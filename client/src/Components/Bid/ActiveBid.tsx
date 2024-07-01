@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import { Bid, deleteUserBid } from "../../../features/bidsUserSlice.ts";
-import EditBidModal from "../UI/Modal/EditBidModal.tsx";
+import EditBidModal from "../UI/Modal/EditBidModal/EditBidModal.tsx";
 import { useState } from "react";
 
 export default function ActiveBid({bid}: { bid: Bid }) {

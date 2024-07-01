@@ -9,16 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({User, Response}) {
-      this.belongsTo(Response, {foreignKey: 'id'})
-      this.belongsTo(User, {foreignKey: 'user_id'})
+    static associate({User, Room}) {
+      this.belongsTo(User, {foreignKey: 'id'})
       // define association here
     }
   }
   Message.init({
     room_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    text_message: DataTypes.STRING
+    text_message: DataTypes.STRING,
+    is_read: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Message',

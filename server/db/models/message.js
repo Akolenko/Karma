@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     room_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     text_message: DataTypes.STRING,
-    isRead: DataTypes.BOOLEAN,
+    is_read: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Message',

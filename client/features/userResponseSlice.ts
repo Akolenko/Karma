@@ -19,6 +19,7 @@ const initialState: BidsState = {
 };
 
 export type ResponseType = {
+  title: string;
   authorId: number;
   userId: string | null;
   bidId: number;
@@ -27,7 +28,7 @@ const userId = localStorage.getItem("userId");
 
 export const responseUserBid = createAsyncThunk(
   "responses/changeBidStatus",
-  async ({ userId, bidId, authorId }: ResponseType) => {
+  async ({ userId, bidId, authorId, title }: ResponseType) => {
     await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {
       status: "response",
     });
@@ -35,6 +36,7 @@ export const responseUserBid = createAsyncThunk(
       user_id: userId,
       bid_id: bidId,
       author_id: authorId,
+      title: title
     });
     window.location.assign("/profile/responses");
     return { bidId };
