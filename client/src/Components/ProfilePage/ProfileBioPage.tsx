@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ProfilePage from "./ProfilePage";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../features/userEditProfileSlice";
-import {setTotalOrders, setCompletedOrders, getOrders } from "../../../features/userActivitySlice.ts"
+import { getOrders } from "../../../features/userActivitySlice.ts"
 import { Paper, Typography } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
@@ -108,6 +108,7 @@ function ProfileBioPage(): JSX.Element {
       datalabels: {
         // display: true, 
         formatter: (value:any, context:any) => { // определяем кастомный форматтер
+          console.log(value)
           if (context.dataset.data[0] > context.dataset.data[1]) {
             return "Ты деятель";
           } else {

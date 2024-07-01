@@ -73,7 +73,7 @@ function Messages({roomId}: roomId): JSX.Element {
                         className='flex justify-end m-2.5'
                       >
                         <div
-                          className='bg-gray-400 rounded-lg p-1.5'
+                          className='bg-gray-300 rounded-lg p-1.5'
                         >
                           {message.text_message}
                         </div>
@@ -84,7 +84,7 @@ function Messages({roomId}: roomId): JSX.Element {
                         className='flex justify-start m-2.5'
                       >
                         <div
-                          className='bg-green-500 rounded-lg p-1.5'
+                          className='bg-lime-300 rounded-lg p-1.5'
                         >
                           {message.text_message}
                         </div>
