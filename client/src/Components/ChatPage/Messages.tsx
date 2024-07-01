@@ -21,7 +21,7 @@ function Messages({roomId}: roomId): JSX.Element {
 
   const userId: string | null = localStorage.getItem('userId')
 
-  const socket = io('localhost:4000');
+  const socket = io('http://localhost:4000');
 
   const inputHandler = (event: any) =>
     setNewMessage(event.target.value)
@@ -73,7 +73,7 @@ function Messages({roomId}: roomId): JSX.Element {
                         className='flex justify-end m-2.5'
                       >
                         <div
-                          className='bg-gray-300 rounded-lg p-1.5'
+                          className='bg-gray-300 rounded-lg p-1.5 max-w-[30vw] break-words'
                         >
                           {message.text_message}
                         </div>
@@ -84,7 +84,7 @@ function Messages({roomId}: roomId): JSX.Element {
                         className='flex justify-start m-2.5'
                       >
                         <div
-                          className='bg-lime-300 rounded-lg p-1.5'
+                          className='bg-lime-300 rounded-lg p-1.5 max-w-[30vw] break-words'
                         >
                           {message.text_message}
                         </div>
