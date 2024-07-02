@@ -146,9 +146,15 @@ function ProfileBioPage(): JSX.Element {
         position: "bottom",
       },
       datalabels: {
-
-
-        display: true,
+        formatter: (value:any, context:any) => { // определяем кастомный форматтер
+          console.log(value);
+          if (context.dataset.data[0] > context.dataset.data[1]) {
+            return completedOrders;
+          } else {
+            return totalOrders;
+          }
+        },
+        display: completedOrders > 0 && totalOrders > 0,
         align: "center",
         anchor: "center",
         color: "black",
@@ -159,7 +165,7 @@ function ProfileBioPage(): JSX.Element {
         offset: 0,
       },
       centerText: {
-        display: true,
+        display: completedOrders > 0 && totalOrders > 0,
         text: completedOrders > totalOrders ? "Ты деятель" : "Ты проситель",
       },
     },
@@ -300,6 +306,7 @@ function ProfileBioPage(): JSX.Element {
         </div>
 
         {
+          completedOrders > 0 && totalOrders > 0 ?
           <div className="ml-8">
             
               <h2 className="text-2xl font-bold mb-4">
@@ -312,6 +319,11 @@ function ProfileBioPage(): JSX.Element {
               />
             
           </div>
+            :
+            <div>
+              <div>Пока нет активностей</div>
+              <img src='/public/img/cry_icon.png' alt="pic"/>
+            </div>
         }
       </div>
     </>
