@@ -3,7 +3,7 @@ const express = require("express");
 const http = require("http");
 const { Server } = require('socket.io');
 const morgan = require("morgan");
-const {Message} = require("./db/models");
+const {Message, User} = require("./db/models");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
 
     socket.join(room);
     const messages = await Message.findAll({where: { room_id: room }});
+    const getUser = await User.findOne({where: {id: user}})
 
     socket.emit('messages', {
       data: messages

@@ -19,16 +19,15 @@ export default function BidPage () {
           setBid(responsedata)
         }
         fetchData();
-    
+
       }, []);
 
-    
 
-    
+
+
     return ( 
-        
+
         <Bid bid={bid} userId={userObjectId}/>
 
      );
 }
- 

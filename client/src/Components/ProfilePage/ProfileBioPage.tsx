@@ -147,6 +147,16 @@ function ProfileBioPage(): JSX.Element {
         position: "bottom",
       },
       datalabels: {
+        // display: true, 
+        formatter: (value:any, context:any) => { // определяем кастомный форматтер
+          console.log(value)
+          if (context.dataset.data[0] > context.dataset.data[1]) {
+            return "Ты деятель";
+          } else {
+            return "Ты проситель";
+          }
+        },
+
         display: true,
         align: "center",
         anchor: "center",
