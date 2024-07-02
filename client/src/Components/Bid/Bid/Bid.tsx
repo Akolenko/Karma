@@ -7,6 +7,7 @@ import { RootState } from "../../../../redux/store/store.ts";
 import { likeBid, unlikeBid } from "../../../../features/likeBidsSlice.ts";
 import { useEffect, useState } from "react";
 import $api from "../../../http";
+import "./Bid.styles.css";
 
 export default function Bid({
   bid,
@@ -54,7 +55,7 @@ export default function Bid({
     <>
       <div
         className={
-          "rounded-md bg-white p-3 text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md w-[700px]"
+          "start-bid rounded-md bg-white p-3 text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md"
         }
       >
         <h3 className={"text-lg font-semibold tracking-wide leading-8"}>
@@ -70,11 +71,15 @@ export default function Bid({
             {bid.address}
           </p>
         </div>
-        <div className={"flex justify-between items-baseline gap-x-3 -mt-2"}>
+        <div className={"flex justify-between items-center gap-x-3 -mt-3"}>
           <p className={"font-serif"}>{name}</p>
-          <button className={"mr-auto"} onClick={handlerLike}>
-            🙏 {likes}
-          </button>
+          <div className=''>
+            <button className={"mr-auto"} onClick={handlerLike}>
+              {likes}
+              <img src='/img/care.png' className='w-8' alt='like-image' />
+            </button>
+          </div>
+
           <ButtonResponse handleRespond={handleRespond} />
         </div>
       </div>

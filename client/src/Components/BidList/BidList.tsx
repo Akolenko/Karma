@@ -24,7 +24,9 @@ export default function BidList() {
   return (
     <>
       <div className={"flex items-center justify-center mb-8"}>
-        <h1 className='text-4xl'>Список доступных заявок</h1>
+        <h1 className='text-4xl tracking-normal font-medium leading-relaxed'>
+          Список доступных заявок
+        </h1>
       </div>
 
       <div className={"flex items-end justify-around flex-row mb-5"}>
@@ -49,12 +51,14 @@ export default function BidList() {
       </div>
 
       <div className='flex flex-row justify-around'>
-        <div className={"flex flex-col gap-y-5"}>
+        <div className={"flex flex-col gap-y-5 w-[1000px]"}>
           {bids && bids.length ? (
             bids.map((bid) => <Bid key={bid.id} bid={bid} userId={userId} />)
           ) : (
-            <div className={"flex flex-col items-center mt-[100px]"}>
-              <img className='w-12' src='svg/question.png' />
+            <div
+              className={"flex gap-x-5 justify-center items-center mt-[100px]"}
+            >
+              <img className='w-10' src='svg/question.png' />
               <h1 className={"text-xl"}>
                 Ничего не найдено по Вашему запросу!
               </h1>
