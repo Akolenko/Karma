@@ -49,14 +49,19 @@ function UsersBar(): JSX.Element {
               <Messages roomId={choise.roomId}/>
               :
               <div>
-                <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>Выбирите чат</div>
+                <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>
+                  <div
+                    className='h-[79vh] bg-[url("/public/svg/logo2.svg")] bg-center bg-no-repeat bg-[length:900px_600px]'
+                  >
+                    Выбирите чат
+                  </div>
+                </div>
                 <div className='flex w-[50vw]]'>
                   <input
                     className='rounded-lg grow mt-2.5 mb-2.5 h-10 pl-1.5'
                     type='text'
                     name='inputMessage'
                     placeholder='Написать сообщение'
-
                     required
                   />
                   <button
@@ -64,7 +69,7 @@ function UsersBar(): JSX.Element {
                   >
                     Отправить
                   </button>
-                </div>
+                </div>  
               </div>
           }
         </div>

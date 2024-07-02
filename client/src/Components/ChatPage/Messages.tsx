@@ -61,41 +61,45 @@ function Messages({roomId}: roomId): JSX.Element {
   return(
     <div>
       <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>
-        {
-          messages && messages.length ?
-            messages.map((message: MessageType) => {
-              return (
-                <>
-                  {
-                    message.user_id === Number(userId) ?
-                      <div
-                        key={message.id}
-                        className='flex justify-end m-2.5'
-                      >
+        <div
+          className='h-[79vh] bg-[url("/public/svg/logo2.svg")] bg-center bg-no-repeat bg-[length:900px_600px]'
+        >
+          {
+            messages && messages.length ?
+              messages.map((message: MessageType) => {
+                return (
+                  <>
+                    {
+                      message.user_id === Number(userId) ?
                         <div
-                          className='bg-gray-300 rounded-lg p-1.5 max-w-[30vw] break-words'
+                          key={message.id}
+                          className='flex justify-end m-2.5'
                         >
-                          {message.text_message}
+                          <div
+                            className='bg-gray-300 rounded-lg p-1.5 max-w-[30vw] break-words'
+                          >
+                            {message.text_message}
+                          </div>
                         </div>
-                      </div>
-                      :
-                      <div
-                        key={message.id}
-                        className='flex justify-start m-2.5'
-                      >
+                        :
                         <div
-                          className='bg-lime-300 rounded-lg p-1.5 max-w-[30vw] break-words'
+                          key={message.id}
+                          className='flex justify-start m-2.5'
                         >
-                          {message.text_message}
+                          <div
+                            className='bg-lime-300 rounded-lg p-1.5 max-w-[30vw] break-words'
+                          >
+                            {message.text_message}
+                          </div>
                         </div>
-                      </div>
-                  }
-                </>
-              )
-            })
-            :
-            <div>Нет сообщений</div>
-        }
+                    }
+                  </>
+                )
+              })
+              :
+              <div>Нет сообщений</div>
+          }
+        </div>
       </div>
       <div className='flex w-[50vw]]'>
         <input
