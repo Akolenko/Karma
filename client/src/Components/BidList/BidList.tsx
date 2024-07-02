@@ -35,7 +35,7 @@ export default function BidList() {
           className={"decoration-1 underline text-blue-800"}
           onClick={() => (showMap ? setShowMap(false) : setShowMap(true))}
         >
-          Показать на карте
+          Показать заявки на карте
         </button>
         <Link to={"/bid-form"}>
           <button
