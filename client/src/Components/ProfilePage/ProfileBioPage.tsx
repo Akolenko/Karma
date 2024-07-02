@@ -4,7 +4,6 @@ import ProfilePage from "./ProfilePage";
 import { useSelector } from "react-redux";
 import { updateUser } from "../../../features/userEditProfileSlice";
 import { getOrders } from "../../../features/userActivitySlice.ts";
-import { Paper, Typography } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
 import {
@@ -147,15 +146,7 @@ function ProfileBioPage(): JSX.Element {
         position: "bottom",
       },
       datalabels: {
-        // display: true, 
-        formatter: (value:any, context:any) => { // определяем кастомный форматтер
-          console.log(value)
-          if (context.dataset.data[0] > context.dataset.data[1]) {
-            return "Ты деятель";
-          } else {
-            return "Ты проситель";
-          }
-        },
+
 
         display: true,
         align: "center",
@@ -183,7 +174,7 @@ function ProfileBioPage(): JSX.Element {
   return (
     <>
       <ProfilePage />
-      <div className={"flex flex-row items-center justify-center mt-6 space-x-28 "}>
+      <div className={"flex flex-row items-center justify-center mt-6 space-x-28 h-[70vh]"}>
         <div
           className={
             "border mt-6 border-green-950 rounded-md shadow-lg p-4 flex flex-col items-center h-100 w-96"
@@ -191,7 +182,7 @@ function ProfileBioPage(): JSX.Element {
         >
           <img
             className={"block mx-auto h-64 rounded-full sm:mx-0 sm:shrink-0"}
-            src="https://robotext.io/im/480cec3b-1435-4b28-a080-6fc144ffca77.png"
+            src="/public/img/profilFoto.png"
             alt="pic"
           />
           {user && (

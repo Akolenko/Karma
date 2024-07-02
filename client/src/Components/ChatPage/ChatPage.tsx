@@ -4,7 +4,7 @@ import UsersBar from "./UsersBar";
 function ChatPage(): JSX.Element {
   return(
     <div
-    className='flex justify-center w-[80vw]'>
+    className='flex justify-center w-[100vw]'>
       <div
         className='flex flex-col h-[85vh]'
       >
