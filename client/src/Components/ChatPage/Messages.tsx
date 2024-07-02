@@ -21,7 +21,7 @@ function Messages({roomId}: roomId): JSX.Element {
 
   const userId: string | null = localStorage.getItem('userId')
 
-  const socket = io('http://localhost:4000');
+  const socket = io('http://localhost:4000/chat/message');
 
   const inputHandler = (event: any) =>
     setNewMessage(event.target.value)

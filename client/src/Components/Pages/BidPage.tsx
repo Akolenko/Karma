@@ -6,9 +6,9 @@ import MapBid from "../MapBid/MapBid.tsx";
 
 export default function BidPage () {
     const { id } = useParams()
-    const user = localStorage.getItem('user')
-    const userObject = JSON.parse(user as string)
-    const userObjectId = String(userObject.id)
+    // const user = localStorage.getItem('user')
+    // const userObject = JSON.parse(user as string)
+    // const userObjectId = String(userObject.id)
 
     const [bid, setBid] = useState<BidType>({} as BidType)
     const [authorName, setAuthorName] = useState<string>('')

@@ -4,9 +4,7 @@ import { useAppDispatch } from "../../../hooks/redux.ts";
 import ButtonResponse from "../ButtonResponse/ButtonResponse.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from '../../../redux/store/store.ts';
-import { useEffect, useState } from "react";
 import { likeBid, unlikeBid } from "../../../features/likeBidsSlice.ts";
-import $api from "../../http/index.ts";
 import { useNavigate } from "react-router";
 
 
