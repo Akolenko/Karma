@@ -60,10 +60,11 @@ function Messages({roomId}: roomId): JSX.Element {
 
   return(
     <div>
-      <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>
+      <div className='flex flex-col h-[80vh] w-[56vw] bg-white rounded-lg p-2.5 bg-'>
         <div
           className='h-[79vh] bg-[url("/public/svg/logo2.svg")] bg-center bg-no-repeat bg-[length:900px_600px]'
         >
+          <div className='h-[78vh] overflow-auto'>
           {
             messages && messages.length ?
               messages.map((message: MessageType) => {
@@ -99,6 +100,7 @@ function Messages({roomId}: roomId): JSX.Element {
               :
               <div>Нет сообщений</div>
           }
+        </div>
         </div>
       </div>
       <div className='flex w-[50vw]]'>
