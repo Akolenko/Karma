@@ -110,6 +110,7 @@ function ProfileBioPage(): JSX.Element {
     ],
   };
 
+  
   const centerTextPlugin: Plugin<"doughnut"> = {
     id: "centerText",
     beforeDraw: (chart) => {
@@ -146,9 +147,7 @@ function ProfileBioPage(): JSX.Element {
         position: "bottom",
       },
       datalabels: {
-
-
-        display: true,
+        display: completedOrders > 0 && totalOrders > 0,
         align: "center",
         anchor: "center",
         color: "black",
@@ -159,7 +158,7 @@ function ProfileBioPage(): JSX.Element {
         offset: 0,
       },
       centerText: {
-        display: true,
+        display: completedOrders > 0 && totalOrders > 0,
         text: completedOrders > totalOrders ? "Ты деятель" : "Ты проситель",
       },
     },
@@ -181,7 +180,7 @@ function ProfileBioPage(): JSX.Element {
           }
         >
           <img
-            className={"block mx-auto h-64 rounded-full sm:mx-0 sm:shrink-0"}
+            className={"block mx-auto h-64 rounded-full sm:mx-0 sm:shrink-0 transition duration-300 ease-in-out transform hover:scale-110"}
             src="/public/img/profilFoto.png"
             alt="pic"
           />
@@ -242,7 +241,7 @@ function ProfileBioPage(): JSX.Element {
                     </div>
                     <button
                       className={
-                        "bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
+                        "m-2 text-xl font-bold hover:scale-110 transition duration-300 ease-in-out transform bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% w-80 rounded-lg py-2 px-4 focus:outline-none"
                       }
                       onClick={handleUpdateUser}
                     >
@@ -274,7 +273,7 @@ function ProfileBioPage(): JSX.Element {
                     </div>
                     <button
                       className={
-                        "hover:indigo-600 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
+                        "text-xl font-bold m-1 hover:scale-110 transition duration-300 ease-in-out transform bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
                       }
                       onClick={() => setIsEditing(true)}
                     >
