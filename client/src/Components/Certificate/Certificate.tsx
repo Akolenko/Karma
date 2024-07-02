@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Certificate.css";
 import $api from "../../http";
 

@@ -1,6 +1,7 @@
 import { BidType } from "../../../features/bidsSlice.ts";
 import { useAppDispatch } from "../../../hooks/redux.ts";
 import { cancelResponse } from "../../../features/userResponseSlice.ts";
+import {NavLink} from "react-router-dom";
 
 export default function BidResponse({response, userId }:{response: BidType, userId: string|null}) {
 
@@ -22,7 +23,9 @@ export default function BidResponse({response, userId }:{response: BidType, user
           <p className={'font-serif'}>{'Вытяните имя заказчика из базы :)'}</p>
           <div>
             <div className={'flex justify-between'}>
-              <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
+              <NavLink to={`/chat/?chat=${response.id}&choise=${true}`}>
+                <img className={'w-10'} src={'/svg/MailOutlined.svg'} alt='logo'/>
+              </NavLink>
               <img className={'w-10'} src={'/svg/PhoneOutlined.svg'} alt='logo'/>
             </div>
             <button className={'text-sm'} onClick={handlerClick}>Отказать в помощи</button>

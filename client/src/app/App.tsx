@@ -16,7 +16,6 @@ import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
 import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
-import Bid from '../components/Bid/Bid.tsx';
 import BidPage from '../components/Pages/BidPage.tsx';
 import CertificateList from '../components/Certificate/CertificateList.tsx';
 
