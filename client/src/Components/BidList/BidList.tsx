@@ -48,13 +48,16 @@ export default function BidList() {
         </Link>
       </div>
 
-      <div className='flex flex-row justify-center gap-x-20'>
-        <div className={"flex flex-col gap-3"}>
+      <div className='flex flex-row justify-around'>
+        <div className={"flex flex-col gap-y-5"}>
           {bids && bids.length ? (
             bids.map((bid) => <Bid key={bid.id} bid={bid} userId={userId} />)
           ) : (
-            <div className={"flex items-center mx-[auto] mb-8 w-[1200px]"}>
-              <h1 className={"text-xl"}>Ничего не найдено!</h1>
+            <div className={"flex flex-col items-center mt-[100px]"}>
+              <img className='w-12' src='svg/question.png' />
+              <h1 className={"text-xl"}>
+                Ничего не найдено по Вашему запросу!
+              </h1>
             </div>
           )}
         </div>
