@@ -40,24 +40,33 @@ export default function Certificate({ certificate, }: { certificate: Certificate
 
   return (
     <>
-      <div className="certificate-wrapper">
-        <div>
-          <img
+
+
+<div className={'rounded-md bg-white p-3 text-left hover:scale-105 transition duration-300 pl-8 mb-10'}>
+<h3 className={'text-lg font-semibold tracking-wide leading-8'}>{certificate.description}</h3>
+<div className={'flex gap-x-2'}>
+<img
             src={certificate.image}
             alt="certificate"
             className="certificate-image"
           />
-        </div>
-        <div>{certificate.description}</div>
-        <div>{certificate.sum} руб.</div>
-        <div>
-          <button
+</div>
+<div className={'flex justify-between items-baseline -mt-2'}>
+  <p className={'font-serif'}>{certificate.sum} руб.</p>
+  
+  
+  
+  <div>
+  <button
             onClick={() => buyCertificatehandler(`${certificate.sum}`, `${certificate.image}`)}
           >
             КУПИТЬ
           </button>
-        </div>
-      </div>
+  </div>
+</div>
+</div>
+
+
 
       {buySuccess && (
         <div
@@ -95,3 +104,24 @@ export default function Certificate({ certificate, }: { certificate: Certificate
     </>
   );
 }
+
+
+
+{/* <div className="certificate-wrapper">
+<div>
+  <img
+    src={certificate.image}
+    alt="certificate"
+    className="certificate-image"
+  />
+</div>
+<div>{certificate.description}</div>
+<div>{certificate.sum} руб.</div>
+<div>
+  <button
+    onClick={() => buyCertificatehandler(`${certificate.sum}`, `${certificate.image}`)}
+  >
+    КУПИТЬ
+  </button>
+</div>
+</div> */}

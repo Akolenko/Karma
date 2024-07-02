@@ -4,6 +4,7 @@ const { Certificate, User } = require("../../db/models");
 const mailService = require("../../service/mail-service");
 
 certificatesRouter.get("/", async (req, res) => {
+  console.log('connect');
   const certificatesFromDB = await Certificate.findAll();
   const certificates = JSON.parse(JSON.stringify(certificatesFromDB));
   res.status(200).json(certificates);
