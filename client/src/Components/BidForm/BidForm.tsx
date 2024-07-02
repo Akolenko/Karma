@@ -2,6 +2,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { JSX, useState } from "react";
 import SuccessModal from "../UI/Modal/SuccesModal/SuccessModal.tsx";
 import $api from "../../http";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 
 interface Form {
   title: string;
@@ -51,12 +53,27 @@ export default function BidForm(): JSX.Element {
           "drop-shadow-md flex flex-col bg-white p-6 rounded-xl gap-2 mt-5 mx-[auto] w-[700px]"
         }
       >
-        <label
-          className='text-md font-normal tracking-wide leading-8 text-gray-900'
-          htmlFor={"title"}
-        >
-          Название Вашей заявки:
-        </label>
+        <div className=' flex flex-row justify-between'>
+          <label
+            className='text-md font-normal tracking-wide leading-8 text-gray-900'
+            htmlFor={"title"}
+          >
+            Название Вашей заявки:
+          </label>
+          <img
+            className='w-6'
+            src='/svg/seal-question.svg'
+            data-tooltip-id='title-tooltip'
+            data-tooltip-html='Пожалуйста, напишите название<br />которое вызовет большее количество<br />сострадания и жалости!'
+          />
+
+          <Tooltip
+            id='title-tooltip'
+            style={{ backgroundColor: "grey" }}
+            place='right'
+          />
+        </div>
+
         <input
           id={"title"}
           placeholder={"Введите название"}
@@ -75,14 +92,29 @@ export default function BidForm(): JSX.Element {
         {errors.title && (
           <p className='text-red-600 text-sm'>{errors.title.message}</p>
         )}
-        <label
-          htmlFor={"description"}
-          className={
-            "text-md font-normal tracking-wide leading-8 text-gray-900 mt-2"
-          }
-        >
-          Опишите Вашу проблему:
-        </label>
+        <div className=' flex flex-row justify-between'>
+          <label
+            htmlFor={"description"}
+            className={
+              "text-md font-normal tracking-wide leading-8 text-gray-900 mt-2"
+            }
+          >
+            Опишите Вашу проблему:
+          </label>
+          <img
+            className='w-6'
+            src='/svg/seal-question.svg'
+            data-tooltip-id='title-tooltip'
+            data-tooltip-html='В тексте заявки можно отразить<br /> все обстоятельства и нюансы, которые должен<br /> знать исполнитель, чтобы в последствии<br /> Вам не было отказано в помощи.'
+          />
+
+          <Tooltip
+            id='title-tooltip'
+            style={{ backgroundColor: "grey" }}
+            place='right'
+          />
+        </div>
+
         <textarea
           id={"description"}
           spellCheck={"true"}
@@ -102,14 +134,27 @@ export default function BidForm(): JSX.Element {
         {errors.description && (
           <p className='text-red-600 text-sm'>{errors.description.message}</p>
         )}
-        <label
-          htmlFor={"address"}
-          className={
-            "text-md font-normal tracking-wide leading-8 text-gray-900 mt-2"
-          }
-        >
-          Адрес по которому Вам требуется помощь:
-        </label>
+        <div className=' flex flex-row justify-between'>
+          <label
+            htmlFor={"address"}
+            className={
+              "text-md font-normal tracking-wide leading-8 text-gray-900 mt-2"
+            }
+          >
+            Адрес по которому Вам требуется помощь:
+          </label>
+          <img
+            className='w-6'
+            src='/svg/seal-question.svg'
+            data-tooltip-id='title-tooltip'
+            data-tooltip-html='Указывайте точный адрес, где нужно будет <br/> оказать Вам помощь, в противном случае <br/> вероятность отказа возрастает!'
+          />
+          <Tooltip
+            id='title-tooltip'
+            style={{ backgroundColor: "grey" }}
+            place='right'
+          />
+        </div>
         <input
           id={"address"}
           placeholder={"Введите адрес"}
@@ -128,7 +173,6 @@ export default function BidForm(): JSX.Element {
         {errors.address && (
           <p className='text-red-600 text-sm'>{errors.address.message}</p>
         )}
-
         <button
           className={
             "transition duration-300 mt-3 rounded-md" +
@@ -138,6 +182,16 @@ export default function BidForm(): JSX.Element {
         >
           {isSubmitting ? "Отправка..." : "Создать заявку"}
         </button>
+        <div className='flex justify-center'>
+          <p>
+            Нажимая кнопку "Cоздать заявку",
+            <br /> Вы соглашаетесь с{" "}
+            <span className='decoration-1 underline text-blue-800 '>
+              Правилами пользования
+            </span>{" "}
+            сервиса.
+          </p>
+        </div>
       </form>
       {submitSuccess && <SuccessModal onClick={handlePopupClose} />}
     </>
