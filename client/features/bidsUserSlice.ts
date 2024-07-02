@@ -8,7 +8,7 @@ export interface Bid {
   address: string;
 }
 
-export type UserBid = {
+export interface UserBid  {
   userId: string | null;
   bidId: number;
 };
@@ -146,8 +146,8 @@ export const userBidsSlice = createSlice({
       .addCase(getUserBidsProgress.fulfilled, (state, action) => {
         state.list = action.payload;
       })
-      .addCase(completeUserBids.fulfilled, (state, action) => {
-        const { bidId } = action.payload;
+      .addCase(completeUserBids.fulfilled, (state, action: any) => {
+        const  { bidId }  = action.payload;
         state.list = state.list.filter((bid) => bid.id !== bidId);
       });
   },

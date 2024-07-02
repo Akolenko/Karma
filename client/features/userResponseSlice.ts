@@ -8,6 +8,7 @@ export interface BidType {
   address: string;
   author_id: number;
   status: string;
+  coords: Array<[number, number]> | []
 }
 
 export interface BidsState {
@@ -61,7 +62,7 @@ export const getResponses = createAsyncThunk(
 
 export const cancelResponse = createAsyncThunk(
   "responses/cancelResponse",
-  async ({ userId, bidId }: ResponseType) => {
+  async ({ userId, bidId }: { userId: string | null, bidId: number }) => {
     await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {
       data: { user_id: userId, bid_id: bidId },
     });

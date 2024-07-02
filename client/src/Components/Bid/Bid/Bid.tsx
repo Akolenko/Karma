@@ -51,6 +51,7 @@ export default function Bid({
       params: { authorId: bid.author_id },
     }).then((res) => setName(res.data));
   }, []);
+
   return (
     <>
       <div
