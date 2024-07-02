@@ -4,7 +4,7 @@ const {User} = require('../../db/models')
 
 router.get('/names-customers', async (req, res) => {
   const {authorId} = req.query;
-
+ 
   try{
     const author = await User.findByPk(authorId)
     console.log(author.fio)

@@ -33,6 +33,15 @@ function ProfilePage(): JSX.Element {
             Мои отклики
           </button>
         </NavLink>
+        <NavLink to={"/certificates"}>
+          <button
+            className={
+              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
+            }
+          >
+            Потратить очки
+          </button>
+        </NavLink>
       </div>
 
       <div></div>

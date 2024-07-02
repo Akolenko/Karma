@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Bid} = require('../../db/models')
+const {Bid, User} = require('../../db/models')
 const {Op} = require("sequelize");
 
 router.get('/bids', async (req, res) => {
@@ -29,7 +29,10 @@ router.get('/bid/:id', async (req, res) => {
  
   const bidFromDB = await Bid.findByPk(Number(id));
   const bid = bidFromDB.get()
-  res.status(200).json(bid);
+  const authorId = bid.author_id
+  const authorFromDB = await User.findByPk(Number(authorId));
+  const author = authorFromDB.get()
+  res.status(200).json({ bid, author});
 })
 
 module.exports = router;
