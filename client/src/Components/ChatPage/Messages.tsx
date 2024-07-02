@@ -21,7 +21,7 @@ function Messages({roomId}: roomId): JSX.Element {
 
   const userId: string | null = localStorage.getItem('userId')
 
-  const socket = io('http://localhost:4000/chat/message');
+  const socket = io(`${import.meta.env.VITE_REACT_APP_SOCKET_URL}`);
 
   const inputHandler = (event: any) =>
     setNewMessage(event.target.value)
