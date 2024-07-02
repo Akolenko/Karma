@@ -3,7 +3,7 @@ import { AuthContext } from "../../main";
 import { useContext, useState } from "react";
 
 const Navbar = (): JSX.Element => {
-  const {authStore} = useContext(AuthContext);
+  const { authStore } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const [navBarState, setNavBarState] = useState<boolean>(false);
 
@@ -16,15 +16,15 @@ const Navbar = (): JSX.Element => {
       <div className='bg-white rounded-full shadow-md'>
         {token ? (
           <div className='mx-auto flex items-center justify-between p-1'>
-            <div className={'ml-5'}>
+            <div className={"ml-5"}>
               <NavLink className='flex lg:flex-1 -m-1.5 p-1.5' to='/'>
-                <img className='h-10 w-auto' src='/svg/logo2.svg' alt='logo'/>
+                <img className='h-10 w-auto' src='/svg/logo2.svg' alt='logo' />
               </NavLink>
             </div>
             <div className='items-center'>
               <button type='button'>
                 <NavLink
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
                   to='/'
@@ -35,7 +35,7 @@ const Navbar = (): JSX.Element => {
 
               <button type='button'>
                 <NavLink
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
                   to='/bids-list'
@@ -46,7 +46,7 @@ const Navbar = (): JSX.Element => {
 
               <button type='button'>
                 <NavLink
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
                   to='/profile'
@@ -57,7 +57,7 @@ const Navbar = (): JSX.Element => {
 
               <button type='button'>
                 <NavLink
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
                   to='/chat'
@@ -66,7 +66,6 @@ const Navbar = (): JSX.Element => {
                 </NavLink>
               </button>
             </div>
-
             <div>
               <button
                 type='button'
@@ -75,10 +74,15 @@ const Navbar = (): JSX.Element => {
                 <NavLink
                   to='/'
                   onClick={() => authStore.logout()}
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
-                ><img src={'/svg/menu/Vector.svg'} className={'w-[25px] mr-5'} alt='logo'/>
+                >
+                  <img
+                    src={"/img/log-out_1330264.png"}
+                    className={"w-[25px] mr-5"}
+                    alt='logo'
+                  />
                 </NavLink>
               </button>
             </div>
@@ -87,14 +91,14 @@ const Navbar = (): JSX.Element => {
           <div className='mx-auto flex items-center justify-between p-4" aria-label="Global'>
             <div>
               <NavLink className='flex lg:flex-1 -m-1.5 p-1.5' to='/'>
-                <img className='h-8 w-auto' src='/svg/Vector.svg' alt='logo'/>
+                <img className='h-10 w-auto' src='/svg/logo2.svg' alt='logo' />
               </NavLink>
             </div>
 
             <div className='items-center'>
               <button type='button'>
                 <NavLink
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
                   to='/'
@@ -110,7 +114,7 @@ const Navbar = (): JSX.Element => {
                 onClick={() => setNavBarState(!navBarState)}
               >
                 <NavLink
-                  className={({isActive}) =>
+                  className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
                   to='/login'
