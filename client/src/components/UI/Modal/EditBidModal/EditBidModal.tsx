@@ -31,21 +31,21 @@ export default function EditBidModal({
   };
   return (
     <Modal
-      className='ModalContent'
-      overlayClassName='ModalOverlay'
+      className={`ModalContent ${!isOpen ? "hide" : ""}`}
+      overlayClassName={`ModalOverlay ${isOpen ? "show" : ""}`}
       ariaHideApp={false}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
     >
-      <div className='flex justify-center'>
-        <h2 className='text-xl font-medium'>Редактировать заявку</h2>
-      </div>
       <form
         className={
-          "drop-shadow-md flex flex-col bg-gray-200 p-6 w-96 rounded-xl gap-2 m-8 "
+          "drop-shadow-md flex flex-col bg-opacity-80 bg-gray-200 p-6 w-96 rounded-xl gap-2 m-8 "
         }
         onSubmit={handleSubmit}
       >
+        <div className='flex justify-center'>
+          <h2 className='text-xl font-medium'>Редактировать Вашу заявку</h2>
+        </div>
         <label className='font-light' htmlFor={"title"}>
           Название:
         </label>
