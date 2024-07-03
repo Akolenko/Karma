@@ -33,7 +33,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 serverConfig(app);
-app.use("/api", router);
 //GET
 app.use("/api", bidsRouter, likeRouter, responsesRouter, chatRouter,namesRouter);
 app.use("/api/profile", profileRouter);
