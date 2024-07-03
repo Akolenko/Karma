@@ -30,5 +30,5 @@ export default function CompleteBid({ bid }: { bid: Bid }) {
         </div>
       </div>
     </>
-  )
+  );
 }

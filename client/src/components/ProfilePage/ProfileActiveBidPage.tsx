@@ -25,7 +25,7 @@ function ProfileActiveBidPage(): JSX.Element {
             <div
               className={"flex gap-x-5 justify-center items-center mt-[100px]"}
             >
-              <img className='w-10' src='svg/question.png' />
+              <img className='w-10' src='/svg/question.png' />
               <h1 className={"text-xl"}>Вы еще не создали заявку!</h1>
             </div>
           )}

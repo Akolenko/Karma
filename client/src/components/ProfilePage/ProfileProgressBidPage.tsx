@@ -5,13 +5,13 @@ import { getUserBidsProgress } from "../../../features/bidsUserSlice.ts";
 import BidProgress from "../Bid/BidInProgress.tsx";
 
 function ProfileProgressBidPage(): JSX.Element {
-  const bids = useAppSelector(state => {
+  const bids = useAppSelector((state) => {
     return state.userBids.list;
-  })
+  });
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getUserBidsProgress())
+    dispatch(getUserBidsProgress());
   }, [dispatch]);
 
   return (
@@ -24,11 +24,17 @@ function ProfileProgressBidPage(): JSX.Element {
               return <BidProgress key={bid.id} bid={bid} />;
             })
           ) : (
-            <div>Пока что еще нет заявок на которые откликнулись!</div>
+            <div
+              className={"flex gap-x-5 justify-center items-center mt-[100px]"}
+            >
+              <img className='w-10' src='/svg/question.png' />
+              <h1 className={"text-xl"}>
+                Пока что еще нет заявок на которые откликнулись!
+              </h1>
+            </div>
           )}
         </div>
       </div>
-
     </>
   );
 }

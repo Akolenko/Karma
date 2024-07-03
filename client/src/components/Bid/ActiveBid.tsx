@@ -14,9 +14,9 @@ export default function ActiveBid({ bid }: { bid: Bid }) {
 
   return (
     <>
- <div
+      <div
         className={
-          "start-bid rounded-md bg-white p-3 text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md "
+          "start-bid rounded-md bg-white p-3 text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md"
         }
       >
         <h3 className={"text-lg font-semibold tracking-wide leading-8"}>
@@ -33,8 +33,26 @@ export default function ActiveBid({ bid }: { bid: Bid }) {
           </p>
         </div>
         <div className={"flex justify-between items-baseline"}>
-          <button onClick={() => setEditModalOpen(true)}>Редактировать</button>
-          <button onClick={deleteHandler}>Удаление</button>
+          <button
+            className={
+              "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
+              " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
+              " bg-white text-lime-600"
+            }
+            onClick={() => setEditModalOpen(true)}
+          >
+            Редактировать
+          </button>
+          <button
+            className={
+              "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
+              " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
+              " bg-white text-lime-600"
+            }
+            onClick={deleteHandler}
+          >
+            Удаление
+          </button>
         </div>
       </div>
 
@@ -44,5 +62,5 @@ export default function ActiveBid({ bid }: { bid: Bid }) {
         bid={bid}
       />
     </>
-  )
+  );
 }
