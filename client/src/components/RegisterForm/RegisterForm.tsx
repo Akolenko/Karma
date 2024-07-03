@@ -62,8 +62,7 @@ const RegisterForm: FC = () => {
         <button className={'transition duration-300 mt-3 rounded-md' +
           ' shadow-sm border-lime-600 hover:bg-lime-600 hover:text-white' +
           ' hover:border-lime-600 bg-white text-lime-600'} 
-          onClick={() => {authStore.registration(name, dateOfBirth, email, password, phone)
-              console.log('#################')}}>
+          onClick={() => authStore.registration(name, dateOfBirth, email, password, phone)}>
             <NavLink
             to='/'>
 
