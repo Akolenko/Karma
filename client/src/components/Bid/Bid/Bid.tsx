@@ -17,6 +17,7 @@ export default function Bid({
   userId: string | null;
 }) {
   const [name, setName] = useState("");
+  const [description, setDescription] = useState(false);
   const dispatch = useAppDispatch();
   const likes = useSelector(
     (state: RootState) =>
@@ -62,16 +63,32 @@ export default function Bid({
         <h3 className={"text-lg font-semibold tracking-wide leading-8"}>
           {bid.title}
         </h3>
-        <div className={"flex gap-x-2"}>
+        <div className={"flex justify-between items-center gap-x-2"}>
           <img className={"w-4"} src={"/svg/Vector.svg"} alt={bid.title} />
           <p
             className={
-              "text-sm font-sans tracking-wide leading-8 text-gray-500"
+              "-ml-80 text-sm font-sans tracking-wide leading-8 text-gray-500"
             }
           >
             {bid.address}
           </p>
+          <button
+            className='underline'
+            onClick={() =>
+              description ? setDescription(false) : setDescription(true)
+            }
+          >
+            Подробнее
+          </button>
         </div>
+        {description ? (
+          <div className='flex border-double border-4 p-2'>
+            <p className='italic font-sm text-gray-800 '>{bid.description}</p>
+          </div>
+        ) : (
+          <></>
+        )}
+
         <div className={"flex justify-between items-center gap-x-3 -mt-3"}>
           <p className={"font-serif"}>{name}</p>
           <div className=''>
