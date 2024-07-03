@@ -19,7 +19,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "5173:5173"
+      - "80:80"
     environment:
       - NODE_ENV=production
     networks:
@@ -35,7 +35,7 @@ services:
     networks:
       - app-network
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
 networks:
   app-network:
