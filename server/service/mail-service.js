@@ -17,7 +17,7 @@ class MailService {
         await this.transporter.sendMail({
             from: 'app.karma@yandex.ru',
             to,
-            subject: `Account activation on ${'http://46.148.228.8/:3000'}`,
+            subject: `Account activation on ${'http://46.148.228.8'}`,
             text: '',
             html: `
             <div>
