@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store/store.ts";
 import { likeBid, unlikeBid } from "../../../../features/likeBidsSlice.ts";
 import { useEffect, useState } from "react";
-import $api from "../../../http";
+import $api from "../../../http/index.ts";
 import "./Bid.styles.css";
 
 export default function Bid({
