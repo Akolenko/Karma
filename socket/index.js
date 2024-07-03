@@ -11,7 +11,7 @@ const port = process.env.PORT || 4000;
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173"
+    origin: ["http://localhost:5173", "http://46.148.228.8:5173"]
   }
 });
 
@@ -51,3 +51,9 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
   console.log('Listening on port ' + port);
 });
+
+// location /socket.io/ {
+//   proxy_pass http://localhost:4000;
+// proxy_http_version 1.1;
+// proxy_set_header Upgrade $http_upgrade;
+// proxy_set_header Connection "upgrade";

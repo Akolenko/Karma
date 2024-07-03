@@ -5,7 +5,6 @@ import MainPage from "../components/MainPage/MainPage.tsx";
 import { Route, Routes } from "react-router";
 import ProfileBidPage from '../components/ProfilePage/ProfileBidPage.tsx';
 import BidList from "../components/BidList/BidList.tsx";
-import LoginForm from "../components/LoginForm.tsx";
 import ProfilePage from "../components/ProfilePage/ProfilePage.tsx";
 import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
 import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
@@ -18,6 +17,7 @@ import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
 import BidPage from '../components/Pages/BidPage.tsx';
 import CertificateList from '../components/Certificate/CertificateList.tsx';
+import LoginForm from "../components/LoginForm.tsx";
 
 function App() {
 
