@@ -34,7 +34,7 @@ export default function BidProgress({ bid }: { bid: Bid }) {
         <div className={"flex flex-row justify-between items-baseline -mt-2"}>
           <p className={"font-serif"}>{"Исполнитель: Имя исполнителя"}</p>
           <div>
-            <div className={"flex justify-between items-end gap-x-2"}>
+            <div className={"flex justify-between items-end gap-x-5"}>
               <NavLink to={`/chat/?chat=${bid.id}&choise=${true}`}>
                 <img
                   className={"w-10"}
@@ -46,10 +46,11 @@ export default function BidProgress({ bid }: { bid: Bid }) {
                 className={
                   "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
                   " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
-                  " bg-white text-lime-600"
+                  " bg-white text-lime-600 flex gap-x-2 items-center"
                 }
                 onClick={completeHandler}
               >
+                <img src='/img/thumbs-up.png' className='w-6' alt='' />
                 Помощь оказана
               </button>
             </div>
