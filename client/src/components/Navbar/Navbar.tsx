@@ -49,7 +49,7 @@ const Navbar = (): JSX.Element => {
                   className={({isActive}) =>
                     isActive ? activeLink : normalLink
                   }
-                  to='/profile'
+                  to='/profile/bio'
                 >
                   Моя страница
                 </NavLink>

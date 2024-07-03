@@ -16,11 +16,17 @@ function ProfileProgressBidPage(): JSX.Element {
 
   return (
     <>
-      <ProfileBidPage/>
-      <div className={"flex flex-col"}>
-        {bids && bids.length ? bids.map((bid) => {
-          return <BidProgress key={bid.id} bid={bid}/>
-        }) : <div>Пока что еще нет заявок на которые откликнулись!</div>}
+      <ProfileBidPage />
+      <div className='flex justify-center '>
+        <div className={"flex flex-col mt-10 gap-y-5 w-[1400px]"}>
+          {bids && bids.length ? (
+            bids.map((bid) => {
+              return <BidProgress key={bid.id} bid={bid} />;
+            })
+          ) : (
+            <div>Пока что еще нет заявок на которые откликнулись!</div>
+          )}
+        </div>
       </div>
 
     </>

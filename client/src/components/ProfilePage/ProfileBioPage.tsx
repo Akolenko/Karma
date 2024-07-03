@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ProfilePage from "./ProfilePage";
+import ProfilePage from "./ProfilePage.tsx";
 import { useSelector } from "react-redux";
-import { updateUser } from "../../../features/userEditProfileSlice";
+import { updateUser } from "../../../features/userEditProfileSlice.ts";
 import { getOrders } from "../../../features/userActivitySlice.ts";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
