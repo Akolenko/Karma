@@ -1,38 +1,41 @@
-
-import { NavLink } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
+import { NavLink } from "react-router-dom";
 
 function ProfileBidPage(): JSX.Element {
-  const activeLink = "text-lime-600 rounded-lg border-lime-600 border-2";
-  const normalLink =
-    "text-gray-600 hover:text-[#51B85B] transition ease-in-out duration-100";
 
-  return (
-    <>
-      <ProfilePage />
-      <div className='flex flex-row mx-10 mt-8'>
-        <NavLink
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          to={"/profile/bid/active"}
-        >
-          <button className=''>Активные заявки</button>
+    return (
+        <>
+        <ProfilePage/>
+        <NavLink to={"/profile/bid/active"}>
+          <button
+            className={
+              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
+            }
+          >
+            Активные заявки
+          </button>
         </NavLink>
 
-        <NavLink
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          to={"/profile/bid/progress"}
-        >
-          <button>Заявки в работе</button>
+        <NavLink to={"/profile/bid/progress"}>
+          <button
+            className={
+              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
+            }
+          >
+            Заявки в работе
+          </button>
         </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          to={"/profile/bid/closed"}
-        >
-          <button>Закрытые заявки</button>
+        <NavLink to={"/profile/bid/closed"}>
+          <button
+            className={
+              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
+            }
+          >
+            Закрытые заявки
+          </button>
         </NavLink>
-      </div>
-    </>
-  );
-}
-
-export default ProfileBidPage;
+      </>
+    );
+  }
+  
+  export default ProfileBidPage;
