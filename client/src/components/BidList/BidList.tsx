@@ -29,10 +29,14 @@ export default function BidList() {
         </h1>
       </div>
 
-      <div className={"flex items-center justify-around flex-row mb-5"}>
+      <div className={"flex items-end justify-around flex-row gap-x-5 mb-5"}>
         <SearchInput onChange={handleChange} />
         <button
-          className={"decoration-1 underline text-blue-800"}
+          className={
+            "shadow-md focus:outline-none transition duration-300 rounded-md" +
+            " shadow-sm hover:bg-lime-600 hover:text-white" +
+            " hover:border-lime-600 bg-white text-lime-600"
+          }
           onClick={() => (showMap ? setShowMap(false) : setShowMap(true))}
         >
           Показать на карте
@@ -50,8 +54,8 @@ export default function BidList() {
         </Link>
       </div>
 
-      <div className='flex flex-row justify-around'>
-        <div className={"flex flex-col gap-y-5 w-[1000px]"}>
+      <div className='flex flex-row justify-around gap-x-72 '>
+        <div className={"flex flex-col gap-y-5"}>
           {bids && bids.length ? (
             bids.map((bid) => <Bid key={bid.id} bid={bid} userId={userId} />)
           ) : (
@@ -66,8 +70,8 @@ export default function BidList() {
           )}
         </div>
         {showMap && (
-          <div className={"flex justify-center w-[500px]"}>
-            <div className='fixed right-502 shadow-md'>
+          <div className={"flex justify-end"}>
+            <div className='fixed right-502 rounded-full shadow-md'>
               <MapComponent />
             </div>
           </div>

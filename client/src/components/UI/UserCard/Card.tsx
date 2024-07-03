@@ -16,7 +16,7 @@ export function Cards(): JSX.Element {
           </span>
         </div>
         <div className={"mt-5 pl-3"}>
-          <span>Нина Алексеевна Валдырева, Москва</span>
+          <span>Нина Алексеевна Яковлева, г. Москва</span>
         </div>
       </div>
       <div
