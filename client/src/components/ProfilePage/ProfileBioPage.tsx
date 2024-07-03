@@ -183,7 +183,7 @@ function ProfileBioPage(): JSX.Element {
       <div className={"flex flex-row items-center justify-center mt-6 space-x-28 h-[70vh]"}>
         <div
           className={
-            "border mt-6 border-green-950 rounded-md shadow-lg p-4 flex flex-col items-center h-100 w-96"
+            "w-456 h-456 rounded-md shadow-md border-green-500  p-4 flex flex-col items-center h-100 w-96"
           }
         >
           <img
@@ -299,10 +299,14 @@ function ProfileBioPage(): JSX.Element {
             src="https://cdn-icons-png.flaticon.com/512/9830/9830777.png"
             alt="pic"
           />
-          <div className="text-green-800 p-0 font-bold text-3xl p-4 rounded-lg flex flex-col items-center">
-            {user ? user.scores : ""}
+          <div className="w-56 h-56 rounded-full shadow-md border-green-500 text-center transition duration-300 ease-in-out transform hover:scale-110">
+            <div className=" flex flex-col items-center mt-12 ">
+              <div className="text-green-800 p-0 font-bold text-3xl p-4 rounded-lg ">
+                {user ? user.scores : ""}
+              </div>
+              <div className="text-xl font-bold text-green-700 whitespace-normal break-words" >очки Вашей кармы</div>
+            </div>
           </div>
-          <div className="text-xl font-bold text-green-700">Очки Вашей кармы</div>
         </div>
 
         {
