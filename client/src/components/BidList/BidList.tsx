@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux.ts";
 import React, { useEffect, useState } from "react";
 import { filterBids, getBids } from "../../../features/bidsSlice.ts";
-import Bid from "../Bid/Bid/Bid.tsx";
+import Bid from "../Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
 import MapComponent from "../Map/Map.tsx";
 import SearchInput from "../UI/SearchInput/SearchInput.tsx";
