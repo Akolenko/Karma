@@ -16,7 +16,7 @@ export function Cards(): JSX.Element {
           </span>
         </div>
         <div className={"mt-5 pl-3"}>
-          <span>Нина Алексеевна Яковлева, г. Москва</span>
+          <span>Олег, г. Москва</span>
         </div>
       </div>
       <div
@@ -24,7 +24,7 @@ export function Cards(): JSX.Element {
           "w-96 h-48 bg-white rounded-lg shadow-md transition hover:scale-[1.02]"
         }
       >
-        <h5 className={"text-lg p-3 font-bold"}>Действительно впечатляет!</h5>
+        <h5 className={"text-lg p-3 font-bold"}>Я просто взял и сделал это!</h5>
         <div className={"pl-3"}>
           <span className={"font-light text-blue-gray-700"}>
             Не ожидала такого количества заинтересованных людей готовых помочь
@@ -32,7 +32,7 @@ export function Cards(): JSX.Element {
           </span>
         </div>
         <div className={"mt-5 pl-3"}>
-          <span>Нина Алексеевна Валдырева, Москва</span>
+          <span>Влад, г. Москва</span>
         </div>
       </div>
       <div
@@ -40,7 +40,9 @@ export function Cards(): JSX.Element {
           "w-96 h-48 bg-white rounded-lg shadow-md transition hover:scale-[1.02]"
         }
       >
-        <h5 className={"text-lg p-3 font-bold"}>Действительно впечатляет!</h5>
+        <h5 className={"text-lg p-3 font-bold"}>
+          Жить стало действительно приятнее!
+        </h5>
         <div className={"pl-3"}>
           <span className={"font-light text-blue-gray-700"}>
             Не ожидала такого количества заинтересованных людей готовых помочь
@@ -48,7 +50,7 @@ export function Cards(): JSX.Element {
           </span>
         </div>
         <div className={"mt-5 pl-3"}>
-          <span>Нина Алексеевна Валдырева, Москва</span>
+          <span>Иван, г. Москва</span>
         </div>
       </div>
       <div
@@ -56,7 +58,9 @@ export function Cards(): JSX.Element {
           "w-96 h-48 bg-white rounded-lg shadow-md transition hover:scale-[1.02]"
         }
       >
-        <h5 className={"text-lg p-3 font-bold"}>Действительно впечатляет!</h5>
+        <h5 className={"text-lg p-3 font-bold"}>
+          Много крутых людей готовых помочь!
+        </h5>
         <div className={"pl-3"}>
           <span className={"font-light text-blue-gray-700"}>
             Не ожидала такого количества заинтересованных людей готовых помочь
@@ -64,7 +68,7 @@ export function Cards(): JSX.Element {
           </span>
         </div>
         <div className={"mt-5 pl-3"}>
-          <span>Нина Алексеевна Валдырева, Москва</span>
+          <span>Сергей, г. Москва</span>
         </div>
       </div>
     </div>
