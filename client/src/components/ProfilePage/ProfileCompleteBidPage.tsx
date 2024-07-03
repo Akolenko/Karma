@@ -1,20 +1,20 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import ProfileBidPage from "./ProfileBidPage";
+import { useEffect, useState } from "react";
 import CompleteBid from "../Bid/CompleteBid.tsx";
+import axios from "axios";
+import ProfileBidPage from "./ProfileBidPage.tsx";
 
 export type BidProfileType = {
-  id: number,
-  title: string,
-  description: string,
-  address: string,
-  status: string,
-  author_id: number
-}
+  id: number;
+  title: string;
+  description: string;
+  address: string;
+  status: string;
+  author_id: number;
+};
 
 export default function ProfileCompleteBidPage(): JSX.Element {
   const [completeBids, setCompleteBids] = useState<BidProfileType[]>([]);
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/complete`, {
@@ -36,5 +36,3 @@ export default function ProfileCompleteBidPage(): JSX.Element {
     </>
   );
 }
-
-
