@@ -5,7 +5,7 @@ const errorMiddleware = require('../middleware/error-middleware');
 const cookieParser = require('cookie-parser');
 
 const corsOptions = {
-  origin: ['*'],
+  origin: '*',
   optionsSuccessStatus: 200,
   credentials: true,
 };
