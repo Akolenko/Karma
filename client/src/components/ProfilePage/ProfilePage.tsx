@@ -1,46 +1,45 @@
 import { NavLink } from "react-router-dom";
 
 function ProfilePage(): JSX.Element {
-  return (
-    <div className='mainConteiner'>
-      <h2 className='profile-page-title'>МОЯ СТРАНИЦА</h2>
+  const activeLink = "text-lime-600";
+  const normalLink =
+    "text-gray-600 hover:text-[#51B85B] transition ease-in-out duration-100";
 
-      <div className='profile-page-button'>
-        <NavLink to={"/profile/bio"}>
-          <button
-            className={
-              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
-            }
-          >
-            Мои данные
-          </button>
+  return (
+    <div>
+      <div className={"flex items-center justify-center mb-8"}>
+        <h2 className='profile-page-title text-4xl tracking-wide font-normal leading-relaxed'>
+          Личный кабинет
+        </h2>
+      </div>
+
+      <div className='flex flex-row justify-center gap-x-10 bg-white shadow-md'>
+        <NavLink
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          to={"/profile/bio"}
+        >
+          <button>Мои данные</button>
         </NavLink>
-        <NavLink to={"/profile/bid/active"}>
-          <button
-            className={
-              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
-            }
-          >
-            Мои заявки
-          </button>
+
+        <NavLink
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          to={"/profile/bid/active"}
+        >
+          <button>Мои заявки</button>
         </NavLink>
-        <NavLink to={"/profile/responses"}>
-          <button
-            className={
-              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
-            }
-          >
-            Мои отклики
-          </button>
+
+        <NavLink
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          to={"/profile/responses"}
+        >
+          <button>Мои отклики</button>
         </NavLink>
-        <NavLink to={"/certificates"}>
-          <button
-            className={
-              "w-80 border-lime-600 hover:bg-lime-500 hover:text-white hover:border-none bg-white text-lime-600"
-            }
-          >
-            Потратить очки
-          </button>
+
+        <NavLink
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          to={"/certificates"}
+        >
+          <button>Потратить очки</button>
         </NavLink>
       </div>
 

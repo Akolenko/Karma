@@ -17,20 +17,24 @@ export default function ProfileCompleteBidPage(): JSX.Element {
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/complete`, {params: {userId}})
-      .then(res => setCompleteBids(res.data))
+    axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/bids/complete`, {
+      params: { userId },
+    }).then((res) => setCompleteBids(res.data));
   }, []);
 
   return (
     <>
-      <ProfileBidPage/>
-      <div className={"flex flex-col"}>
-        {completeBids && completeBids.map((bid) => {
-          return <CompleteBid key={bid.id} bid={bid}/>
-        })}
+      <ProfileBidPage />
+      <div className='flex justify-center '>
+        <div className={"flex flex-col mt-10 gap-y-5 w-[1400px]"}>
+          {completeBids &&
+            completeBids.map((bid) => {
+              return <CompleteBid key={bid.id} bid={bid} />;
+            })}
+        </div>
       </div>
     </>
   );
-};
+}
 
 

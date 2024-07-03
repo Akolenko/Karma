@@ -37,7 +37,7 @@ export default function BidList() {
         <SearchInput onChange={handleChange}/>
         <button className={'decoration-1 mb-4 underline text-blue-800'}
                 onClick={() => showMap ? setShowMap(false) : setShowMap(true)}>
-          Показать на карте
+          Показать заявки на карте
         </button>
       </div>
 
