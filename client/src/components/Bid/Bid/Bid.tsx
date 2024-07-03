@@ -82,7 +82,7 @@ export default function Bid({
           </button>
         </div>
         {description ? (
-          <div className='flex border-double border-4 p-2'>
+          <div className='flex border-double border-4 p-2 w-[400px]'>
             <p className='italic font-sm text-gray-800 '>{bid.description}</p>
           </div>
         ) : (
@@ -97,7 +97,6 @@ export default function Bid({
               <img src='/img/care.png' className='w-8' alt='like-image' />
             </button>
           </div>
-
           <ButtonResponse handleRespond={handleRespond} />
         </div>
       </div>

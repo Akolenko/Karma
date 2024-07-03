@@ -4,8 +4,8 @@ const serverConfig = require("./config/serverConfig");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const router = require("./router/index");
-const http = require('http');
-const { Server } = require('socket.io');
+const http = require("http");
+const { Server } = require("socket.io");
 
 const authMiddleware = require("./middleware/auth-middleware");
 //GET
@@ -17,8 +17,9 @@ const responsesRouter = require("./routes/views/myResponses.router");
 const profileProgressBidsRouter = require("./routes/views/profile.progress.bid.router");
 const profileCompleteBidsRouter = require("./routes/views/profile.complete.bid.router");
 const chatRouter = require("./routes/chat/chat.route");
-const ordersRouter = require("./routes/views/profile.bio.order.router")
-const namesRouter = require('./routes/views/names.bid.router')
+const ordersRouter = require("./routes/views/profile.bio.order.router");
+const namesRouter = require("./routes/views/names.bid.router");
+const nameExecRouter = require("./routes/views/namesExec.bid.router");
 //API
 const bidApiRouter = require("./routes/API/bid.api.route");
 const responseApiRouter = require("./routes/API/response.api.route");
@@ -35,12 +36,20 @@ const PORT = process.env.PORT || 3000;
 serverConfig(app);
 app.use("/api", router);
 //GET
-app.use("/api", bidsRouter, likeRouter, responsesRouter, chatRouter,namesRouter);
+app.use(
+  "/api",
+  bidsRouter,
+  likeRouter,
+  responsesRouter,
+  chatRouter,
+  namesRouter,
+  nameExecRouter
+);
 app.use("/api/profile", profileRouter);
 app.use("/api/profile/bids/active", profileActiveBidsRouter);
 app.use("/api/profile/bids/progress", profileProgressBidsRouter);
 app.use("/api/profile/bids/complete", profileCompleteBidsRouter);
-app.use("/api/profile/bio", ordersRouter)
+app.use("/api/profile/bio", ordersRouter);
 //API
 app.use("/api/profile", userEditProfileRouter);
 app.use("/api", router);
