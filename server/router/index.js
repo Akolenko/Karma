@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/auth-middleware')
 const MultiGeocoder = require('multi-geocoder')
 
 
-router.post('/register',
+router.post('/registration',
     body('email').isEmail(),
     userController.registration)
 router.post('/login', userController.login)
