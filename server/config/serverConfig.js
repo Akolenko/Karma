@@ -5,7 +5,7 @@ const errorMiddleware = require('../middleware/error-middleware');
 const cookieParser = require('cookie-parser');
 
 const corsOptions = {
-  origin: 'http://46.148.228.8',
+  origin: 'http://46.148.228.8:80',
   optionsSuccessStatus: 200,
   credentials: true,
 };
