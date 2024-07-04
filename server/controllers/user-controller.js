@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator')
 class UserController {
     async registration(req, res, next) {
         try {
+            console.log('*****************');
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
                 return next(ApiError.BadRequest('Validation error', errors.array()))
