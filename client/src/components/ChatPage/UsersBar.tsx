@@ -27,7 +27,7 @@ function UsersBar(): JSX.Element {
                   <>
                     <div
                       key={room.id}
-                      className={choise.choise && choise.roomId === room.bid_id ? activChat : normalChat}
+                      className={choise.choise && choise.roomId === room.room_id ? activChat : normalChat}
                     >
                       <div
                         onClick={() => {

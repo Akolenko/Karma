@@ -6,6 +6,7 @@ import { updateUser } from "../../../features/userEditProfileSlice";
 import { getOrders } from "../../../features/userActivitySlice.ts";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
+import icon from "./cry_icon.png"
 import {
   Chart,
   ArcElement,
@@ -340,7 +341,7 @@ function ProfileBioPage(): JSX.Element {
             :
             <div>
               <div>Пока нет активностей</div>
-              <img src='/public/img/cry_icon.png' alt="pic"/>
+              <img src={icon} alt="pic"/>
             </div>
         }
       </div>
