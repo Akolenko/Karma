@@ -1,16 +1,15 @@
 import './App.css'
 
-import BidForm from "../components/BidForm/BidForm.tsx";
+import BidForm from '../components/BidForm/BidForm.tsx';
 import MainPage from "../components/MainPage/MainPage.tsx";
 import { Route, Routes } from "react-router";
 import ProfileBidPage from '../components/ProfilePage/ProfileBidPage.tsx';
 import BidList from "../components/BidList/BidList.tsx";
-import LoginForm from "../components/LoginForm.tsx";
 import ProfilePage from "../components/ProfilePage/ProfilePage.tsx";
 import ProfileBioPage from "../components/ProfilePage/ProfileBioPage.tsx";
 import ProfileActiveBidPage from "../components/ProfilePage/ProfileActiveBidPage.tsx";
 import ProfileProgressBidPage from "../components/ProfilePage/ProfileProgressBidPage.tsx";
-import ProfileCompleteBidPage from "../components/ProfilePage/ProfileCompleteBidPage.tsx";
+import ProfileCompleteBidPage from '../components/ProfilePage/ProfileCompleteBidPage.tsx';
 import RegisterForm from '../components/RegisterForm/RegisterForm.tsx';
 import MapComponent from '../components/Map/Map.tsx';
 import Navbar from '../components/Navbar/Navbar.tsx';
@@ -18,6 +17,7 @@ import ChatPage from '../components/ChatPage/ChatPage.tsx';
 import ResponsesPage from "../components/Pages/ResponsesPage/ResponsesPage.tsx";
 import BidPage from '../components/Pages/BidPage.tsx';
 import CertificateList from '../components/Certificate/CertificateList.tsx';
+import LoginForm from "../components/LoginForm.tsx";
 
 function App() {
 
