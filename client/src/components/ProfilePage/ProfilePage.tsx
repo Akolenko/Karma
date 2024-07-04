@@ -20,21 +20,18 @@ function ProfilePage(): JSX.Element {
         >
           <button>Мои данные</button>
         </NavLink>
-
         <NavLink
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
           to={"/profile/bid/active"}
         >
           <button>Мои заявки</button>
         </NavLink>
-
         <NavLink
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
           to={"/profile/responses"}
         >
           <button>Мои отклики</button>
         </NavLink>
-
         <NavLink
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
           to={"/certificates"}

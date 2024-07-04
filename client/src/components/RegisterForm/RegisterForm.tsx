@@ -65,6 +65,7 @@ const RegisterForm: FC = () => {
           onClick={() => authStore.registration(name, dateOfBirth, email, password, phone)}>
             <NavLink
             to='/'>
+
                 Создать акаунт
             </NavLink>
         </button>

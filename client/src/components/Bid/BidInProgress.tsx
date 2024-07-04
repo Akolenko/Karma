@@ -10,7 +10,7 @@ export default function BidProgress({ bid }: { bid: Bid }) {
   const completeHandler = () => {
     dispatch(completeUserBids({ bidId: bid.id, userId }));
   };
-  
+
   return (
     <>
       <div
@@ -34,8 +34,7 @@ export default function BidProgress({ bid }: { bid: Bid }) {
         <div className={"flex flex-row justify-between items-baseline -mt-2"}>
           <p className={"font-serif"}>{"Исполнитель: Имя исполнителя"}</p>
           <div>
-            <div className={"flex justify-between items-center"}>
-              <button onClick={completeHandler}>Помощь оказана</button>
+            <div className={"flex justify-between items-end gap-x-2"}>
               <NavLink to={`/chat/?chat=${bid.id}&choise=${true}`}>
                 <img
                   className={"w-10"}
@@ -43,6 +42,16 @@ export default function BidProgress({ bid }: { bid: Bid }) {
                   alt='logo'
                 />
               </NavLink>
+              <button
+                className={
+                  "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
+                  " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
+                  " bg-white text-lime-600"
+                }
+                onClick={completeHandler}
+              >
+                Помощь оказана
+              </button>
             </div>
           </div>
         </div>
