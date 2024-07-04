@@ -10,11 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fio: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
       },
       date_of_birth: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATEONLY
       },
       email: {
@@ -26,8 +26,18 @@ module.exports = {
         type: Sequelize.STRING
       },
       phone: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.STRING
+      },
+      isActivated: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      activationLink: {
+        type: Sequelize.STRING
+      },
+      scores: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
