@@ -13,7 +13,7 @@ export default function CompleteBid({ bid }: { bid: Bid }) {
     <>
       <div
         className={
-          "start-bid rounded-md bg-white p-3 text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md flex flex-col p-5 gap-y-2"
+          "start-bid rounded-md bg-white text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md flex flex-col p-5 gap-y-2"
         }
       >
         <h3 className={"text-lg font-semibold tracking-wide leading-8"}>
