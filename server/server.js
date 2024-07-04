@@ -50,7 +50,8 @@ app.use(
   responsesRouter,
   chatRouter,
   namesRouter,
-  nameExecRouter
+  nameExecRouter,
+  router
 );
 app.use("/api/profile", profileRouter);
 app.use("/api/profile/bids/active", profileActiveBidsRouter);
