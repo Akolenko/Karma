@@ -53,7 +53,7 @@ export default function ActiveBid({ bid }: { bid: Bid }) {
             onClick={deleteHandler}
           >
             <img src='/img/delete.png' className='w-5' alt='' />
-            Удаление
+            Удалить
           </button>
         </div>
       </div>
