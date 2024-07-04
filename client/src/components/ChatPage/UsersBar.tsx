@@ -27,7 +27,7 @@ function UsersBar(): JSX.Element {
                   <>
                     <div
                       key={room.id}
-                      className={choise.choise && choise.roomId === room.room_id ? activChat : normalChat}
+                      className={choise.choise && choise.roomId === room.bid_id ? activChat : normalChat}
                     >
                       <div
                         onClick={() => {
@@ -51,7 +51,7 @@ function UsersBar(): JSX.Element {
               <div>
                 <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>
                   <div
-                    className='h-[79vh] bg-[url("/public/svg/logo2.svg")] bg-center bg-no-repeat bg-[length:900px_600px]'
+                    className='h-[79vh] bg-[url("/public/svg/logo2.svg")] bg-center bg-no-repeat bg-[length:900px_600px] bg-opacity-50'
                   >
                     Выбирите чат
                   </div>

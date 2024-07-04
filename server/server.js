@@ -4,8 +4,9 @@ const serverConfig = require("./config/serverConfig");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const router = require("./router/index");
-const http = require("http");
-const { Server } = require("socket.io");
+const http = require('http');
+const { Server } = require('socket.io');
+const { User, Message } = require('./db/models');
 
 const authMiddleware = require("./middleware/auth-middleware");
 //GET
@@ -33,8 +34,14 @@ const certificatesRouter = require("./routes/views/certificates.router");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const server = http.createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:5173", "http://46.148.228.8"]
+  }
+});
+
 serverConfig(app);
-app.use("/api", router);
 //GET
 app.use(
   "/api",
@@ -65,4 +72,39 @@ app.use("/api/certificates", certificatesRouter);
 
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);
+});
+
+io.on('connection', (socket) => {
+  console.log('connect');
+
+  socket.on('join', async ({room, user}) => {
+
+    socket.join(room);
+    const messages = await Message.findAll({where: { room_id: room }});
+    const getUser = await User.findOne({where: {id: user}})
+
+    socket.emit('messages', {
+      data: messages
+    })
+  })
+
+  socket.on('sendMessage', async ({request}) => {
+
+    const messageCreate = await Message.create({
+      room_id: request.room_id,
+      user_id: request.user_id,
+      text_message: request.text_message,
+      is_read: request.is_read,
+    })
+
+    io.to(request.room_id).emit('message', {data: {messageCreate}})
+  })
+
+  io.on('disconnect', () => {
+    console.log('Disconnect');
+  })
+})
+
+server.listen(4000, () => {
+  console.log('Listening on port 4000');
 });
