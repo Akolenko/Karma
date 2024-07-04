@@ -13,13 +13,12 @@ certificatesRouter.get("/", async (req, res) => {
 certificatesRouter.post("/buy", async (req, res) => {
   try {
     const { userId, sum, image } = req.body;
-    console.log(image);
     const DBuser = await User.findByPk(Number(userId));
 
-    if (DBuser.scores < Number(sum / 100)) {
+    if (DBuser.scores < Number(sum)) {
       res.json({ message: "Не хватает баллов для покупки." });
     } else {
-      DBuser.scores = Math.floor(DBuser.scores - sum / 100)
+      DBuser.scores = Math.floor(DBuser.scores - sum)
       DBuser.save()
       await mailService.sendCertificationBuyingMail(DBuser.email, image, DBuser.fio)
       res.json({ message: "Покупка успешно совершена." })
