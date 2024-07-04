@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ProfilePage from "./ProfilePage.tsx";
+import ProfilePage from "./ProfilePage";
 import { useSelector } from "react-redux";
-import { updateUser } from "../../../features/userEditProfileSlice.ts";
+import { updateUser } from "../../../features/userEditProfileSlice";
 import { getOrders } from "../../../features/userActivitySlice.ts";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
@@ -101,15 +101,18 @@ function ProfileBioPage(): JSX.Element {
   );
 
   const data = {
-    labels: ["Активные заказы", "Опубликованные заказы"],
+    labels: ["Завки в работе", "Опубликованные заявки"],
     datasets: [
       {
         data: [completedOrders, totalOrders],
-        backgroundColor: ["#FF6384", "#36A2EB"],
+        backgroundColor: ["#9370DB", "#36A2EB"],
+        borderColor: "#11bf70", // зеленый цвет обводки
+        borderWidth: 1.5,
       },
     ],
   };
 
+  
   const centerTextPlugin: Plugin<"doughnut"> = {
     id: "centerText",
     beforeDraw: (chart) => {
@@ -142,18 +145,27 @@ function ProfileBioPage(): JSX.Element {
     responsive: true,
     plugins: {
       legend: {
+        labels: {
+          font: {
+            size: 16, // размер шрифта
+            weight: 'bold', // жирный шрифт
+          },
+          padding: 20,
+        },
+        
         display: true,
         position: "bottom",
       },
+      
       datalabels: {
-        formatter: (value:any, context:any) => { // определяем кастомный форматтер
-          console.log(value);
-          if (context.dataset.data[0] > context.dataset.data[1]) {
-            return completedOrders;
-          } else {
-            return totalOrders;
-          }
-        },
+        // formatter: (value:any, context:any) => { // определяем кастомный форматтер
+        //   console.log(value);
+        //   if (context.dataset.data[0] > context.dataset.data[1]) {
+        //     return completedOrders;
+        //   } else {
+        //     return totalOrders;
+        //   }
+        // },
         display: completedOrders > 0 && totalOrders > 0,
         align: "center",
         anchor: "center",
@@ -169,6 +181,7 @@ function ProfileBioPage(): JSX.Element {
         text: completedOrders > totalOrders ? "Ты деятель" : "Ты проситель",
       },
     },
+    
   };
   useEffect(() => {
     axios(`${import.meta.env.VITE_REACT_APP_API_URL}/profile`, {
@@ -180,14 +193,14 @@ function ProfileBioPage(): JSX.Element {
   return (
     <>
       <ProfilePage />
-      <div className={"flex flex-row items-center justify-center mt-6 space-x-28 h-[70vh]"}>
+      <div className={"flex flex-row items-center justify-center mt-6 space-x-44 h-[70vh] "}>
         <div
           className={
-            "w-456 h-456 rounded-md shadow-md border-green-500  p-4 flex flex-col items-center h-100 w-96"
+            "w-456 h-456 rounded-md shadow-lg border-green-500  p-4 flex flex-col items-center h-100 w-96"
           }
         >
           <img
-            className={"block mx-auto h-64 rounded-full sm:mx-0 sm:shrink-0"}
+            className={"block mx-auto h-64 rounded-full sm:mx-0 sm:shrink-0 transition duration-300 ease-in-out transform hover:scale-110"}
             src="/public/img/profilFoto.png"
             alt="pic"
           />
@@ -248,7 +261,7 @@ function ProfileBioPage(): JSX.Element {
                     </div>
                     <button
                       className={
-                        "bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
+                        "m-2 text-xl font-bold hover:scale-110 transition duration-300 ease-in-out transform bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% w-80 rounded-lg py-2 px-4 focus:outline-none"
                       }
                       onClick={handleUpdateUser}
                     >
@@ -280,7 +293,7 @@ function ProfileBioPage(): JSX.Element {
                     </div>
                     <button
                       className={
-                        "hover:indigo-600 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
+                        "text-xl font-bold m-1 hover:scale-110 transition duration-300 ease-in-out transform bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
                       }
                       onClick={() => setIsEditing(true)}
                     >
@@ -296,10 +309,10 @@ function ProfileBioPage(): JSX.Element {
         <div className={"flex flex-col items-center"}>
           <img
             className={"object-cover h-64 scale-y-50 scale-x-50"}
-            src="https://cdn-icons-png.flaticon.com/512/9830/9830777.png"
+            src="https://cdn-icons-png.flaticon.com/256/4297/4297918.png"
             alt="pic"
           />
-          <div className="w-56 h-56 rounded-full shadow-md border-green-500 text-center transition duration-300 ease-in-out transform hover:scale-110">
+          <div className="w-56 h-56 rounded-full shadow-lg border-green-500 text-center transition duration-300 ease-in-out transform hover:scale-110">
             <div className=" flex flex-col items-center mt-12 ">
               <div className="text-green-800 p-0 font-bold text-3xl p-4 rounded-lg ">
                 {user ? user.scores : ""}
@@ -313,13 +326,14 @@ function ProfileBioPage(): JSX.Element {
           completedOrders > 0 && totalOrders > 0 ?
           <div className="ml-8">
             
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-8">
                 Диаграмма Вашей активности
               </h2>
               <Doughnut
                 data={data}
                 options={options}
                 plugins={[centerTextPlugin]}
+                
               />
             
           </div>
