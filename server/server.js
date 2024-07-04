@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const router = require("./router/index");
 const http = require('http');
 const { Server } = require('socket.io');
+const { User, Message } = require('./db/models');
 
 const authMiddleware = require("./middleware/auth-middleware");
 //GET
