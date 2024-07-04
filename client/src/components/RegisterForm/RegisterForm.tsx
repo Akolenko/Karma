@@ -32,7 +32,7 @@ const RegisterForm: FC = () => {
         />
 
         <label className="text-sm font-medium tracking-wide leading-8 text-gray-900" htmlFor={'title'}>Введите Ваш email:</label>
-        <input id={'title'} placeholder={'Логин'} type={'text'} 
+        <input id={'title'} placeholder={'email'} type={'text'} 
         className={'p-2 rounded-xl shadow-sm outline-gray-100 border border-gray-200'}
         onChange={e => setEmail(e.target.value)}
         value={email}

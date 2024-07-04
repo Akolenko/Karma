@@ -43,7 +43,7 @@ app.use("/api/profile/bids/complete", profileCompleteBidsRouter);
 app.use("/api/profile/bio", ordersRouter)
 //API
 app.use("/api/profile", userEditProfileRouter);
-app.use("/api", router);
+
 app.use(
   "/api",
   bidApiRouter,

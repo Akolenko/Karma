@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import $api from "../../http";
 import { BidType } from "../../../features/bidsSlice";
 import { useNavigate } from "react-router-dom";
+import './Map.css'
 
 
 const center = [55.76, 37.64];
@@ -43,15 +44,18 @@ function MapComponent(): JSX.Element {
 
 
   return (
-    <YMaps query={{load: "package.full"}}>
+    <div className="map-wrapper">
+      <h1 className="find-karma">НАЙДИ СВОЮ КАРМУ 🔎🤝</h1>
+    <div className="map">
+          <YMaps query={{load: "package.full"}}>
       <Map
         state={{
           center,
           zoom: 9,
           controls: []
         }}
-        width="500px"
-        height="250px"
+        width="inherit"
+        height="inherit"
       >
         {bidsWithCoords.map((n) => (
 
@@ -68,6 +72,10 @@ function MapComponent(): JSX.Element {
         ))}
       </Map>
     </YMaps>
+    </div>
+    </div>
+
+
   )
 }
 
