@@ -18,8 +18,9 @@ const responsesRouter = require("./routes/views/myResponses.router");
 const profileProgressBidsRouter = require("./routes/views/profile.progress.bid.router");
 const profileCompleteBidsRouter = require("./routes/views/profile.complete.bid.router");
 const chatRouter = require("./routes/chat/chat.route");
-const ordersRouter = require("./routes/views/profile.bio.order.router")
-const namesRouter = require('./routes/views/names.bid.router')
+const ordersRouter = require("./routes/views/profile.bio.order.router");
+const namesRouter = require("./routes/views/names.bid.router");
+const nameExecRouter = require("./routes/views/namesExec.bid.router");
 //API
 const bidApiRouter = require("./routes/API/bid.api.route");
 const responseApiRouter = require("./routes/API/response.api.route");
@@ -42,12 +43,20 @@ const io = new Server(server, {
 
 serverConfig(app);
 //GET
-app.use("/api", bidsRouter, likeRouter, responsesRouter, chatRouter,namesRouter);
+app.use(
+  "/api",
+  bidsRouter,
+  likeRouter,
+  responsesRouter,
+  chatRouter,
+  namesRouter,
+  nameExecRouter
+);
 app.use("/api/profile", profileRouter);
 app.use("/api/profile/bids/active", profileActiveBidsRouter);
 app.use("/api/profile/bids/progress", profileProgressBidsRouter);
 app.use("/api/profile/bids/complete", profileCompleteBidsRouter);
-app.use("/api/profile/bio", ordersRouter)
+app.use("/api/profile/bio", ordersRouter);
 //API
 app.use("/api/profile", userEditProfileRouter);
 app.use("/api", router);

@@ -6,14 +6,16 @@ export default function MainPage() {
   return (
     <>
       <div className={"start-el flex flex-wrap justify-center"}>
-        <div className={"flex mt-12 items-center flex-col gap-y-4"}>
-          <div className={"font-medium"}>
-            <h1>
-              <span className={"text-red-400 text-8xl"}>KARMA</span>
-            </h1>
-            <span>сервис, который....</span>
-            <div className={"mt-12"}>
-              <span className={"text-6xl"}>
+        <div className={"flex items-center flex-col gap-y-4"}>
+          <div className={""}>
+            <img className='w-72' src='/svg/logo2.svg' alt='main-logo' />
+            <span className='font-normal text-gray-600 tracking-wide'>
+              Сервис, объединяющий людей через добрые дела.
+              <br />
+              Оказывайте безвозмедную помощь и зарабатывайте КАРМУ!
+            </span>
+            <div className={"mt-5"}>
+              <span className={"text-6xl font-medium text-blue-700"}>
                 Найдите исполнителя или <br />
                 станьте исполнителем сами
               </span>

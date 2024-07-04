@@ -47,7 +47,7 @@ export default function BidResponse({
         <div className={"flex justify-between items-center h-10"}>
           <p className={"font-serif"}>{name}</p>
 
-          <div className={"flex items-end gap-x-1"}>
+          <div className={"flex items-end gap-x-5"}>
             <NavLink to={`/chat/?chat=${response.id}&choise=${true}`}>
               <img
                 className={"w-10"}
@@ -60,10 +60,11 @@ export default function BidResponse({
               className={
                 "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
                 " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
-                " bg-white text-lime-600"
+                " bg-white text-lime-600 flex gap-x-2 items-center"
               }
               onClick={handlerClick}
             >
+              <img src='/img/cancel.png' className='w-5' alt='' />
               Отказать в помощи
             </button>
           </div>

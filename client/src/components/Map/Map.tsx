@@ -47,7 +47,7 @@ function MapComponent(): JSX.Element {
 
   return (
     <div className='map-wrapper'>
-      <h1 className='find-karma'>НАЙДИ СВОЮ КАРМУ 🔎🤝</h1>
+      <h1 className='find-karma font-normal'>Найди свою Карму🔎🤝</h1>
       <div className='map'>
         <YMaps query={{ load: "package.full" }}>
           <Map
