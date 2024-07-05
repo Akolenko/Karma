@@ -29,7 +29,7 @@ router
       res.status(400).json({ message: "Didn't created Response!" });
     }
   })
-  .delete("/responses", async (req, res) => {
+  .delete("/responses/complete", async (req, res) => {
     const { user_id, bid_id } = req.body;
 
     try {
