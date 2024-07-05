@@ -60,7 +60,7 @@ export default function BidResponse({
                 alt='logo'
               />
             </NavLink>
-            <img className={"w-10"} src={"/svg/PhoneOutlined.svg"} alt='logo' />
+            {/*<img className={"w-10"} src={"/svg/PhoneOutlined.svg"} alt='logo' />*/}
             <button
               className={
                 "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
