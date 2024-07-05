@@ -3,9 +3,9 @@ const router = express.Router();
 const {User} = require('../../db/models');
 
 router.post('/date', async (req, res) => {
-  const {fio, email, phone, userID} = req.body;
+  const {fio, email, phone, userId} = req.body;
   try {
-    const userDB = await User.findOne({where:{id: userID}})
+    const userDB = await User.findOne({where:{id: userId}})
     // console.log(req.body)
     if(userDB){
         const userDBUpdate = await userDB.update({fio, email, phone})

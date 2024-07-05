@@ -18,7 +18,7 @@ const LoginForm: FC = () => {
       <div className={'drop-shadow-md flex flex-col bg-white p-6 w-96 rounded-xl gap-2 mt-12 mx-[auto] '}>
 
         <label className="text-sm font-medium tracking-wide leading-8 text-gray-900" htmlFor={'title'}>Введите Ваш email:</label>
-        <input id={'title'} placeholder={'Логин'} type={'text'}
+        <input id={'title'} placeholder={'email'} type={'text'}
                className={'p-2 rounded-xl shadow-sm outline-gray-100 border border-gray-200'}
                onChange={e => setEmail(e.target.value)}
                value={email}

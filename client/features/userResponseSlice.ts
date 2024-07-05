@@ -8,7 +8,7 @@ export interface BidType {
   address: string;
   author_id: number;
   status: string;
-  coords: Array<[number, number]> | []
+  coords: Array<[number, number]> | [];
 }
 
 export interface BidsState {
@@ -37,7 +37,7 @@ export const responseUserBid = createAsyncThunk(
       user_id: userId,
       bid_id: bidId,
       author_id: authorId,
-      title: title
+      title: title,
     });
     window.location.assign("/profile/responses");
     return { bidId };
@@ -62,8 +62,8 @@ export const getResponses = createAsyncThunk(
 
 export const cancelResponse = createAsyncThunk(
   "responses/cancelResponse",
-  async ({ userId, bidId }: { userId: string | null, bidId: number }) => {
-    await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/responses`, {
+  async ({ userId, bidId }: { userId: string | null; bidId: number }) => {
+    await axios.delete(`${import.meta.env.VITE_REACT_APP_API_URL}/responses/complete`, {
       data: { user_id: userId, bid_id: bidId },
     });
     await axios.put(`${import.meta.env.VITE_REACT_APP_API_URL}/bids/${bidId}`, {

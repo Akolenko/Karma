@@ -6,6 +6,7 @@ import Bid from "../Bid/Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
 import MapComponent from "../Map/Map.tsx";
 import SearchInput from "../UI/SearchInput/SearchInput.tsx";
+import iconAddPost from "./add-post .png"
 
 export default function BidList() {
   const dispatch = useAppDispatch();
@@ -33,23 +34,25 @@ export default function BidList() {
         <SearchInput onChange={handleChange} />
         <button
           className={
-            "shadow-md focus:outline-none transition duration-300 rounded-md" +
+            "flex flex-row gap-x-3 items-center shadow-md focus:outline-none transition duration-300 rounded-xl" +
             " shadow-sm hover:bg-lime-600 hover:text-white" +
             " hover:border-lime-600 bg-white text-lime-600"
           }
           onClick={() => (showMap ? setShowMap(false) : setShowMap(true))}
         >
+          <img src='/svg/map.svg' className='w-7' alt='map-button' />
           Показать на карте
         </button>
         <Link to={"/bid-form"}>
           <button
             className={
-              "shadow-md focus:outline-none transition duration-300 rounded-md" +
+              "shadow-md focus:outline-none transition duration-300 rounded-xl" +
               " shadow-sm hover:bg-lime-600 hover:text-white" +
-              " hover:border-lime-600 bg-white text-lime-600"
+              " hover:border-lime-600 bg-white text-lime-600 flex flex-row items-center gap-x-3"
             }
           >
-            + Cоздать заявку
+            <img src={iconAddPost} className='w-6' alt='add-button' />{" "}
+            Cоздать заявку
           </button>
         </Link>
       </div>

@@ -1,11 +1,12 @@
 import { Bid } from "../../../features/bidsUserSlice.ts";
 
 export default function CompleteBid({ bid }: { bid: Bid }) {
+
   return (
     <>
       <div
         className={
-          "start-bid rounded-md bg-white p-3 text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md flex flex-col p-5 gap-y-2"
+          "start-bid rounded-md bg-white text-left hover:scale-[1.02] transition duration-300 pl-8 shadow-md flex flex-col p-5 gap-y-2"
         }
       >
         <h3 className={"text-lg font-semibold tracking-wide leading-8"}>
@@ -22,7 +23,6 @@ export default function CompleteBid({ bid }: { bid: Bid }) {
           </p>
         </div>
         <div className={"flex flex-row justify-between items-baseline"}>
-          <p className={"font-serif"}>{"Исполнитель: Имя исполнителя"}</p>
           <div className='flex flex-row gap-2'>
             <img src='/svg/success.svg' className='w-5' alt='' />{" "}
             <p>Завершено</p>

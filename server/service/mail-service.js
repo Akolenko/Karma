@@ -9,7 +9,7 @@ class MailService {
             secure: true,
             auth: {
                 user: 'app.karma@yandex.ru',
-                pass: 'quemtcaeeyifhqrs'
+                pass: 'fikoospotsiqikoc'
             }
         })
     }
@@ -17,12 +17,12 @@ class MailService {
         await this.transporter.sendMail({
             from: 'app.karma@yandex.ru',
             to,
-            subject: `Account activation on ${'http://46.148.228.8'}`,
+            subject: `Account activation`,
             text: '',
             html: `
             <div>
                 <h1>Для активации перейдите по ссылке</h1>
-                <a href="${link}">${link}</a>
+                <a href="http://46.148.228.8/">http://46.148.228.8/</a>
             </div>
             `
 
@@ -30,6 +30,7 @@ class MailService {
     }
 
     async sendCertificationBuyingMail(to, image, name) {
+        console.log('email transporter', to, image, name);
         await this.transporter.sendMail({
             from: 'app.karma@yandex.ru',
             to,

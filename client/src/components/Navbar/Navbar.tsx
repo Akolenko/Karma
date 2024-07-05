@@ -18,7 +18,7 @@ const Navbar = (): JSX.Element => {
           <div className='mx-auto flex items-center justify-between p-1'>
             <div className={"ml-5"}>
               <NavLink className='flex lg:flex-1 -m-1.5 p-1.5' to='/'>
-                <img className='h-10 w-auto' src='/svg/logo2.svg' alt='logo' />
+                <img className='h-10 w-auto' src='/svg/Logo1.svg' alt='logo' />
               </NavLink>
             </div>
             <div className='items-center'>
@@ -91,7 +91,7 @@ const Navbar = (): JSX.Element => {
           <div className='mx-auto flex items-center justify-between p-4" aria-label="Global'>
             <div>
               <NavLink className='flex lg:flex-1 -m-1.5 p-1.5' to='/'>
-                <img className='h-10 w-auto' src='/svg/logo2.svg' alt='logo' />
+                <img className='h-10 w-auto' src='/svg/Logo1.svg' alt='logo' />
               </NavLink>
             </div>
 

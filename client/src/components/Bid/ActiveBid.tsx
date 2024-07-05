@@ -37,21 +37,23 @@ export default function ActiveBid({ bid }: { bid: Bid }) {
             className={
               "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
               " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
-              " bg-white text-lime-600"
+              " bg-white text-lime-600 flex gap-x-2"
             }
             onClick={() => setEditModalOpen(true)}
           >
+            <img src='/svg/edit.png' className='w-5' alt=' ' />
             Редактировать
           </button>
           <button
             className={
               "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
               " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
-              " bg-white text-lime-600"
+              " bg-white text-lime-600 flex gap-x-2"
             }
             onClick={deleteHandler}
           >
-            Удаление
+            <img src='/img/delete.png' className='w-5' alt='' />
+            Удалить
           </button>
         </div>
       </div>

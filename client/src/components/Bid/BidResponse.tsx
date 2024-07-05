@@ -13,6 +13,7 @@ export default function BidResponse({
   userId: string | null;
 }) {
   const [name, setName] = useState("");
+  const [idResponse, setIdResponse] = useState(0);
 
   const dispatch = useAppDispatch();
   const handlerClick = () => {
@@ -20,6 +21,10 @@ export default function BidResponse({
   };
 
   useEffect(() => {
+    $api(`${import.meta.env.VITE_REACT_APP_API_URL}/id-for-chatroom`, {
+      params: { id: response.id },
+    }).then((res) => setIdResponse(res.data));
+
     $api(`${import.meta.env.VITE_REACT_APP_API_URL}/names-customers`, {
       params: { authorId: response.author_id },
     }).then((res) => setName(res.data));
@@ -47,23 +52,24 @@ export default function BidResponse({
         <div className={"flex justify-between items-center h-10"}>
           <p className={"font-serif"}>{name}</p>
 
-          <div className={"flex items-end gap-x-1"}>
-            <NavLink to={`/chat/?chat=${response.id}&choise=${true}`}>
+          <div className={"flex items-end gap-x-5"}>
+            <NavLink to={`/chat/?chat=${idResponse}&choise=${true}`}>
               <img
                 className={"w-10"}
                 src={"/svg/MailOutlined.svg"}
                 alt='logo'
               />
             </NavLink>
-            <img className={"w-10"} src={"/svg/PhoneOutlined.svg"} alt='logo' />
+            {/*<img className={"w-10"} src={"/svg/PhoneOutlined.svg"} alt='logo' />*/}
             <button
               className={
                 "focus:outline-none size-26 text-sm transition duration-300 mt-3 rounded-md" +
                 " shadow-md border-lime-600 hover:bg-lime-600 hover:text-white" +
-                " bg-white text-lime-600"
+                " bg-white text-lime-600 flex gap-x-2 items-center"
               }
               onClick={handlerClick}
             >
+              <img src='/img/cancel.png' className='w-5' alt='' />
               Отказать в помощи
             </button>
           </div>

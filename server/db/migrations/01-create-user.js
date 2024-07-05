@@ -31,7 +31,7 @@ module.exports = {
       },
       isActivated: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: true
       },
       activationLink: {
         type: Sequelize.STRING
