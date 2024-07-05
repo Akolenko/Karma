@@ -8,9 +8,9 @@ function ChatPage(): JSX.Element {
       <div
         className='flex flex-col h-[85vh]'
       >
-        <div
-          className='pl-2.5'
-        >Список чатов</div>
+        <h2
+          className='pl-2.5 text-xl'
+        >Список чатов</h2>
         <UsersBar/>
       </div>
     </div>

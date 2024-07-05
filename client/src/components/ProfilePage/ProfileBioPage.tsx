@@ -6,7 +6,8 @@ import { updateUser } from "../../../features/userEditProfileSlice";
 import { getOrders } from "../../../features/userActivitySlice.ts";
 import { Doughnut } from "react-chartjs-2";
 import { RootState } from "../../../redux/store/store.ts";
-import cryIcon from "./cry_icon.png"
+import cryIcon from "./cry_icon.png";
+import iconProfilFoto from "./profilFoto.png";
 import {
   Chart,
   ArcElement,
@@ -202,7 +203,7 @@ function ProfileBioPage(): JSX.Element {
         >
           <img
             className={"block mx-auto h-64 rounded-full sm:mx-0 sm:shrink-0 transition duration-300 ease-in-out transform hover:scale-110"}
-            src="/public/img/profilFoto.png"
+            src={iconProfilFoto}
             alt="pic"
           />
           {user && (

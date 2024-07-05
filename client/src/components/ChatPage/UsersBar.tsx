@@ -53,7 +53,7 @@ function UsersBar(): JSX.Element {
                   <div
                     className='h-[79vh] bg-[url("/public/svg/logo2.svg")] bg-center bg-no-repeat bg-[length:900px_600px] bg-opacity-50'
                   >
-                    Выбирите чат
+                    Выберите чат
                   </div>
                 </div>
                 <div className='flex w-[50vw]]'>
