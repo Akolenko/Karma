@@ -48,6 +48,7 @@ export default class AuthStore {
       localStorage.setItem('userId', response.data.user.id)
       this.setAuth(true)
       this.setUser(response.data.user)
+      window.location.assign('/')
     } catch (error) {
       console.log('Что-то пошло не так в файле "auth.store.ts, метод registration.');
 

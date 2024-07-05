@@ -24,7 +24,7 @@ class UserService {
         
         const user = await User.create({fio: name, date_of_birth: dateOfBirth, email, password: hashPassword, phone, activationLink})
         console.log('мой ', user.get());
-        await mailService.sendActivationMail(email, `http://localhost:3000/api/activate/${activationLink}`)
+        await mailService.sendActivationMail(email, `http://46.148.228.8/`)
         const userDto = new UserDto (user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)

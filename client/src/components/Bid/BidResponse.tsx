@@ -13,6 +13,7 @@ export default function BidResponse({
   userId: string | null;
 }) {
   const [name, setName] = useState("");
+  const [idResponse, setIdResponse] = useState(0);
 
   const dispatch = useAppDispatch();
   const handlerClick = () => {
@@ -20,6 +21,10 @@ export default function BidResponse({
   };
 
   useEffect(() => {
+    $api(`${import.meta.env.VITE_REACT_APP_API_URL}/id-for-chatroom`, {
+      params: { id: response.id },
+    }).then((res) => setIdResponse(res.data));
+
     $api(`${import.meta.env.VITE_REACT_APP_API_URL}/names-customers`, {
       params: { authorId: response.author_id },
     }).then((res) => setName(res.data));
@@ -48,7 +53,7 @@ export default function BidResponse({
           <p className={"font-serif"}>{name}</p>
 
           <div className={"flex items-end gap-x-5"}>
-            <NavLink to={`/chat/?chat=${response.id}&choise=${true}`}>
+            <NavLink to={`/chat/?chat=${idResponse}&choise=${true}`}>
               <img
                 className={"w-10"}
                 src={"/svg/MailOutlined.svg"}
