@@ -13,6 +13,7 @@ certificatesRouter.get("/", async (req, res) => {
 certificatesRouter.post("/buy", async (req, res) => {
   try {
     const { userId, sum, image } = req.body;
+    console.log(req.body);
     const DBuser = await User.findByPk(Number(userId));
 
     if (DBuser.scores < Number(sum)) {
