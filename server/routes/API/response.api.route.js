@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Response, Room} = require('../../db/models')
+const {Response, Room, User} = require('../../db/models')
 
 router.post('/responses', async (req, res) => {
   const {user_id, bid_id, author_id, title} = req.body;
@@ -18,27 +18,21 @@ router.post('/responses', async (req, res) => {
     res.status(400).json({message: "Didn't created Response!"});
   }
 })
-  .delete('/responses/', async (req, res) => {
+  .delete('/responses/complete', async (req, res) => {
       const {user_id, bid_id} = req.body;
 
-    try {
-      await Room.destroy({where: {bid_id}})
-      await Response.destroy({where: {user_id: Number(user_id), bid_id}})
-      res.status(201).json({message: 'deleted response'})
-    } catch (e) {
-      console.log(e)
       try {
         const userId = await Response.findOne({where: {bid_id}})
         const currUser = await User.findOne({where: {id: userId.user_id}});
         //TODO можно ли эти запросы упростить?
         await currUser.update({scores: currUser.scores + 25})
-        await Response.destroy({where: {user_id: Number(user_id), bid_id}})
+        await Room.destroy({where: {bid_id}})
+        await Response.destroy({where: {bid_id}})
         res.status(201).json({message: 'deleted response'})
       } catch
         (e) {
         console.log(e.message)
       }
-    }
   })
 
 module.exports = router;

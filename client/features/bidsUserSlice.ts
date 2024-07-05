@@ -66,7 +66,7 @@ export const completeUserBids = createAsyncThunk(
         { status: "complete" }
       );
       await axios.delete(
-        `${import.meta.env.VITE_REACT_APP_API_URL}/responses`,
+        `${import.meta.env.VITE_REACT_APP_API_URL}/responses/complete`,
         {
           data: {
             user_id: userId,
