@@ -1,14 +1,7 @@
-import { useEffect, useState } from "react";
 import { Bid } from "../../../features/bidsUserSlice.ts";
-import $api from "../../http/index.ts";
 
 export default function CompleteBid({ bid }: { bid: Bid }) {
-  const [nameExec, setNameExec] = useState("");
-  useEffect(() => {
-    $api(`${import.meta.env.VITE_REACT_APP_API_URL}/names-exec`, {
-      params: { bidId: bid.id },
-    }).then((res) => setNameExec(res.data));
-  }, []);
+
   return (
     <>
       <div
@@ -30,7 +23,6 @@ export default function CompleteBid({ bid }: { bid: Bid }) {
           </p>
         </div>
         <div className={"flex flex-row justify-between items-baseline"}>
-          <p className={"font-serif"}>{nameExec}</p>
           <div className='flex flex-row gap-2'>
             <img src='/svg/success.svg' className='w-5' alt='' />{" "}
             <p>Завершено</p>
