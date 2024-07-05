@@ -8,10 +8,10 @@ export interface Bid {
   address: string;
 }
 
-export interface UserBid  {
+export interface UserBid {
   userId: string | null;
   bidId: number;
-};
+}
 
 export interface BidsState {
   list: Bid[] | [];
@@ -147,7 +147,7 @@ export const userBidsSlice = createSlice({
         state.list = action.payload;
       })
       .addCase(completeUserBids.fulfilled, (state, action: any) => {
-        const  { bidId }  = action.payload;
+        const { bidId } = action.payload;
         state.list = state.list.filter((bid) => bid.id !== bidId);
       });
   },
