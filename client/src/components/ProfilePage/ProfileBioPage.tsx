@@ -19,6 +19,7 @@ import {
 import "chartjs-plugin-datalabels";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useAppDispatch } from "../../../hooks/redux.ts";
+import $api from "../../http";
 
 Chart.register(ArcElement, ...registerables, ChartDataLabels);
 
@@ -63,15 +64,9 @@ function ProfileBioPage(): JSX.Element {
     phone,
     userId,
   }: UserDataType) => {
-    fetch(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/date`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fio, email, phone, userId }),
-    })
+    $api.post(`${import.meta.env.VITE_REACT_APP_API_URL}/profile/date`, { fio, email, phone, userId })
       .then((response) => {
-        if (response.ok) {
+        if (response) {
           console.log("Данные успешно сохранены на сервере");
         } else {
           console.error("Ошибка при сохранении данных на сервере");

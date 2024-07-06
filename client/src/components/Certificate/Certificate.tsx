@@ -17,6 +17,7 @@ export default function Certificate({ certificate, }: { certificate: Certificate
 
   async function buyCertificatehandler(sum: string, image: string): Promise<void> {
     try {
+      console.log(sum)
       const userId = localStorage.getItem("userId");
       const response = await $api.post(
         `${import.meta.env.VITE_REACT_APP_API_URL}/certificates/buy`,
@@ -61,7 +62,7 @@ export default function Certificate({ certificate, }: { certificate: Certificate
             onClick={() => buyCertificatehandler(`${certificate.sum}`, `${certificate.image}`)}
     className="px-4 py-2 rounded-md border-lime-600 hover:bg-lime-600 hover:text-white hover:border-none bg-white text-lime-600"
           >
-            СПИСАТЬ ОЧКИ
+            Потратить очки
           </button>
   </div>
 </div>

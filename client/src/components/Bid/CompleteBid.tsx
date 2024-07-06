@@ -1,6 +1,7 @@
 import { Bid } from "../../../features/bidsUserSlice.ts";
 
 export default function CompleteBid({ bid }: { bid: Bid }) {
+
   return (
     <>
       <div

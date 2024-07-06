@@ -9,7 +9,7 @@ class MailService {
             secure: true,
             auth: {
                 user: 'app.karma@yandex.ru',
-                pass: 'quemtcaeeyifhqrs'
+                pass: 'fikoospotsiqikoc'
             }
         })
     }
@@ -30,6 +30,7 @@ class MailService {
     }
 
     async sendCertificationBuyingMail(to, image, name) {
+        console.log('email transporter', to, image, name);
         await this.transporter.sendMail({
             from: 'app.karma@yandex.ru',
             to,
