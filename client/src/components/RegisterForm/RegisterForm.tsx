@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { AuthContext } from "../../main";
 import { NavLink } from "react-router-dom";
 
+// вносятся правки
 // eslint-disable-next-line react-refresh/only-export-components
 const RegisterForm: FC = () => {
     const [name, setName] = useState<string>('')
