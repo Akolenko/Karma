@@ -18,9 +18,9 @@ export type roomId = any
 function Messages({roomId}: roomId): JSX.Element {
   const [messages, setMessages] = useState<MessagesType>([])
   const [newMessage, setNewMessage] = useState('')
-
+  
   const userId: string | null = localStorage.getItem('userId')
-
+  
   const socket = io(`${import.meta.env.VITE_REACT_APP_SOCKET_URL}`);
 
   const inputHandler = (event: any) =>
@@ -46,13 +46,18 @@ function Messages({roomId}: roomId): JSX.Element {
       user: userId
     }
     socket.emit('join', searchParams)
-  }, [])
+    return () => {
+      socket.on('disconnect', () => {
+        console.log('Disconnect');
+      })
+    }
+  }, [roomId])
 
   useEffect(() => {
     socket.on('messages', ({data}) => {
       setMessages(data)
     })
-  }, [messages])
+  }, [roomId])
 
   socket.on('message', (response) => {
     setMessages((messages: MessagesType) => [...messages, response.data.messageCreate])

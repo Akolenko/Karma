@@ -11,7 +11,6 @@ router.get('/chat', async (req, res) => {
         user_id: userId
       }
     });
-    console.log(rooms)
     res.status(200).json(rooms)
   } catch (error) {
     console.log('Ошибка при закгрузке комнат', error);

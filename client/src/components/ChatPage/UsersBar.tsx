@@ -5,7 +5,7 @@ import Messages from "./Messages.tsx";
 
 
 function UsersBar(): JSX.Element {
-  const [choise, setChoise] = useState({choise: Boolean(new URLSearchParams(location.search).get("choise")), roomId: Number(new URLSearchParams(location.search).get("chat"))})
+  const [activeRoom, setRoom] = useState({roomId: Number(new URLSearchParams(location.search).get("chat"))})
   const dispatch = useAppDispatch();
   const rooms = useAppSelector(state => state.rooms.list);
   const activChat = 'rounded-md bg-lime-600 text-white p-3 text-left hover:scale-105 transition duration-300 cursor-pointer m-2.5'
@@ -27,11 +27,12 @@ function UsersBar(): JSX.Element {
                   <>
                     <div
                       key={room.id}
-                      className={choise.choise && choise.roomId === room.room_id ? activChat : normalChat}
+                      className={activeRoom.roomId === room.room_id ? activChat : normalChat}
                     >
                       <div
                         onClick={() => {
-                          setChoise({choise: !choise.choise, roomId: room.room_id})}}
+                          setRoom({roomId: room.room_id})
+                        }}
                       >
                         {room.title}
                       </div>
@@ -45,8 +46,8 @@ function UsersBar(): JSX.Element {
         </div>
         <div>
           {
-            choise.choise ?
-              <Messages roomId={choise.roomId}/>
+            activeRoom.roomId ?
+              <Messages roomId={activeRoom.roomId}/>
               :
               <div>
                 <div className='flex flex-col h-[80vh] w-[56vw] overflow-auto bg-white rounded-lg p-2.5'>
