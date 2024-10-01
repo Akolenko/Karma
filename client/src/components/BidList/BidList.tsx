@@ -6,7 +6,7 @@ import Bid from "../Bid/Bid/Bid.tsx";
 import { getLikes } from "../../../features/likeBidsSlice.ts";
 import MapComponent from "../Map/Map.tsx";
 import SearchInput from "../UI/SearchInput/SearchInput.tsx";
-import iconAddPost from "./add-post .png"
+import iconAddPost from "./add-post .png";
 
 export default function BidList() {
   const dispatch = useAppDispatch();
@@ -51,8 +51,8 @@ export default function BidList() {
               " hover:border-lime-600 bg-white text-lime-600 flex flex-row items-center gap-x-3"
             }
           >
-            <img src={iconAddPost} className='w-6' alt='add-button' />{" "}
-            Cоздать заявку
+            <img src={iconAddPost} className='w-6' alt='add-button' /> Cоздать
+            заявку
           </button>
         </Link>
       </div>

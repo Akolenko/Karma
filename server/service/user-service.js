@@ -1,102 +1,114 @@
-const { User, Bid } = require('../db/models')
-const bcrypt = require('bcrypt')
-const uuid = require('uuid')
-const jwt = require('jsonwebtoken')
-const mailService = require('../service/mail-service')
-const tokenService = require('../service/token-service')
-const UserDto = require('../dtos/user-dto')
-const ApiError = require('../exceptions/api-error')
-const { where } = require('sequelize')
+const { User, Bid } = require("../db/models");
+const bcrypt = require("bcrypt");
+const uuid = require("uuid");
+const jwt = require("jsonwebtoken");
+const mailService = require("../service/mail-service");
+const tokenService = require("../service/token-service");
+const UserDto = require("../dtos/user-dto");
+const ApiError = require("../exceptions/api-error");
+const { where } = require("sequelize");
 
 class UserService {
-    async registration(name, dateOfBirth, email, password, phone) {
-        
-        const candidate = await User.findOne({where: {
-            email: email
-        }})
+  async registration(name, dateOfBirth, email, password, phone) {
+    const candidate = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
 
-        if (candidate) {
-            throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует.`)
-        }
-        
-        const hashPassword = await bcrypt.hash(password, 3)
-        const activationLink = uuid.v4()
-        
-        const user = await User.create({fio: name, date_of_birth: dateOfBirth, email, password: hashPassword, phone, activationLink})
-        console.log('мой ', user.get());
-        await mailService.sendActivationMail(email, `http://46.148.228.8/`)
-        const userDto = new UserDto (user)
-        const tokens = tokenService.generateTokens({ ...userDto })
-        await tokenService.saveToken(userDto.id, tokens.refreshToken)
-
-        return {
-            ...tokens,
-            user: userDto
-        }
-
+    if (candidate) {
+      throw ApiError.BadRequest(
+        `Пользователь с почтовым адресом ${email} уже существует.`
+      );
     }
 
-    async login(email, password) {
-        const user = await User.findOne({where: {
-            email: email
-        }})
+    const hashPassword = await bcrypt.hash(password, 3);
+    const activationLink = uuid.v4();
 
-        if (!user) {
-            throw ApiError.BadRequest('Пользователь с таким email не найден.')
-        }
+    const user = await User.create({
+      fio: name,
+      date_of_birth: dateOfBirth,
+      email,
+      password: hashPassword,
+      phone,
+      activationLink,
+    });
+    console.log("мой ", user.get());
+    await mailService.sendActivationMail(email, `http://46.148.228.8/`);
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
 
-        const validPassword = await bcrypt.compare(password, user.password)
+    return {
+      ...tokens,
+      user: userDto,
+    };
+  }
 
-        if (!validPassword) {
-            throw ApiError.BadRequest('Неверный пароль.')
-        }
+  async login(email, password) {
+    const user = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
 
-        const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...userDto})
-        await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        return { ...tokens, user: userDto }
+    if (!user) {
+      throw ApiError.BadRequest("Пользователь с таким email не найден.");
     }
 
+    const validPassword = await bcrypt.compare(password, user.password);
 
-    async logout (refreshToken) {
-        const token = await tokenService.removeToken(refreshToken)
-        return token
+    if (!validPassword) {
+      throw ApiError.BadRequest("Неверный пароль.");
     }
 
-    async refresh(refreshToken) {
-        
-        if (!refreshToken) {
-            
-            throw ApiError.UnauthorizedError()
-        }
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    return { ...tokens, user: userDto };
+  }
 
-        const userData = tokenService.validateRefreshToken(refreshToken)
-        const tokenFromDB = await tokenService.findToken(refreshToken)
+  async logout(refreshToken) {
+    const token = await tokenService.removeToken(refreshToken);
+    return token;
+  }
 
-        if (!userData || !tokenFromDB) {
-            
-            throw ApiError.UnauthorizedError()
-        }
-
-        const user = await User.findByPk(userData.id)
-        const userDto = new UserDto(user)
-        const tokens = tokenService.generateTokens({ ...userDto})
-        await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        return { ...tokens, user: userDto }
+  async refresh(refreshToken) {
+    if (!refreshToken) {
+      throw ApiError.UnauthorizedError();
     }
 
-    async getAllBids() {
-        const bids = await Bid.findAll()
-        return bids
+    const userData = tokenService.validateRefreshToken(refreshToken);
+    const tokenFromDB = await tokenService.findToken(refreshToken);
+
+    if (!userData || !tokenFromDB) {
+      throw ApiError.UnauthorizedError();
     }
 
-    async activate(activationLink) {
-        const user = await User.findOne({where: {activationLink: activationLink}})
-        if (!user) {
-            throw new Error('Некорректная ссылка активации.')
-        }
-        await User.update({ isActivated: true }, { where: { activationLink: activationLink }})
+    const user = await User.findByPk(userData.id);
+    const userDto = new UserDto(user);
+    const tokens = tokenService.generateTokens({ ...userDto });
+    await tokenService.saveToken(userDto.id, tokens.refreshToken);
+    return { ...tokens, user: userDto };
+  }
+
+  async getAllBids() {
+    const bids = await Bid.findAll();
+    return bids;
+  }
+
+  async activate(activationLink) {
+    const user = await User.findOne({
+      where: { activationLink: activationLink },
+    });
+    if (!user) {
+      throw new Error("Некорректная ссылка активации.");
     }
+    await User.update(
+      { isActivated: true },
+      { where: { activationLink: activationLink } }
+    );
+  }
 }
 
-module.exports = new UserService()
+module.exports = new UserService();

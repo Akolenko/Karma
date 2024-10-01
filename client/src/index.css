@@ -13,7 +13,7 @@
 	line-height: 1.5;
 	font-weight: 400;
 	font-synthesis: none;
-	text-rendering: optimizeLegibility;
+	text-rendering: optimizelegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -24,18 +24,13 @@ body {
 	width: 100vw;
 	min-width: 320px;
 	min-height: 100vh;
-	background: rgb(247, 249, 239);
+	background: rgb(247 249 239);
 	background: linear-gradient(
 		166deg,
-		rgba(247, 249, 239, 1) 0%,
-		rgba(215, 238, 209, 1) 46%,
-		rgba(109, 223, 102, 1) 100%
+		rgb(247 249 239 / 100%) 0%,
+		rgb(215 238 209 / 100%) 46%,
+		rgb(109 223 102 / 100%) 100%
 	);
-}
-
-h1 {
-	/* font-size: 3.2em;
-	line-height: 1.1; */
 }
 
 button {

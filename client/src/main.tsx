@@ -1,28 +1,28 @@
-import ReactDOM from 'react-dom/client'
-import { createContext } from 'react'
-import './index.css'
+import ReactDOM from "react-dom/client";
+import { createContext } from "react";
+import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import {Provider} from "react-redux";
-import {store} from "../redux/store/store.ts";
-import AuthStore from './auth.store/auth.store.ts'
+import { Provider } from "react-redux";
+import { store } from "../redux/store/store.ts";
+import AuthStore from "./auth.store/auth.store.ts";
 import App from "./app/App.tsx";
 
 interface AuthState {
-    authStore: AuthStore
+  authStore: AuthStore;
 }
 
-const authStore = new AuthStore()
+const authStore = new AuthStore();
 
 export const AuthContext = createContext<AuthState>({
-    authStore
-})
+  authStore,
+});
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <AuthContext.Provider value={{ authStore }}>
     <Provider store={store}>
       <BrowserRouter>
-        <App/>
+        <App />
       </BrowserRouter>
     </Provider>
   </AuthContext.Provider>
-)
+);

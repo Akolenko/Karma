@@ -1,8 +1,6 @@
-export function Cards(): JSX.Element {
+export default function Cards(): JSX.Element {
   return (
-    <div
-      className={"flex gap-x-3 mt-12 justify-center flex-wrap gap-5 w-[1600px]"}
-    >
+    <div className={"flex mt-12 justify-center flex-wrap gap-5 w-full"}>
       <div
         className={
           "w-96 h-48 bg-white rounded-lg shadow-md transition hover:scale-[1.02] bg-opacity-85"
